@@ -5,20 +5,19 @@ const Home = () => (
     <div>
         <header className="home-nav" role="banner">
             <div className="slacklogo">
-                <NavLink to="/">slack</NavLink>
+                <NavLink to="/"><img src="https://assets.brandfolder.com/pljt3c-dcwb20-27ztzl/view@2x.png?v=1547850604"/></NavLink>
             </div>
             <ul className="home-navlist">
                 <li className="home-nav-item">
                     <NavLink to="/signin">Sign in</NavLink>
                 </li>
                 <li className="home-nav-item">
-                    <NavLink to="/signup">GET STARTED</NavLink>
+                    <NavLink to="/signup">Sign up</NavLink>
                 </li>
             </ul>
         </header>
-        <main role="main">
+        <main className="home-main">
             <section>
-
             </section>
             <footer>
                 
