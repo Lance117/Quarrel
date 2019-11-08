@@ -20,15 +20,18 @@ const receiveErrors = (errors = []) => ({
 });
 
 // thunk action creators
-export const loginUser = formUser => dispatch => login(formUser)
-    .then(user => {
-        return dispatch(receiveCurrentUser(user))
-    })
-    .fail(error => console.log(error));
+export const loginUser = formUser => dispatch => (login(formUser)
+    .then(user => (
+        dispatch(receiveCurrentUser(user))
+    ), err => (
+        dispatch(receiveErrors(err.responseJSON))
+    ))
+);
 
 export const logoutUser = () => dispatch => logout()
-    .then(() => dispatch(logoutCurrentUser()));
+    .then(() => (dispatch(logoutCurrentUser())));
 
-export const signupUser = (formUser) => dispatch => signup(formUser)
-    .then(user => dispatch(receiveCurrentUser(user)));
-
+export const signupUser = formUser => dispatch => signup(formUser)
+    .then(user => {
+        return dispatch(receiveCurrentUser(user))
+    });

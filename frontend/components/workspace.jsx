@@ -1,6 +1,6 @@
 import React from 'react'
 import NavLink from 'react-router-dom'
-import Sidebar from './sidebar'
+import SidebarContainer from './sidebar_container'
 
 // class Workspace extends React.Component {
 
@@ -9,7 +9,7 @@ const Workspace = () => {
     return (
         <div className="client-container">
             <div className="workspace-pane">
-                <Sidebar />
+                <SidebarContainer />
             </div>
             <h1>hello, world!</h1>
         </div>

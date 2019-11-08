@@ -18,6 +18,9 @@ const Home = () => (
         </header>
         <main className="home-main">
             <section>
+                <div>
+                    
+                </div>
             </section>
             <footer>
                 

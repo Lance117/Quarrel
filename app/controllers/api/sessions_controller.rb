@@ -1,20 +1,20 @@
 class Api::SessionsController < ApplicationController
     def create
-        user = User.find_by_credentials(
+        @user = User.find_by_credentials(
         params[:user][:email],
         params[:user][:password]
         )
-        if user
-            sign_in(user)
-            render json: user
+        if @user
+            sign_in(@user)
+            render json: @user
         else
-            render json: 'Sorry, you entered an incorrect email address or password.', status: 404
+            render json: ['Sorry, you entered an incorrect email address or password.'], status: 401
         end
     end
 
     def destroy
         if !signed_in?
-            render json: {}, status: 422
+            render json: {}, status: 404
         else
             sign_out
         end

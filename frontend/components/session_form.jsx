@@ -10,7 +10,6 @@ class SessionForm extends React.Component {
             username: "",
             email: "",
             password: "",
-            loggedIn: false
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -20,17 +19,12 @@ class SessionForm extends React.Component {
         e.preventDefault();
         const user = Object.assign({}, this.state);
         this.props.processForm(user);
-        this.setState({ loggedIn: true });
     }
 
     update(k) {
         return e => {
             this.setState({ [k]: e.target.value })
         };
-    }
-
-    isLoggedIn() {
-        return this.state.loggedIn;
     }
 
     formTypeMsgs() {
@@ -40,18 +34,28 @@ class SessionForm extends React.Component {
         return ['Sign up', 'Already have an account? ', 'Sign in here.', 'signin', ' for'];
     }
 
-    render() {
-        if (this.isLoggedIn()) {
-            return <Redirect to="/workspace" />
+    renderErrors() {
+        if (this.props.errors.length > 0) {
+            return (
+                <div className="errors col">
+                    {this.props.errors.map((error, i) => (
+                        <p className="alert-error" key={`error-${i}`}>{error}</p>
+                    ))}
+                </div>
+            );
         }
+    }
+
+    render() {
         return (
             <div className="formpage">
                 <SessionTop />
                 <div className="page-contents">
-                    <div className="content-card">
-                        <h1>{this.formTypeMsgs()[0] + this.formTypeMsgs()[4]} Team Rocket</h1>
+                    {this.renderErrors()}
+                    <div className="content-card span_3_of_5 col">
+                        <h1>{this.formTypeMsgs()[0] + this.formTypeMsgs()[4]} team rocket</h1>
                         <p className="med-bottom-margin">dark-mode-slack.com/team-rocket</p>
-                        <form onSubmit={this.handleSubmit} className="signin-form">
+                        <form onSubmit={this.handleSubmit} className="signin-form span_3_of_5 .col">
                             {this.props.formType === 'login' ? (
                                 <p>Enter your <strong>email address</strong> and <strong>password</strong>.</p>
                             ): (
@@ -59,25 +63,25 @@ class SessionForm extends React.Component {
                             )}
 
                             <p className="no_bottom_margin">
-                                <input type="email" placeholder="you@example.com" size="40" onChange={this.update('email')}/>
+                                <input className="session-input" type="email" placeholder="you@example.com" size="40" onChange={this.update('email')}/>
                             </p>
                             {this.props.formType === 'signup' ? (
                                 <p>
-                                    <input type="text" placeholder='display name' size="40"/>
+                                    <input className="session-input" type="text" placeholder='display name' size="40" onChange={this.update('username')}/>
                                 </p>
                             ) : (null)
                             }
                             <p className="small_bottom_margin">
-                                <input type="password" placeholder="password" size="40" onChange={this.update('password')}/>
+                                <input className="session-input" type="password" placeholder="password" size="40" onChange={this.update('password')}/>
                             </p>
                             <p>
-                                <button type="submit">
+                                <button className="form-btn" type="submit">
                                     <span>{this.formTypeMsgs()[0]}</span>
                                 </button>
                             </p>
                         </form>
                     </div>
-                    <div>
+                    <div className="bottom-content">
                         <p>
                             {this.formTypeMsgs()[1]} <NavLink to={`/${this.formTypeMsgs()[3]}`} className="bold">{this.formTypeMsgs()[2]}</NavLink>
                         </p>
