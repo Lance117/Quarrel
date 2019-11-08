@@ -1,13 +1,28 @@
+* {
+    box-sizing: border-box;
+}
+
 .formpage {
     background-color: #f9f9f9;
-    box-sizing: border-box;
     transform: translateX(0);
     width: 100%;
     transition: transform .15s cubic-bezier(.2,.3,.25,.9);
 }
 
-.span_3_of_5 {
-    width: 60.75%;
+.span-2-3 {
+    width: 66.13%;
+}
+
+.top-persistent {
+    display: flex;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 1px rgba(0,0,0,.1)
 }
 
 .top-persistent ul a {
@@ -30,7 +45,6 @@
 }
 
 .signin-form {
-    box-sizing: border-box;
     margin: auto;
 }
 
@@ -59,7 +73,6 @@
     white-space: nowrap;
     margin: 0;
     font-family: inherit;
-    box-sizing: border-box;
     width: 100%;
 }
 
@@ -73,15 +86,6 @@
     border-radius: .25rem;
 }
 
-.top-persistent {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 70px;
-    background-color: #ffffff;
-    box-shadow: 0 1px 1px rgba(0,0,0,.1)
-}
-
 p {
     display: block;
     margin-block-start: 1em;
@@ -92,9 +96,8 @@ p {
 }
 
 .page-contents {
-    color: #1d1c1d;
+    color: #1d1c1d !important;
     margin: 0 auto;
-    box-sizing: border-box;
     font-family: sans-serif;
 }
 
@@ -129,9 +132,13 @@ p {
 }
 
 .formlogo {
-    display: flex;
-    align-items: center;
-    height: inherit;
+    background-position: left bottom;
+    background: url("https://a.slack-edge.com/4f28/img/slack_logo.svg") left top no-repeat;
+    background-size: contain;
+    height: 30px;
+    width: 106px;
+    float: left;
+    margin: 1.25rem;
 }
 
 .formlogo img {
@@ -178,26 +185,24 @@ p {
     box-shadow: none;
     height: auto;
     font-family: inherit;
-    box-sizing: border-box;
 }
 
 .bottom-content {
     text-align: center;
 }
 
-.errors {
-    margin: auto;
-    width: 66.17%;
-}
-
 .alert-error {
     padding: .75rem 1rem .75rem 3rem;
-    border-left-color: #e01e5a;
+    border-left-color: #e01e5a !important;
     border: 1px solid #ddd;
     background: #fff;
     color: #1d1c1d;
     border-left-width: 5px;
     margin: 0 auto 1rem;
     border-radius: .25rem;
-    box-sizing: border-box;
+}
+
+.margin-auto {
+    margin-left: auto;
+    margin-right: auto;
 }

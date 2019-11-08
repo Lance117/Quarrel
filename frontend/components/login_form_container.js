@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
 import SessionForm from './session_form'
 import { loginUser } from '../actions/session_actions'
+import Home from './home'
 
 const mapStateToProps = (state, ownProps) => {
     return {
@@ -15,4 +16,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     });
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(SessionForm)
+const containerCreator = connect(mapStateToProps, mapDispatchToProps);
+const components = [SessionForm, Home];
+export default components.map(containerCreator);

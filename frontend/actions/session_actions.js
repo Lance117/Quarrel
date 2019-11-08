@@ -31,7 +31,10 @@ export const loginUser = formUser => dispatch => (login(formUser)
 export const logoutUser = () => dispatch => logout()
     .then(() => (dispatch(logoutCurrentUser())));
 
-export const signupUser = formUser => dispatch => signup(formUser)
-    .then(user => {
-        return dispatch(receiveCurrentUser(user))
-    });
+export const signupUser = formUser => dispatch => (signup(formUser)
+    .then(user => (
+        dispatch(receiveCurrentUser(user))
+    ), err => (
+        dispatch(receiveErrors(err.responseJSON))
+    ))
+);

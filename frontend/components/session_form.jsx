@@ -9,7 +9,7 @@ class SessionForm extends React.Component {
         this.state = {
             username: "",
             email: "",
-            password: "",
+            password: ""
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -37,7 +37,7 @@ class SessionForm extends React.Component {
     renderErrors() {
         if (this.props.errors.length > 0) {
             return (
-                <div className="errors col">
+                <div className="span-2-3 col margin-auto">
                     {this.props.errors.map((error, i) => (
                         <p className="alert-error" key={`error-${i}`}>{error}</p>
                     ))}
@@ -52,34 +52,37 @@ class SessionForm extends React.Component {
                 <SessionTop />
                 <div className="page-contents">
                     {this.renderErrors()}
-                    <div className="content-card span_3_of_5 col">
+                    <div className="content-card span-2-3 col">
                         <h1>{this.formTypeMsgs()[0] + this.formTypeMsgs()[4]} team rocket</h1>
                         <p className="med-bottom-margin">dark-mode-slack.com/team-rocket</p>
-                        <form onSubmit={this.handleSubmit} className="signin-form span_3_of_5 .col">
-                            {this.props.formType === 'login' ? (
-                                <p>Enter your <strong>email address</strong> and <strong>password</strong>.</p>
-                            ): (
-                                <p>Enter your email address, a display name, and password to get started.</p>
-                            )}
+                        <div className="span-2-3 col margin-auto">
+                            <form onSubmit={this.handleSubmit} className="signin-form">
+                                {this.props.formType === 'login' ? (
+                                    <p>Enter your <strong>email address</strong> and <strong>password</strong>.</p>
+                                ): (
+                                    <p>Enter your email address, a display name, and password to get started.</p>
+                                )}
 
-                            <p className="no_bottom_margin">
-                                <input className="session-input" type="email" placeholder="you@example.com" size="40" onChange={this.update('email')}/>
-                            </p>
-                            {this.props.formType === 'signup' ? (
-                                <p>
-                                    <input className="session-input" type="text" placeholder='display name' size="40" onChange={this.update('username')}/>
+                                <p className="no_bottom_margin">
+                                    <input className="session-input" type="email" placeholder="you@example.com" size="40" onChange={this.update('email')}/>
                                 </p>
-                            ) : (null)
-                            }
-                            <p className="small_bottom_margin">
-                                <input className="session-input" type="password" placeholder="password" size="40" onChange={this.update('password')}/>
-                            </p>
-                            <p>
-                                <button className="form-btn" type="submit">
-                                    <span>{this.formTypeMsgs()[0]}</span>
-                                </button>
-                            </p>
-                        </form>
+                                {this.props.formType === 'signup' ? (
+                                    <p>
+                                        <input className="session-input" type="text" placeholder='display name' size="40" onChange={this.update('username')}/>
+                                    </p>
+                                ) : (null)
+                                }
+                                <p className="small_bottom_margin">
+                                    <input className="session-input" type="password" placeholder="password" size="40" onChange={this.update('password')}/>
+                                </p>
+                                <p>
+                                    <button className="form-btn" type="submit">
+                                        <span>{this.formTypeMsgs()[0]}</span>
+                                    </button>
+                                </p>
+                            </form>
+
+                        </div>
                     </div>
                     <div className="bottom-content">
                         <p>

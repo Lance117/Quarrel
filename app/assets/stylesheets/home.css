@@ -16,7 +16,7 @@
     height: 70px;
     padding-left: 4%;
     padding-right: 4%;
-    background-color: #2C2D30;
+    background-color: #717274;
 }
 
 .home-navlist {
@@ -31,6 +31,9 @@
     line-height: 1.28571429;
     padding: 16px;
     font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .home-nav-item a {
@@ -39,9 +42,40 @@
 }
 
 .home-nav-item a:hover {
-    color: #0576B9;
+    color: #eaf5fc;
 }
 
 .home-main {
     background-color: #f9f9f9;
+}
+
+.guest-btn {
+    padding: .75rem 1rem;
+    border: none;
+    background-color: #611f69 !important;
+    color: #fff !important;
+    background: 0 0;
+    cursor: pointer;
+    border-radius: 4px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: box-shadow 420ms cubic-bezier(.165,.84,.44,1),
+    color 420ms cubic-bezier(.165,.84,.44,1),
+    background 420ms cubic-bezier(.165,.84,.44,1);
+}
+
+@media screen and (min-width: 48rem) {
+    .guest-btn {
+        display: inline-block;
+        white-space: nowrap;
+        flex-basis: auto;
+        width: auto;
+    }
+}
+
+@media screen and (min-width: 64rem) {
+    .guest-btn {
+        font-size: .875rem;
+    }
 }

@@ -4,11 +4,10 @@ import { connect } from 'react-redux'
 import SessionForm from './session_form'
 import {signupUser} from '../actions/session_actions'
 
-const mapStateToProps = ({ errors }) => {
+const mapStateToProps = (state, ownProps) => {
     return {
-        errors: errors.session,
-        formType: 'signup',
-        navLink: <Link to="/login">log in instead</Link>
+        errors: state.errors.session,
+        formType: 'signup'
     };
 };
 
