@@ -1,17 +1,20 @@
 import React from 'react'
-import NavLink from 'react-router-dom'
-import SidebarContainer from './sidebar_container'
+import {TopNavContainer, SidebarContainer} from './workspace_container'
+import PrimaryView from './primary_view'
+import PrimaryFooter from './primary_footer'
 
 // class Workspace extends React.Component {
 
 // }
 const Workspace = () => {
     return (
-        <div className="client-container">
-            <div className="workspace-pane">
+        <div className="workspace">
+            <div className="client-grids">
+                <div className="workspace-banner"></div>
+                <TopNavContainer/>
                 <SidebarContainer />
+                <PrimaryView />
             </div>
-            <h1>hello, world!</h1>
         </div>
     )
 }

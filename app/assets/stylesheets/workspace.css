@@ -1,0 +1,363 @@
+.workspace {
+    background-color: #1a1d21;
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.46668;
+    font-weight: 400;
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-rows: auto;
+    grid-template-columns: auto;
+    overflow: hidden;
+}
+
+.client-grids {
+    display: grid;
+    grid-template-columns: 220px auto;
+    grid-template-areas:
+        "workspace-banner workspace-banner"
+        "workspace-top-nav workspace-top-nav"
+        "workspace-sidebar workspace-primary";
+    grid-template-rows: min-content 60px auto;
+}
+
+.workspace-banner {
+    grid-area: workspace-banner;
+}
+
+.workspace-top-nav {
+    grid-area: workspace-top-nav;
+    min-width: 0;
+}
+
+.client-grids .workspace-sidebar:after {
+    left: auto;
+    right: 0;
+}
+
+.workspace-sidebar:after {
+    content: "";
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    top: 0;
+    pointer-events: none;
+    background: #2c2d30;
+}
+
+.workspace-primary {
+    display: flex;
+    flex: 1;
+    position: relative;
+    flex-direction: column;
+    grid-template-areas: "primary-contents";
+}
+
+.flex-top-nav {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.nav-team-header {
+    color: #ffffff;
+    flex-shrink: 0;
+    width: 220px;
+    height: 60px;
+    padding: 8px 16px;
+}
+
+.header-content {
+    cursor: pointer;
+}
+
+.nav-team-name {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-header-section {
+    display: flex;
+    align-items: center;
+}
+
+.team-name {
+    font-size: 18px;
+    line-height: 1.33334;
+    font-weight: 900;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.nav-user-header {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.presence-icon {
+    width: 8px;
+    margin-left: -5px;
+    margin-top: -2px;
+}
+
+.small-icons {
+    height: auto;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+}
+
+.presence-icon::before {
+    content: "\25CB";
+}
+
+.small-icons::before {
+    height: auto;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+}
+
+.all-icons::before {
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.small-icons::after {
+    content: "\200B";
+}
+
+.all-icons {
+    position: relative;
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-username {
+    flex: 0 1 auto;
+    min-width: 0;
+    display: flex;
+    opacity: .7;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nav-username:hover {
+    opacity: 1;
+}
+
+.nav-channel-header {
+    flex: 1;
+    height: 60px;
+    padding: 8px 8px 8px 20px;
+    display: flex;
+    min-width: 0;
+    position: relative;
+}
+
+.nav-title {
+    flex: 1;
+    min-width: 0;
+    font-size: 18px;
+    line-height: 1.33334;
+    font-weight: 900;
+    display: inline-flex;
+    max-width: 100%;
+    align-items: baseline;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #d1d2d3;
+}
+
+.workspace-sidebar {
+    display: grid;
+    grid-template-areas: "workspace-sidebar";
+    grid-template-rows: auto;
+    grid-template-columns: auto;
+}
+
+.channel-sidebar {
+    color: #e8e8e8;
+    width: 220px;
+    flex: 1;
+    height: 100%;
+    position: relative;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.side-toolbar {
+    width: 196px;
+    margin: 4px 0 8px 12px;
+    display: inline-flex;
+}
+
+.side-toolbar-btn {
+    color: inherit;
+    width: 196px;
+    top: 0;
+    margin: 0;
+    padding: 2px 8px 3px 8px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 4px;
+    border: 0;
+    line-height: inherit;
+    font: inherit;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    opacity: 1;
+    transition: color .1s ease-out;
+    cursor: pointer;
+}
+
+.team-header-icon {
+    display: inline-flex;
+    margin-right: 8px;
+    background-color: #1a1d21;
+    border: none;
+}
+
+.down-icon {
+    opacity: .6;
+    color: #f9f9f9;
+    cursor: pointer;
+}
+
+.down-icon::before {
+    content: "\2304";
+}
+
+.channel-sidebar-list {
+    flex: 1;
+    position: relative;
+}
+
+.ws-scrollbar {
+    width: 220px;
+    height: 358px;
+    overflow: hidden;
+    position: relative;
+}
+
+.scrollbar-hider {
+    overflow-y: scroll;
+    overflow-x: hidden;
+    outline: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: -50px;
+    bottom: 0;
+    height: 100%;
+    transform: translateZ(0);
+}
+
+.channels-list {
+    outline: none;
+}
+
+.sidebar-section-heading {
+    padding: 0 12px 0 15px;
+    margin: 0;
+    width: 100%;
+    height: 26px;
+    display: flex;
+    align-items: center;
+}
+
+.channel-section-heading {
+    color: #c6c7c8 !important;
+    font-weight: 700 !important;
+    line-height: 1;
+    display: block;
+    text-align: left;
+    width: 100%;
+    transition: color .1s ease-out;
+    background: none;
+    border: 0;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.channel-section-heading:hover {
+    color: #f9f9f9 !important;
+}
+
+.channel-name {
+    color: #c6c7c8;
+    display: flex;
+    align-items: center;
+    line-height: 26px;
+    padding: 0 12px 0 15px;
+    width: 100%;
+    margin-right: auto;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    opacity: 1;
+}
+
+.primary-contents {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    grid-area: "primary-contents";
+}
+
+.primary-footer {
+    display: flex;
+    padding: 0 20px 24px 20px;
+}
+
+.msg-input {
+    flex: 1 1 auto;
+    position: relative;
+    border: 1px solid #565856;
+    border-radius: 4px;
+    border-width: 1px;
+    min-height: 42px;
+    padding-top: 0;
+    padding-bottom: 4px;
+    padding-right: 0;
+}
+
+.txt-editor {
+    border-right: none;
+    width: calc(100% - 67px);
+    padding-right: 67px;
+    margin-top: 4px;
+    padding-bottom: 4px;
+    padding-top: 5px;
+    min-height: 22px;
+    line-height: 1.46668;
+    max-height: calc(60vh - 80px);
+    height: auto;
+    overflow: auto;
+    text-align: left;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    cursor: text;
+    outline: none;
+}

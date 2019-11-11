@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import Sidebar from './sidebar'
+import TopNav from './top_nav'
 import { logoutUser } from '../actions/session_actions'
 
 const mapStateToProps = state => {
@@ -13,4 +14,5 @@ const mapDispatchToProps = dispatch => {
     };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Sidebar)
+export const SidebarContainer = connect(mapStateToProps, mapDispatchToProps)(Sidebar)
+export const TopNavContainer = connect(mapStateToProps, mapDispatchToProps)(TopNav)

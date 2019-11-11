@@ -25,13 +25,13 @@ class Home extends React.Component {
                         <NavLink to="/"><img src={window.whiteLogo} /></NavLink>
                     </div>
                     <ul className="home-navlist">
-                        <li className="home-nav-item">
+                        <li className="home-nav-item home-hover">
                             <NavLink to="/signin">Sign in</NavLink>
                         </li>
-                        <li className="home-nav-item">
+                        <li className="home-nav-item home-hover">
                             <NavLink to="/signup">Sign up</NavLink>
                         </li>
-                        <li className="home-nav-item">
+                        <li className="home-nav-item home-hover">
                             <form onSubmit={this.handleSubmit}>
                                 <button className="guest-btn">guest login</button>
                             </form>

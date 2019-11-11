@@ -1,22 +1,26 @@
 import React from 'react'
+import ChannelsList from './channels_list'
 import { Link } from 'react-router-dom'
 
 const Sidebar = props => {
-    const currentUser = props.currentUser;
-    if (!currentUser) {
-        return (
-            <div>
-                <h1>Sign in to see things</h1>
-                <Link to="/signin">Login</Link>
-            </div>
-        )
-    }
     return (
-        <div>
-            <h1>Welcome, {currentUser.username}!</h1>
-            <button onClick={props.logoutUser}>
-                logout!
-            </button>
+        <div className="workspace-sidebar">
+            <nav className="channel-sidebar">
+                <div className="side-toolbar">
+                    <button className="side-toolbar-btn" onClick={props.logoutUser}>
+                        Sign out temp
+                    </button>
+                </div>
+                <div className="channel-sidebar-list">
+                    <div className="ws-scrollbar">
+                        <div className="scrollbar-hider">
+                            <div className="scrollbar-childen" style={{width: '220px'}}>
+                                <ChannelsList />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </div>
     )
 }

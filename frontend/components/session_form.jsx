@@ -60,7 +60,8 @@ class SessionForm extends React.Component {
                                 {this.props.formType === 'login' ? (
                                     <p>Enter your <strong>email address</strong> and <strong>password</strong>.</p>
                                 ): (
-                                    <p>Enter your email address, a display name, and password to get started.</p>
+                                    <p>Enter your <strong>email address</strong>, a <strong>display name</strong>,
+                                     and <strong>password</strong> to get started.</p>
                                 )}
 
                                 <p className="no_bottom_margin">
