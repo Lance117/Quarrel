@@ -39,15 +39,21 @@ class Home extends React.Component {
                     </ul>
                 </header>
                 <main className="home-main">
-                    <section>
-                        <div>
-
+                    <section className="teamwork-section">
+                        <div className="section-content">
+                            <div>
+                                <h2 className="section-headline">Argue with friends and strangers around the world</h2>
+                                <p className="section-feature">
+                                    Want to discuss cool topics like sports, boba, or K-pop? Make a channel about it
+                                    and tell people what you think!
+                                </p>
+                            </div>
+                            <img src={window.teamsPic}/>
                         </div>
                     </section>
-                    <footer>
-
-                    </footer>
                 </main>
+                <footer className="home-footer">
+                </footer>
             </div>
         )
     }
