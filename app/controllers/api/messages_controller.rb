@@ -1,5 +1,9 @@
 class Api::MessagesController < ApplicationController
-    before_action :require_signed_in
+    # before_action :require_signed_in
+
+    def index
+        @messages = Message.all
+    end
 
     def create
        message = current_user.messages.new(message_params) 

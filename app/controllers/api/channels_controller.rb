@@ -1,13 +1,12 @@
 class Api::ChannelsController < ApplicationController
-    before_action :require_signed_in
+    # before_action :require_signed_in
 
     def index
         @channels = Channel.all
-        render json: @channels
     end
 
     def show
-        @channel_messages = @channel.messages.includes(:user)
+        @channel = Channel.find(params[:id])
     end
 
     def create

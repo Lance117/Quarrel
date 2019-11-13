@@ -2,7 +2,30 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'Lato';
+    src:font-url('lato-bold-4b1dc11.woff2');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Lato-norm';
+    src:font-url('lato-regular-d9ce515.woff2');
+}
+
+@font-face {
+    font-family: 'Lato-bolder';
+    src:font-url('lato-black-b64f5e4.woff2');
+    font-weight: bolder;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: 700;
+    font-family: 'Lato', 'Lucida Grande', sans-serif;
+}
+
 .formpage {
+    font-family: 'Lato-norm', 'Lucida Grande', sans-serif;
     background-color: #f9f9f9;
     transform: translateX(0);
     width: 100%;
@@ -45,6 +68,7 @@
 }
 
 .signin-form {
+    font-family: 'Lato-norm', 'Lucida Grande', sans-serif;
     margin: auto;
 }
 
@@ -128,6 +152,7 @@ p {
 }
 
 .med-bottom-margin {
+    font-family: 'Lato-norm', 'Lucida Grande', sans-serif;
     margin-bottom: 1.5rem;
 }
 
@@ -152,7 +177,7 @@ p {
     font-weight: 400;
     line-height: 1.28571429;
     padding: 16px;
-    font-family: Arial, Helvetica, sans-serif
+    font-family: 'Lato-norm', 'Lucida Grande', sans-serif;
 }
 
 .no-bottom-margin {

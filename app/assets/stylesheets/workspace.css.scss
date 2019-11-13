@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Lato-norm';
+    src:font-url('lato-regular-d9ce515.woff2');
+}
+
 .workspace {
     background-color: #1a1d21;
     margin: 0;
@@ -341,15 +346,19 @@
     padding-top: 0;
     padding-bottom: 4px;
     padding-right: 0;
+    font-family: 'Lato-norm';
+    font-size: 15px;
+    color: #d1d2d3;
 }
 
 .txt-editor {
-    border-right: none;
+    font: inherit;
+    color: inherit;
+    border: none;
     width: calc(100% - 67px);
+    padding-left: 32px;
     padding-right: 67px;
     margin-top: 4px;
-    padding-bottom: 4px;
-    padding-top: 5px;
     min-height: 22px;
     line-height: 1.46668;
     max-height: calc(60vh - 80px);
@@ -360,4 +369,9 @@
     word-wrap: break-word;
     cursor: text;
     outline: none;
+    background: rgba(0, 0, 0, 0);
+}
+
+.msg-input:hover {
+    border: 1px solid #a0a0a2;
 }

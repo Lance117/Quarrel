@@ -1,3 +1,20 @@
+@font-face {
+    font-family: 'Larsseit';
+    src:font-url('larsseit-bold.woff2');
+    font-weight: bold;
+}
+
+@font-face {
+    font-family: 'Circularpro';
+    src:font-url('circular-pro-book.woff2');
+}
+
+@font-face {
+    font-family: 'Circularpro';
+    src:font-url('circular-pro-bold.woff2');
+    font-weight: bold;
+}
+
 .slacklogo {
     display: flex;
     align-items: center;
@@ -28,12 +45,12 @@
 }
 
 .home-nav-item {
+    font-family: 'Circularpro', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial, sans-serif;
     font-size: 16px;
     font-weight: 400;
     color: #f9f9f9;
     line-height: 1.28571429;
     padding: 16px;
-    font-family: Arial, Helvetica, sans-serif;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,6 +71,7 @@
 }
 
 .guest-btn {
+    font-family: inherit;
     padding: .75rem 1rem;
     border: none;
     background-color: #611f69 !important;
@@ -131,6 +149,7 @@
 }
 
 .section-headline {
+    font-family: 'Larsseit', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial, sans-serif;
     font-weight: 700;
     line-height: 1.1875;
     letter-spacing: -.8px;
@@ -145,8 +164,12 @@
         line-height: 1.44444444;
         letter-spacing: -.2px;
         font-size: 1.125rem;
-        margin: 0;
+        margin-bottom: 1rem;
     }
+}
+
+.section-feature {
+    font-family: 'Circularpro', 'Helvetica Neue', Helvetica, 'Segoe UI', Tahoma, Arial, sans-serif;
 }
 
 img {
