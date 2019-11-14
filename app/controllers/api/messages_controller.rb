@@ -6,13 +6,17 @@ class Api::MessagesController < ApplicationController
     end
 
     def create
-       @message = current_user.messages.new(message_params) 
-       @message.user = current_user
-       if @message.save
-        ActionCable.server.broadcast 'channel_channel',
-            body: @message.body,
-            username: @message.user.username
-        )
+        @message = current_user.messages.new(message_params) 
+        @message.user = current_user
+        if @message.save
+            render json: @message
+        
+        # ActionCable.server.broadcast 'channel_channel',
+        #     body: @message.body,
+        #     username: @message.user.username
+        # )
+        else
+            render json: @message.errors.full_messages, status: 422
        end
     end
 

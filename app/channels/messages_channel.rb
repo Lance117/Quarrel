@@ -1,8 +1,8 @@
 class MessagesChannel < ApplicationCable::Channel
   def subscribed
     # stream_from "some_channel"
-    channel = Channel.find(params[:id])
-    stream_for channel
+    # channel = Channel.find(params[:id])
+    # stream_for channel
   end
 
   def unsubscribed
@@ -10,4 +10,4 @@ class MessagesChannel < ApplicationCable::Channel
   end
 end
 
-MessagesChannel.broadcast_to(@channel, @message)
+# MessagesChannel.broadcast_to(@channel, @message)
