@@ -1,6 +1,6 @@
 @font-face {
-    font-family: 'Lato-norm';
-    src:font-url('lato-regular-d9ce515.woff2');
+    font-family: 'Slack-icons';
+    src:font-url('slack-icons-v2-3c7c6e4.woff2');
 }
 
 .workspace {
@@ -8,7 +8,7 @@
     margin: 0;
     padding: 0;
     font-size: 15px;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Lato-norm';
     line-height: 1.46668;
     font-weight: 400;
     width: 100vw;
@@ -92,6 +92,7 @@
 }
 
 .team-name {
+    font-family: 'Lato';
     font-size: 18px;
     line-height: 1.33334;
     font-weight: 900;
@@ -121,7 +122,9 @@
 }
 
 .presence-icon::before {
-    content: "\25CB";
+    content: "\E507";
+    font-family: 'Slack-icons' !important;
+    color: #e8e8e8;
 }
 
 .small-icons::before {
@@ -175,6 +178,7 @@
 }
 
 .nav-title {
+    font-family: 'Lato';
     flex: 1;
     min-width: 0;
     font-size: 18px;
@@ -249,7 +253,8 @@
 }
 
 .down-icon::before {
-    content: "\2304";
+    content: "\E252";
+    font-family: 'Slack-icons';
 }
 
 .channel-sidebar-list {
@@ -310,8 +315,40 @@
     color: #f9f9f9 !important;
 }
 
+.section-heading-right {
+    margin-left: auto;
+}
+
+.add-channel-btn {
+    margin-left: 8px;
+    line-height: 1;
+    color: #a0a0a2;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.add-channel-btn:hover {
+    color: #ffcc00;
+}
+
+.add-channel-btn::before {
+    font-family: 'Slack-icons';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    display: inline-block;
+    vertical-align: middle;
+    width: 20px;
+    flex-shrink: 0;
+    opacity: .64;
+    line-height: 1;
+    content: "\E228";
+    transition: opacity .1s ease-out;
+}
+
 .channel-name {
-    color: #c6c7c8;
+    color: #c6c7c8 !important;
     display: flex;
     align-items: center;
     line-height: 26px;
@@ -324,11 +361,15 @@
     opacity: 1;
 }
 
+.channel-name:hover {
+    background-color: black;
+}
+
 .primary-contents {
     display: flex;
     flex-direction: column;
     flex: 1;
-    grid-area: "primary-contents";
+    grid-area: primary-contents;
 }
 
 .primary-footer {
@@ -374,4 +415,78 @@
 
 .msg-input:hover {
     border: 1px solid #a0a0a2;
+}
+
+.msg-list-container {
+    position: absolute;
+    width: 100%;
+}
+
+.msg-list-item {
+    font-family: 'Lato-norm';
+    color: #e8e8e8;
+    line-height: 16px;
+    padding: 6px 0;
+    font-size: 15px;
+    position: relative;
+}
+
+.msg-avatar {
+    width: 64px;
+    padding-right: 8px;
+    float: left;
+    text-align: right;
+}
+
+.msg-avatar-btn {
+    height: 36px;
+    line-height: 36px;
+    width: 36px;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    background: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.avatar-img {
+    border-radius: 3px;
+    display: block;
+    height: 100%!important;
+    width: 100%!important;
+}
+
+.msg-contents {
+    margin-top: -9px;
+    margin-left: 64px;
+    margin-right: 20px;
+}
+
+.msg-list-item:hover {
+    background-color: #2c2d30;
+}
+
+.sender-header {
+    margin: 9px 0 -5px;
+    line-height: 1;
+}
+
+.msg-sender {
+    font-family: 'Lato';
+    font-weight: 900;
+    word-break: break-word;
+}
+
+.msg-body {
+    color: #e8e8e8cf !important;
+    line-height: 1.46668;
+    margin: 8px 0 -4px;
+    text-align: left;
+    display: inline-block;
+    width: 100%;
+    word-wrap: break-word;
 }

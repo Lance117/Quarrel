@@ -1,0 +1,224 @@
+ .nav-modal {
+    position: absolute;
+    left: 8px;
+    top: 34px;
+    outline: none;
+    transition-duration: 80ms;
+  }
+
+  button:focus {outline:0;}
+
+  .popover {
+    z-index: 1053;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  .nav-modal-menu {
+    font-family: 'Lato-norm';
+    --saf-0: rgba(var(--sk_foreground_low,29,28,29),0.13);
+    box-shadow: 0 0 0 1px var(--saf-0),0 4px 12px 0 rgba(0,0,0,.12);
+    background-color: rgba(var(--sk_foreground_min_solid,248,248,248),1);
+    border-radius: 6px;
+    width: 300px;
+    max-width: 360px;
+    min-width: 200px;
+    z-index: 888;
+    max-height: calc(100vh - 20px);
+    overflow-y: auto;
+    padding: .1px 0;
+  }
+
+  .nav-modal-items {
+    margin: 0;
+    padding: 12px 0;
+    background-color: #2c2d30;
+  }
+
+  .nav-modal-item {
+    line-height: 28px;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .nav-modal-btn {
+    font-size: 15px;
+    border: 0;
+    overflow: visible;
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    color: #E8E8E8;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    min-height: 28px;
+    overflow-x: hidden;
+    padding: 0 24px;
+    text-align: left;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+  }
+
+  .nav-item-label {
+    flex: 1 1 auto;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    position: relative;
+    top: -1px;
+  }
+
+  .add-channel-popover {
+    padding: 28px;
+    align-items: center;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    left: 0;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9001;
+  }
+
+  .add-channel-popover:before {
+    background: rgba(0,0,0,.6);
+    content: "";
+    height: 100%;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+
+  .add-channel-modal {
+    outline: none;
+    font-size: 15px;
+    line-height: 1.46668;
+    font-weight: 400;
+    color: #e8e8e8;
+    transform: scale(1);
+    opacity: 1;
+    height: auto;
+    max-width: 520px;
+    width: 100%;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    position: relative;
+    --saf-0: rgba(var(--sk_foreground_low,29,28,29),0.13);
+    box-shadow: 0 0 0 1px var(--saf-0),0 18px 48px 0 rgba(0,0,0,.35);
+}
+
+.add-channel-header {
+    border-radius: 8px 8px 0 0;
+    flex-shrink: 0;
+    min-height: 70px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.format-channel-header {
+    font-weight: 900;
+    font-size: 28px;
+    line-height: 1.2143;
+    margin: 0;
+    // padding-right: 76px;
+    align-items: center;
+    display: flex;
+    min-height: 70px;
+    padding: 20px 28px;
+    width: 100%;
+}
+
+.add-channel-content {
+    display: flex;
+    flex-shrink: 1;
+    min-height: 50px;
+    overflow: hidden;
+    position: relative;
+}
+
+.add-channel-content:after {
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    pointer-events: none;
+}
+
+.content-section {
+  font-family: 'Lato-norm';
+  padding: 0 28px;
+}
+
+.channel-name-input {
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    --saf-0: rgba(var(--sk_foreground_low,29,28,29),0.13);
+    cursor: text;
+}
+
+.add-channel-input {
+  width: 100%;
+  padding: 0;
+  height: 48px;
+  line-height: 1.33334;
+  font-size: 18px;
+  font-family: inherit;
+  color: #d1d2d3;
+  border-radius: 4px;
+  outline: none;
+  padding: 4px 12px;
+  background: transparent;
+  border: 1px solid #565856;
+}
+
+.add-channel-input:focus {
+  border: 1px solid #e8e8e8;
+}
+
+.create-channel-footer {
+    align-items: center;
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    flex-shrink: 0;
+    height: 84px;
+    justify-content: flex-end;
+    margin-top: auto;
+    overflow: hidden;
+    width: 100%;
+}
+
+.create-channel-btn {
+    height: 42%;
+    background: #2c2d30;
+    color: #d1d2d3;
+    font-family: 'Lato';
+    font-weight: 900;
+    font-size: 15px;
+    padding: 0 12px;
+    border: none;
+}

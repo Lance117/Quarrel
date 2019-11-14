@@ -14,7 +14,7 @@ const Sidebar = props => {
                 <div className="channel-sidebar-list">
                     <div className="ws-scrollbar">
                         <div className="scrollbar-hider">
-                            <div className="scrollbar-childen" style={{width: '220px'}}>
+                            <div className="scrollbar-children" style={{width: '220px'}}>
                                 <ChannelsList />
                             </div>
                         </div>

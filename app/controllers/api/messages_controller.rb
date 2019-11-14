@@ -6,11 +6,12 @@ class Api::MessagesController < ApplicationController
     end
 
     def create
-       message = current_user.messages.new(message_params) 
-       if message.save
-        ActionCable.server.broadcast(
-            body: message.body,
-            username: message.user.username
+       @message = current_user.messages.new(message_params) 
+       @message.user = current_user
+       if @message.save
+        ActionCable.server.broadcast 'channel_channel',
+            body: @message.body,
+            username: @message.user.username
         )
        end
     end
@@ -18,6 +19,6 @@ class Api::MessagesController < ApplicationController
     private
 
     def message_params
-        params.require(:message).permit(:body, :user_id, :channel_id)
+        params.require(:message).permit(:body, :channel_id)
     end
 end
