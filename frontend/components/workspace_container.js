@@ -5,18 +5,21 @@ import PrimaryView from './primary_view'
 import { logoutUser } from '../actions/session_actions'
 import { fetchChannels } from '../actions/channel_actions'
 import { receiveActiveChannel } from '../actions/active_channel_actions'
+import { fetchMessages } from '../actions/message_actions'
 
 const mapStateToProps = state => {
     const currentUser = state.entities.users[state.session.id];
     const activeChannel = state.ui.activeChannel;
-    return { currentUser, activeChannel };
+    const messages = state.entities.messages;
+    return { currentUser, activeChannel, messages };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         logoutUser: () => dispatch(logoutUser()),
         fetchChannels: () => dispatch(fetchChannels()),
-        setActiveChannel: channel => dispatch(receiveActiveChannel(channel))
+        setActiveChannel: channel => dispatch(receiveActiveChannel(channel)),
+        fetchMessages: () => dispatch(fetchMessages())
     };
 }
 

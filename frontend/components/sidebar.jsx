@@ -2,7 +2,6 @@ import React from 'react'
 import ChannelsList from './channels_list'
 
 const Sidebar = props => {
-    props.fetchChannels();
     return (
         <div className="workspace-sidebar">
             <nav className="channel-sidebar">

@@ -6,7 +6,8 @@ const messagesReducer = (state = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_MESSAGES:
-            action.messages.forEach(message => {
+            const messages = Object.values(action.messages);
+            messages.forEach(message => {
                 nextState[message.id] = message;
             });
             return nextState;
