@@ -16,5 +16,4 @@ const TopNav = props => {
         </div>
     </div>
 )}
-
 export default TopNav;
