@@ -1,8 +1,8 @@
 import React from 'react'
 import ChannelsList from './channels_list'
-import { Link } from 'react-router-dom'
 
 const Sidebar = props => {
+    props.fetchChannels();
     return (
         <div className="workspace-sidebar">
             <nav className="channel-sidebar">
@@ -15,7 +15,7 @@ const Sidebar = props => {
                     <div className="ws-scrollbar">
                         <div className="scrollbar-hider">
                             <div className="scrollbar-children" style={{width: '220px'}}>
-                                <ChannelsList />
+                                <ChannelsList currentUser={props.currentUser} activeChannel={props.activeChannel} setActiveChannel={props.setActiveChannel}/>
                             </div>
                         </div>
                     </div>

@@ -1,6 +1,10 @@
 class Api::UsersController < ApplicationController
     def index
-        @users = User.all
+        if params[:channel_id]
+            @users = Channel.find(params[:channel_id]).users
+        else
+            @users = User.all
+        end
     end
 
     def create

@@ -1,8 +1,12 @@
 class Api::ChannelsController < ApplicationController
-    before_action :require_signed_in
+    # before_action :require_signed_in
 
     def index
-        @channels = Channel.all
+        if params[:user_id]
+            @channels = User.find(params[:user_id]).channels
+        else
+            @channels = Channel.all
+        end
     end
 
     def show

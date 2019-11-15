@@ -1,19 +1,37 @@
 import React from 'react'
 import ReactModal from 'react-modal';
+import Channel from './channel'
+import {fetchMyChannels} from '../util/channels_api_util'
 
 class ChannelsList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showModal: false
+            showModal: false,
+            channels: [],
         };
-
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
     }
 
     componentDidMount() {
         ReactModal.setAppElement(document.getElementById('root'));
+        fetchMyChannels(this.props.currentUser.id)
+            .then(res => Object.values(res))
+            .then(
+                (result) => {
+                    this.setState({
+                        showModal: false,
+                        channels: result
+                    });
+                },
+                (error) => {
+                    this.setState({
+                        showModal: false,
+                        error
+                    });
+                }
+            )
     }
 
     handleOpenModal() {
@@ -34,9 +52,9 @@ class ChannelsList extends React.Component {
                         <button className="add-channel-btn" onClick={this.handleOpenModal}></button>
                     </div>
                 </div>
-                <div style={{height: '26px'}}>
-                    <span className="channel-name"># channel placeholder</span>
-                </div>
+                { this.state.channels.map((channel, i) => {
+                    return (<Channel channel={channel} setActiveChannel={this.props.setActiveChannel} active={channel.id === this.props.activeChannel.id} />)
+                })}
                 <ReactModal
                     isOpen={this.state.showModal}
                     contentLabel="Add Channel"

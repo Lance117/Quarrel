@@ -348,7 +348,8 @@
 }
 
 .channel-name {
-    color: #c6c7c8 !important;
+    color: #c6c7c8;
+    cursor: pointer;
     display: flex;
     align-items: center;
     line-height: 26px;
@@ -361,7 +362,7 @@
     opacity: 1;
 }
 
-.channel-name:hover {
+.active-false:hover {
     background-color: black;
 }
 
@@ -489,4 +490,9 @@
     display: inline-block;
     width: 100%;
     word-wrap: break-word;
+}
+
+.active-true {
+    background: #0576B9;
+    color: #FFFFFF;
 }

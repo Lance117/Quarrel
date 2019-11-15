@@ -1,7 +1,5 @@
 import React from 'react'
-import {TopNavContainer, SidebarContainer} from './workspace_container'
-import PrimaryView from './primary_view'
-import PrimaryFooter from './primary_footer'
+import {TopNavContainer, SidebarContainer, PrimaryViewContainer} from './workspace_container'
 
 // class Workspace extends React.Component {
 
@@ -13,7 +11,7 @@ const Workspace = () => {
                 <div className="workspace-banner"></div>
                 <TopNavContainer/>
                 <SidebarContainer />
-                <PrimaryView />
+                <PrimaryViewContainer />
             </div>
         </div>
     )

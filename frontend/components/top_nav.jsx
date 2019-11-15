@@ -8,7 +8,7 @@ const TopNav = props => {
             <NavTeamHeader currentUser={props.currentUser.username} logoutUser={props.logoutUser}/> 
             <div className="nav-channel-header">
                 <div className="nav-title">
-                    #general
+                    {`#${props.activeChannel.channelName}`}
                 </div>
             </div>
             <div className="nav-bonus-header">
