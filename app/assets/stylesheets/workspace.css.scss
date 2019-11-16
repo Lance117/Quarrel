@@ -70,6 +70,7 @@
 }
 
 .nav-team-header {
+    border-right: 1px solid #393c46;
     color: #ffffff;
     flex-shrink: 0;
     width: 220px;
@@ -169,6 +170,7 @@
 }
 
 .nav-channel-header {
+    border-bottom: 1px solid #393c46;
     flex: 1;
     height: 60px;
     padding: 8px 8px 8px 20px;
@@ -201,6 +203,7 @@
 }
 
 .channel-sidebar {
+    border-right: 1px solid #393c46;
     color: #e8e8e8;
     width: 220px;
     flex: 1;

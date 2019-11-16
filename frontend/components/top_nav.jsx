@@ -1,19 +1,30 @@
 import React from 'react'
 import NavTeamHeader from './team_header'
 
-const TopNav = props => {
-    return (
-    <div className="workspace-top-nav">
-        <div className="flex-top-nav">
-            <NavTeamHeader currentUser={props.currentUser.username} logoutUser={props.logoutUser}/> 
-            <div className="nav-channel-header">
-                <div className="nav-title">
-                    {`# ${props.activeChannel.channelName}`}
+class TopNav extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+    componentDidMount() {
+        this.props.fetchAllUsers();
+    }
+
+    render() {
+        return (
+            <div className="workspace-top-nav">
+                <div className="flex-top-nav">
+                    <NavTeamHeader currentUser={this.props.currentUser} logoutUser={this.props.logoutUser}/> 
+                    <div className="nav-channel-header">
+                        <div className="nav-title">
+                            {`# ${this.props.activeChannel.channelName}`}
+                        </div>
+                    </div>
+                    <div className="nav-bonus-header">
+                    </div>
                 </div>
             </div>
-            <div className="nav-bonus-header">
-            </div>
-        </div>
-    </div>
-)}
+        )
+    }
+}
+
 export default TopNav;

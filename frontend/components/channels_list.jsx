@@ -8,7 +8,6 @@ class ChannelsList extends React.Component {
         super(props);
         this.state = {
             showModal: false,
-            channels: [],
         };
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -16,22 +15,6 @@ class ChannelsList extends React.Component {
 
     componentDidMount() {
         ReactModal.setAppElement(document.getElementById('root'));
-        fetchMyChannels(this.props.currentUser.id)
-            .then(res => Object.values(res))
-            .then(
-                (result) => {
-                    this.setState({
-                        showModal: false,
-                        channels: result
-                    });
-                },
-                (error) => {
-                    this.setState({
-                        showModal: false,
-                        error
-                    });
-                }
-            )
     }
 
     handleOpenModal() {
@@ -40,6 +23,16 @@ class ChannelsList extends React.Component {
 
     handleCloseModal() {
         this.setState({ showModal: false });
+    }
+
+    myChannels() {
+        let res = [];
+        for (let membership of this.props.memberships) {
+            if (membership.user_id === this.props.userId) {
+                res.push(this.props.channels[membership.channel_id]);
+            }
+        }
+        return res;
     }
 
     render() {
@@ -52,7 +45,7 @@ class ChannelsList extends React.Component {
                         <button className="add-channel-btn" onClick={this.handleOpenModal}></button>
                     </div>
                 </div>
-                { this.state.channels.map((channel, i) => {
+                { this.myChannels().map((channel, i) => {
                     return (<Channel channel={channel} setActiveChannel={this.props.setActiveChannel} active={channel.id === this.props.activeChannel.id} />)
                 })}
                 <ReactModal

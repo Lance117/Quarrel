@@ -10,7 +10,7 @@ const Message = props => {
             </div>
             <div className="msg-contents">
                 <div className="sender-header">
-                    <span className="msg-sender">Ralph Macchio</span>
+                    <span className="msg-sender">{props.user.username}</span>
                 </div>
                 <span className="msg-body">{props.body}</span>
             </div>

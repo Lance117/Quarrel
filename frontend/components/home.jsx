@@ -14,8 +14,6 @@ class Home extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, this.guest);
-        this.props.fetchChannels();
-        this.props.fetchMessages();
         this.props.processForm(user);
     }
 

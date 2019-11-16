@@ -6,7 +6,8 @@ const membershipsReducer = (state = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_MEMBERSHIPS:
-            action.memberships.forEach(membership => {
+            const memberships = Object.values(action.memberships);
+            memberships.forEach(membership => {
                 nextState[membership.id] = membership;
             });
             return nextState;

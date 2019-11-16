@@ -8,13 +8,18 @@ class PrimaryView extends React.Component {
         super(props);
     };
 
+    componentDidMount() {
+        this.props.fetchChannels();
+        this.props.fetchAllMemberships();
+    }
+
     render() {
         return (
             <div className="workspace-primary">
                 <div className="primary-contents">
                     {Object.values(this.props.messages).map((message, i) => {
                         if (message.id === this.props.activeChannel.id) {
-                            return (<Message body={message.body}/>)
+                            return (<Message body={message.body} user={this.props.users[message.user_id]}/>)
                         }
                     })}
                 </div>
