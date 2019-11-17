@@ -33,7 +33,7 @@ class Home extends React.Component {
                         </li>
                         <li className="home-nav-item home-hover">
                             <form onSubmit={this.handleSubmit}>
-                                <button className="guest-btn">guest login</button>
+                                <button className="guest-btn">Guest login</button>
                             </form>
                         </li>
                     </ul>

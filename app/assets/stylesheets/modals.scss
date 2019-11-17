@@ -16,6 +16,8 @@
     width: 100%;
     height: 100%;
     overflow: hidden;
+    animation: 1s ease 0s 1 normal forwards popover-fade;
+    animation-duration: 80ms;
   }
 
   .nav-modal-menu {

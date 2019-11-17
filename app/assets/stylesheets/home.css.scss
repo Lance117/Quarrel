@@ -10,7 +10,7 @@
 }
 
 @font-face {
-    font-family: 'Circularpro';
+    font-family: 'Circularpro-bold';
     src:font-url('circular-pro-bold.woff2');
     font-weight: bold;
 }
@@ -67,11 +67,16 @@
 
 .home-main {
     flex: 1 1 0;
-    background-color: #2c2d30;
+    -webkit-animation: bgcolor 23s infinite;
+    animation: bgcolor 33s infinite;
+    -webkit-animation-direction: alternate;
+    animation-direction: alternate;
 }
 
 .guest-btn {
-    font-family: inherit;
+    font-family: 'Circularpro';
+    font-weight: 700;
+    letter-spacing: .8px;
     padding: .75rem 1rem;
     border: none;
     background-color: #611f69 !important;
@@ -80,7 +85,6 @@
     cursor: pointer;
     border-radius: 4px;
     text-align: center;
-    text-transform: uppercase;
     text-decoration: none;
     transition: box-shadow 420ms cubic-bezier(.165,.84,.44,1),
     color 420ms cubic-bezier(.165,.84,.44,1),
@@ -98,7 +102,7 @@
 
 @media screen and (min-width: 64rem) {
     .guest-btn {
-        font-size: .875rem;
+        font-size: .93rem;
     }
 }
 
@@ -117,7 +121,6 @@
     align-items: center;
     justify-items: center;
     margin: 0;
-    background-color: #2c2d30;
     color: #f9f9f9 !important;
 }
 
@@ -181,4 +184,26 @@ img {
 .home-footer {
     background-color: #e8e8e8;
     height: 84px;
+}
+
+@keyframes bgcolor {
+    0% {
+        background-color: #2c2d30
+    }
+
+    30% {
+        background-color: #161320
+    }
+
+    60% {
+        background-color: #3a2d3d
+    }
+
+    90% {
+        background-color: #3d2424
+    }
+
+    100% {
+        background-color: #263d27
+    }
 }
