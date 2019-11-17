@@ -18,6 +18,8 @@ class SessionForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, this.state);
+        this.props.fetchChannels();
+        this.props.fetchAllMemberships();
         this.props.processForm(user);
     }
 
