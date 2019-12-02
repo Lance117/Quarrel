@@ -14,8 +14,8 @@ class Sidebar extends React.Component {
             <div className="workspace-sidebar">
                 <nav className="channel-sidebar">
                     <div className="side-toolbar">
-                        <button className="side-toolbar-btn" onClick={this.props.logoutUser}>
-                            Sign out temp
+                        <button className="side-toolbar-btn">
+                            Jump to...
                         </button>
                     </div>
                     <div className="channel-sidebar-list">
