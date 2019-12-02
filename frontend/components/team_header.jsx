@@ -29,7 +29,7 @@ class NavTeamHeader extends React.Component {
             <div className="nav-team-header">
                 <div className="nav-team-name header-content">
                     <div className="team-header-section">
-                        <div className="team-name">Team Rocket</div>
+                        <div className="team-name" onClick={this.handleOpenModal}>Team Rocket</div>
                         <button className="team-header-icon" type="button" onClick={this.handleOpenModal}>
                             <i className="down-icon all-icons"></i>
                         </button>
