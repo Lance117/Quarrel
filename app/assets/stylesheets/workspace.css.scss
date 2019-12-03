@@ -488,7 +488,7 @@
 }
 
 .msg-body {
-    color: #e8e8e8cf !important;
+    color: #d1d2d3 !important;
     line-height: 1.46668;
     margin: 8px 0 -4px;
     text-align: left;
@@ -513,14 +513,18 @@
 }
 
 .forward-channel-name {
-    color: #e8e8e8cf;
+    color: #d1d2d3;
     margin-bottom: 8px;
     font-size: 28px;
     line-height: 1.2143;
 }
 
 .forward-description {
-    color: #e8e8e8cf;
+    color: #d1d2d3;
     font-size: 1.1rem;
     line-height: 1.5;
+}
+
+.timestamp {
+    font-size: 12px;
 }

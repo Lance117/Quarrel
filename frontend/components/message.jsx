@@ -1,4 +1,5 @@
 import React from 'react'
+import Moment from 'react-moment'
 
 const Message = props => {
     return (
@@ -11,6 +12,8 @@ const Message = props => {
             <div className="msg-contents">
                 <div className="sender-header">
                     <span className="msg-sender">{props.user.username}</span>
+                    <span> </span>
+                    <span className="timestamp"><Moment format="LT">{props.timestamp}</Moment></span>
                 </div>
                 <span className="msg-body">{props.body}</span>
             </div>
