@@ -8,16 +8,18 @@ class Workspace extends React.Component {
         super(props);
         this.state = {
             error: null,
-            channelsLoaded: false,
-            messagesLoaded: false,
-            membershipsLoaded: false,
-            usersLoaded: false
+            isLoaded: false
         };
     }
 
     componentDidMount() {
-        if (!this.state.channelsLoaded) {
-            this.props.fetchChannels()
+        let channels = this.props.fetchChannels();
+        let messages = this.props.fetchMessages();
+        let memberships = this.props.fetchAllMemberships();
+        let users = this.props.fetchAllUsers();
+
+        if (!this.state.isLoaded) {
+            Promise.all([channels, messages, memberships, users])
                 .then(
                     (r) => {
                         this.setState({channelsLoaded: true});
@@ -25,48 +27,6 @@ class Workspace extends React.Component {
                     (e) => {
                         this.setState({
                             channelsLoaded: true,
-                            error
-                        });
-                    }
-                )
-        }
-        if (!this.state.messagesLoaded) {
-            this.props.fetchMessages()
-                .then(
-                    (r) => {
-                        this.setState({messagesLoaded: true});
-                    },
-                    (e) => {
-                        this.setState({
-                            messagesLoaded: true,
-                            error
-                        });
-                    }
-                )
-        }
-        if (!this.state.membershipsLoaded) {
-            this.props.fetchAllMemberships()
-                .then(
-                    (r) => {
-                        this.setState({membershipsLoaded: true});
-                    },
-                    (e) => {
-                        this.setState({
-                            membershipsLoaded: true,
-                            error
-                        });
-                    }
-                )
-        }
-        if (!this.state.usersLoaded) {
-            this.props.fetchAllUsers()
-                .then(
-                    (r) => {
-                        this.setState({usersLoaded: true});
-                    },
-                    (e) => {
-                        this.setState({
-                            usersLoaded: true,
                             error
                         });
                     }
