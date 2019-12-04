@@ -17,10 +17,10 @@ class PrimaryView extends React.Component {
             <div className="workspace-primary">
                 <div className="msg-forward" style={{top: "0px"}}>
                     <h1 className="forward-channel-name">
-                        <span>{`#${this.props.activeChannel.channelName}`}</span>
+                        <span>{`#${this.props.channels[this.props.activeChannel.id].channel_name}`}</span>
                     </h1>
                     <p className="forward-description">
-                        This is the very beginning of the <strong>#{this.props.activeChannel.channelName}</strong> channel.
+                        This is the very beginning of the <strong>#{this.props.channels[this.props.activeChannel.id].channel_name}</strong> channel.
                         Please stay on topic!
                     </p>
                 </div>
@@ -31,7 +31,7 @@ class PrimaryView extends React.Component {
                         }
                     })}
                 </div>
-                <PrimaryFooter currentUser={this.props.currentUser} activeChannel={this.props.activeChannel.channelName} />
+                <PrimaryFooter currentUser={this.props.currentUser} activeChannel={this.props.channels[this.props.activeChannel.id].channel_name} />
             </div>
         )
     }

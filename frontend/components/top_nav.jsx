@@ -16,7 +16,7 @@ class TopNav extends React.Component {
                     <NavTeamHeader currentUser={this.props.currentUser} logoutUser={this.props.logoutUser}/> 
                     <div className="nav-channel-header">
                         <div className="nav-title">
-                            {`# ${this.props.activeChannel.channelName}`}
+                            {`# ${this.props.channels[this.props.activeChannel.id].channel_name}`}
                         </div>
                     </div>
                     <div className="nav-bonus-header">
