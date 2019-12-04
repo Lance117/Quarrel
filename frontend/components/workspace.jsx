@@ -22,11 +22,11 @@ class Workspace extends React.Component {
             Promise.all([channels, messages, memberships, users])
                 .then(
                     (r) => {
-                        this.setState({channelsLoaded: true});
+                        this.setState({isLoaded: true});
                     },
                     (e) => {
                         this.setState({
-                            channelsLoaded: true,
+                            isLoaded: true,
                             error
                         });
                     }
@@ -35,10 +35,10 @@ class Workspace extends React.Component {
     }
 
     render() {
-        const { error, channelsLoaded, membershipsLoaded, messagesLoaded, usersLoaded } = this.state;
+        const { error, isLoaded } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
-        } else if (!(channelsLoaded || membershipsLoaded || messagesLoaded || usersLoaded)) {
+        } else if (!isLoaded) {
             return <div>Loading...</div>;
         } else {
             return (
