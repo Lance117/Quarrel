@@ -26,6 +26,7 @@ class ChannelsList extends React.Component {
     }
 
     myChannels() {
+        debugger
         let res = [];
         for (let membership of this.props.memberships) {
             if (membership.user_id === this.props.userId) {

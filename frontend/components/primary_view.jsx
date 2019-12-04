@@ -1,17 +1,16 @@
 import React from "react";
 import PrimaryFooter from './primary_footer'
 import Message from './message'
-import {fetchChannelMessages} from '../util/messages_api_util'
 
 class PrimaryView extends React.Component {
     constructor(props) {
         super(props);
     };
 
-    componentDidMount() {
-        this.props.fetchChannels();
-        this.props.fetchAllMemberships();
-    }
+    // componentDidMount() {
+    //     this.props.fetchChannels();
+    //     this.props.fetchAllMemberships();
+    // }
 
     render() {
         return (

@@ -1,7 +1,5 @@
 import { connect } from 'react-redux'
-import Sidebar from './sidebar'
-import TopNav from './top_nav'
-import PrimaryView from './primary_view'
+import Workspace from './workspace'
 import { logoutUser } from '../actions/session_actions'
 import { fetchChannels } from '../actions/channel_actions'
 import { receiveActiveChannel } from '../actions/active_channel_actions'
@@ -31,6 +29,4 @@ const mapDispatchToProps = dispatch => {
     };
 }
 
-export const SidebarContainer = connect(mapStateToProps, mapDispatchToProps)(Sidebar)
-export const TopNavContainer = connect(mapStateToProps, mapDispatchToProps)(TopNav)
-export const PrimaryViewContainer = connect(mapStateToProps, mapDispatchToProps)(PrimaryView)
+export default connect(mapStateToProps, mapDispatchToProps)(Workspace)

@@ -6,7 +6,7 @@ export default (state = {id: 0, channelName: 'Disneyland'}, action) => {
 
     switch (action.type) {
         case RECEIVE_ACTIVE_CHANNEL:
-            return {id: action.channel.id, channelName: action.channel.channel_name, test: 3};
+            return {id: action.channel.id, channelName: action.channel.channel_name};
         default:
             return state;
     }

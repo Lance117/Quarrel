@@ -5,9 +5,6 @@ class Sidebar extends React.Component {
     constructor(props) {
         super(props);
     }
-    componentDidMount() {
-        this.props.fetchMessages();
-    }
 
     render() {
         return (

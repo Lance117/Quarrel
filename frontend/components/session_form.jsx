@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { NavLink, Redirect, Switch, Route } from 'react-router-dom'
 import SessionTop from './session_top'
 
@@ -18,8 +17,6 @@ class SessionForm extends React.Component {
     handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, this.state);
-        this.props.fetchChannels();
-        this.props.fetchAllMemberships();
         this.props.processForm(user);
     }
 

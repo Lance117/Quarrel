@@ -5,9 +5,9 @@ class TopNav extends React.Component {
     constructor(props) {
         super(props);
     }
-    componentDidMount() {
-        this.props.fetchAllUsers();
-    }
+    // componentDidMount() {
+    //     this.props.fetchAllUsers();
+    // }
 
     render() {
         return (
