@@ -21,7 +21,8 @@ class Sidebar extends React.Component {
                                 <div className="scrollbar-children" style={{width: '220px'}}>
                                     <ChannelsList channels={this.props.channels} users={this.props.users}
                                     userId ={this.props.userId} activeChannel={this.props.activeChannel}
-                                    memberships={this.props.memberships}/>
+                                    memberships={this.props.memberships} createMembership={this.props.createMembership}
+                                    createChannel={this.props.createChannel} history={this.props.history}/>
                                 </div>
                             </div>
                         </div>

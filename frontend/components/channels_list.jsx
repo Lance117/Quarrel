@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactModal from 'react-modal';
 import Channel from './channel'
-import {fetchMyChannels} from '../util/channels_api_util'
 
 class ChannelsList extends React.Component {
     constructor(props) {
@@ -68,7 +67,12 @@ class ChannelsList extends React.Component {
                         </div>
                         <br></br>
                         <div className="content-section" style={{width: '100%'}}>
-                            <AddChannelForm /> 
+                            <AddChannelForm 
+                                createChannel={this.props.createChannel}
+                                createMembership={this.props.createMembership}
+                                userId={this.props.userId}
+                                history={this.props.history}
+                            /> 
                         </div>
                     </div>
                 </ReactModal>
@@ -92,6 +96,16 @@ class AddChannelForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
+        $.when(this.props.createChannel({channel_name: this.state.value})).then(r => {
+            this.props.createMembership({user_id: this.props.userId, channel_id: r.channel.id})
+                .then(res => {
+                    this.props.history.push(`${res.membership.channel_id}`)
+                }), e => {
+                    console.log(e);
+                };
+        }), err => {
+            console.log(err)
+        };
     }
 
     render() {
@@ -103,7 +117,7 @@ class AddChannelForm extends React.Component {
                     <input type="text" className="add-channel-input" minLength="3" maxLength="42" placeholder="# e.g. Kpop" onChange={this.handleChange} />
                 </div>
                 <div className="create-channel-footer">
-                    <button className={btnClass}>Create</button>
+                    <button className={btnClass} onClick={this.handleSubmit}>Create</button>
                 </div>
             </form> 
         )

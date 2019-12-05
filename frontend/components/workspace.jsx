@@ -46,8 +46,9 @@ class Workspace extends React.Component {
                     <div className="client-grids">
                         <div className="workspace-banner"></div>
                         <TopNav currentUser={this.props.currentUser} logoutUser={this.props.logoutUser} activeChannel={this.props.activeChannel} channels={this.props.channels}/>
-                        <Sidebar channels={this.props.channels} users={this.props.users} userId={this.props.userId}
-                        memberships={this.props.memberships} activeChannel={this.props.activeChannel} />
+                        <Sidebar channels={this.props.channels} users={this.props.users} userId={this.props.userId} createMembership={this.props.createMembership}
+                        memberships={this.props.memberships} activeChannel={this.props.activeChannel} createChannel={this.props.createChannel}
+                        history={this.props.history}/>
                         <PrimaryView channels={this.props.channels} users={this.props.users} activeChannel={this.props.activeChannel} messages={this.props.messages} currentUser={this.props.currentUser}/>
                     </div>
                 </div>
