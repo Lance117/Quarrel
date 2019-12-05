@@ -1,5 +1,4 @@
 class Api::ChannelsController < ApplicationController
-    # before_action :require_signed_in
 
     def index
         @channels = Channel.all

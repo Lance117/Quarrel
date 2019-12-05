@@ -26,7 +26,7 @@ export const fetchChannels = () => dispatch => (
     ))
 );
 
-export const createChannel = newChannel => dispatch => (ChannelAPIUtil.createChannel(newChannel)
+export const createNewChannel = newChannel => dispatch => (ChannelAPIUtil.createChannel(newChannel)
     .then(channel => (
         dispatch(receiveChannel(channel))
     ), err => (

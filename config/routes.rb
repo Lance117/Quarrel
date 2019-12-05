@@ -17,6 +17,6 @@ Rails.application.routes.draw do
     end
     resources :messages
     resources :channels
-    resources :memberships, only: [:index]
+    resources :memberships, only: [:index, :create]
   end
 end
