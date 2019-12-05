@@ -72,6 +72,7 @@ class ChannelsList extends React.Component {
                                 createMembership={this.props.createMembership}
                                 userId={this.props.userId}
                                 history={this.props.history}
+                                handleCloseModal={this.handleCloseModal}
                             /> 
                         </div>
                     </div>
@@ -99,6 +100,7 @@ class AddChannelForm extends React.Component {
         $.when(this.props.createChannel({channel_name: this.state.value})).then(r => {
             this.props.createMembership({user_id: this.props.userId, channel_id: r.channel.id})
                 .then(res => {
+                    this.props.handleCloseModal()
                     this.props.history.push(`${res.membership.channel_id}`)
                 }), e => {
                     console.log(e);
