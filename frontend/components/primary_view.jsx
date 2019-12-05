@@ -21,7 +21,7 @@ class PrimaryView extends React.Component {
                 </div>
                 <div className="primary-contents">
                     {Object.values(this.props.messages).map((message, i) => {
-                        if (message.id === this.props.activeChannel.id) {
+                        if (message.channel_id === this.props.activeChannel.id) {
                             return (<Message key={message.id} body={message.body} user={this.props.users[message.user_id]} timestamp={message.created_at}/>)
                         }
                     })}

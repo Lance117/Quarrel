@@ -46,7 +46,7 @@ class ChannelsList extends React.Component {
                     </div>
                 </div>
                 { this.myChannels().map((channel, i) => {
-                    return (<Channel key={channel.id} channel={channel} setActiveChannel={this.props.setActiveChannel} active={channel.id === this.props.activeChannel.id} />)
+                    return (<Channel key={channel.id} channel={channel} active={channel.id === this.props.activeChannel.id} />)
                 })}
                 <ReactModal
                     isOpen={this.state.showModal}

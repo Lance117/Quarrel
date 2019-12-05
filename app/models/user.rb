@@ -3,7 +3,7 @@ class User < ApplicationRecord
     has_many :memberships
     has_many :channels, through: :memberships, dependent: :destroy
     validates :username, presence: true
-    validates :email, presence: true
+    validates :email, presence: true, uniqueness: true
     validates :password_digest, presence: {message: "Password can't be blank"}
     validates :password, length: {minimum: 6, allow_nil: true}
 
