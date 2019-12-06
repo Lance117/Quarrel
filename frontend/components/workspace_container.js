@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import Workspace from './workspace'
 import { logoutUser } from '../actions/session_actions'
 import { fetchChannels, createNewChannel } from '../actions/channel_actions'
-import { fetchMessages } from '../actions/message_actions'
+import { fetchMessages, createNewMessage } from '../actions/message_actions'
 import {fetchAllUsers} from '../actions/user_actions'
 import {fetchAllMemberships, createNewMembership} from '../actions/membership_actions'
 import { withRouter } from 'react-router-dom';
@@ -27,6 +27,7 @@ const mapDispatchToProps = dispatch => {
         fetchAllMemberships: () => dispatch(fetchAllMemberships()),
         createMembership: membership => dispatch(createNewMembership(membership)),
         createChannel: channel => dispatch(createNewChannel(channel)),
+        createMessage: message => dispatch(createNewMessage(message))
     };
 }
 

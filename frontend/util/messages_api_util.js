@@ -11,3 +11,11 @@ export const getChannelMessages = channelId => (
         url: `/api/channels/${channelId}/messages`
     })
 )
+
+export const createMessage = message => (
+    $.ajax({
+        method: 'POST',
+        url: '/api/messages',
+        data: { message }
+    })
+)

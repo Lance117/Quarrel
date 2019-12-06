@@ -26,7 +26,8 @@ class PrimaryView extends React.Component {
                         }
                     })}
                 </div>
-                <PrimaryFooter currentUser={this.props.currentUser} activeChannel={this.props.channels[this.props.activeChannel.id].channel_name} />
+                <PrimaryFooter currentUser={this.props.currentUser} channelId={this.props.activeChannel.id} activeChannelName={this.props.channels[this.props.activeChannel.id].channel_name} 
+                createMessage={this.props.createMessage}/>
             </div>
         )
     }
