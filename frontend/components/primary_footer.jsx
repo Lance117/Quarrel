@@ -15,10 +15,10 @@ export default class PrimaryFooter extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.createMessage({body: this.state.value, channel_id: this.props.channelId})
-            .then(r => {
-                this.setState({value: ''});
-            });
+        if (this.state.value) {
+            this.props.createMessage({body: this.state.value, channel_id: this.props.channelId});
+        }
+        this.setState({value: ''});
     }
 
     render() {
@@ -29,6 +29,7 @@ export default class PrimaryFooter extends React.Component {
                         <input type="text" className="txt-editor"
                             placeholder={`Message #${this.props.activeChannelName}`}
                             onChange={this.handleChange} 
+                            value={this.state.value}
                         />
                     </form>
                 </div>
