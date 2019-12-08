@@ -53,6 +53,18 @@ class Home extends React.Component {
                     </section>
                 </main>
                 <footer className="home-footer">
+                    <ul className="home-navlist">
+                        <li className="footer-item">
+                            <a href="https://www.linkedin.com/in/lanceawong/" target="_blank">
+                                <img src="https://image.flaticon.com/icons/svg/61/61109.svg" style={{width: "30px", height: "30px"}}></img>
+                            </a> 
+                        </li>
+                        <li className="footer-item">
+                            <a href="https://github.com/LanceSanity" target="_blank">
+                                <img src="https://image.flaticon.com/icons/svg/25/25657.svg" style={{width: "30px", height: "30px"}}></img>
+                            </a> 
+                        </li>
+                    </ul>
                 </footer>
             </div>
         )

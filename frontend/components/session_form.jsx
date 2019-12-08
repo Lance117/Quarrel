@@ -53,7 +53,7 @@ class SessionForm extends React.Component {
                     {this.renderErrors()}
                     <div className="content-card span-2-3 col">
                         <h1>{this.formTypeMsgs()[0] + this.formTypeMsgs()[4]} team rocket</h1>
-                        <p className="med-bottom-margin">dark-mode-slack.com/team-rocket</p>
+                        <p className="med-bottom-margin">quarreling.herokuapp.com/team-rocket</p>
                         <div className="span-2-3 col margin-auto">
                             <form onSubmit={this.handleSubmit} className="signin-form">
                                 {this.props.formType === 'login' ? (
