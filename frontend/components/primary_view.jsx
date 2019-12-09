@@ -8,6 +8,9 @@ class PrimaryView extends React.Component {
     };
 
     render() {
+        let channelMsgs = Object.values(this.props.messages).filter(msg => {
+            return msg.channel_id === this.props.activeChannel.id;
+        })
         return (
             <div className="workspace-primary">
                 <div className="primary-contents">
@@ -22,10 +25,16 @@ class PrimaryView extends React.Component {
                                     Please stay on topic!
                                 </p>
                             </div>
-                            {Object.values(this.props.messages).map((message, i) => {
-                                if (message.channel_id === this.props.activeChannel.id) {
-                                    return (<Message key={message.id} body={message.body} user={this.props.users[message.user_id]} timestamp={message.created_at}/>)
-                                }
+                            {channelMsgs.map((message, i) => {
+                                return (
+                                    <Message
+                                        key={message.id} 
+                                        body={message.body} 
+                                        user={this.props.users[message.user_id]} 
+                                        timestamp={message.created_at}
+                                        lastMsg={i === channelMsgs.length - 1}
+                                    />
+                                )
                             })}
                     </div>
 

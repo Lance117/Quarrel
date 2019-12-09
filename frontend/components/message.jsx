@@ -2,8 +2,10 @@ import React from 'react'
 import Moment from 'react-moment'
 
 const Message = props => {
+    let className = "msg-list-item";
+    if (props.lastMsg) className = className.concat(' last-msg');
     return (
-        <div className="msg-list-item">
+        <div className={className}>
             <div className="msg-avatar">
                 <button className="msg-avatar-btn">
                     <img className="avatar-img" src="https://ca.slack-edge.com/T03GU501J-UBVJX8CB1-g59c98ec02a0-48"/>
