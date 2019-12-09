@@ -48,7 +48,7 @@ class Home extends React.Component {
                                     and tell people what you think!
                                 </p>
                             </div>
-                            <img src={window.teamsPic}/>
+                            <img src="https://i.imgur.com/oZP2biZ.png"/>
                         </div>
                     </section>
                 </main>

@@ -191,11 +191,16 @@ img {
 
 .home-footer {
     background-color: #e8e8e8;
-    height: 84px;
     margin: 0 auto;
     clear: both;
     padding: 0 8vw;
     text-align: center;
+}
+
+@media screen and (max-width: 767px) and (min-width: 0) {
+    .o-content-container {
+        padding: 0 4vw;
+    }
 }
 
 @media screen and (min-width: 48rem) {
