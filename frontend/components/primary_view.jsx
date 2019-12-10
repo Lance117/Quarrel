@@ -92,7 +92,7 @@ const Message = props => {
                 <div className="sender-header">
                     <span className="msg-sender">{props.user.username}</span>
                     <span> </span>
-                    <span className="timestamp"><Moment format="LT">{props.timestamp}</Moment></span>
+                    <span className="timestamp"><Moment fromNow>{props.timestamp}</Moment></span>
                 </div>
                 <span className="msg-body">{msgBody}</span>
             </div>
