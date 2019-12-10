@@ -551,3 +551,13 @@
 .timestamp {
     font-size: 12px;
 }
+
+.day-divider {
+    left: 0;
+    right: 0;
+    border-top: 1px solid rgba(var(--sk_foreground_low_solid,221,221,221),1);
+    border-bottom: 0;
+    margin: 0 0 -1px 0;
+    top: -1px;
+    position: relative;
+}
