@@ -17,14 +17,6 @@ module.exports = {
                 }
             },
             {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader', 'resolve-url-loader'],
-                include: [
-                    path.join(__dirname, 'src'),
-                    /node_modules/
-                ],
-            },
-            {
                 test: /\.(woff(2)?|eot|otf|ttf|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 exclude: path.resolve(__dirname, '../../app/assets'),
                 use: {

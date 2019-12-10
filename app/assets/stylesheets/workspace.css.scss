@@ -393,7 +393,8 @@
     padding-left: 0;
     width: 100%;
     position: absolute;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .primary-footer {

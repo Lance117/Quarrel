@@ -5,7 +5,20 @@ import Message from './message'
 class PrimaryView extends React.Component {
     constructor(props) {
         super(props);
+        this.msgEndRef = React.createRef();
     };
+
+    componentDidMount() {
+        this.scrollToBottom();
+    }
+
+    componentDidUpdate() {
+        this.scrollToBottom();
+    }
+
+    scrollToBottom() {
+        this.msgEndRef.current.scrollTop = this.msgEndRef.current.scrollHeight;
+    }
 
     render() {
         let channelMsgs = Object.values(this.props.messages).filter(msg => {
@@ -15,7 +28,7 @@ class PrimaryView extends React.Component {
             <div className="workspace-primary">
                 <div className="primary-contents">
                     <div className="primary-body">
-                        <div className="msg-pane">
+                        <div className="msg-pane" ref={this.msgEndRef}>
                             <div className="msg-forward" style={{top: "0px"}}>
                                 <h1 className="forward-channel-name">
                                     <span>{`#${this.props.channels[this.props.activeChannel.id].channel_name}`}</span>
