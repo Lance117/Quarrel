@@ -2,6 +2,7 @@ import React from "react";
 import PrimaryFooter from './primary_footer'
 import Moment from 'react-moment'
 import validator from 'validator'
+import YouTube from 'react-youtube'
 
 class PrimaryView extends React.Component {
     constructor(props) {
@@ -64,6 +65,12 @@ class PrimaryView extends React.Component {
     }
 }
 
+const youtubeParser = url => {
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    return (match && match[7].length == 11) ? match[7] : false;
+}
+
 const Message = props => {
     const mediaExt = 'jpg png gif'.split(' ');
     let msgBody = props.body;
@@ -76,6 +83,17 @@ const Message = props => {
             msgBody = (
                 <img src={props.body} style={{maxHeight: "360px", maxWidth: "360px"}}></img>
             );
+        } else if (youtubeParser(props.body)) {
+            msgBody = (
+                <YouTube
+                    videoId={youtubeParser(props.body)}
+                    opts={{
+                        playerVars: {
+                            autoplay: -1
+                        }
+                    }}
+                />
+            )
         } else {
             msgBody = (<a href={props.body} target="_blank" style={{ color: "#1D9BD1" }}>{props.body}</a>)
         }
