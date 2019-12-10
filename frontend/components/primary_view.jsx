@@ -76,6 +76,8 @@ const Message = props => {
             msgBody = (
                 <img src={props.body} style={{maxHeight: "360px", maxWidth: "360px"}}></img>
             );
+        } else {
+            msgBody = (<a href={props.body} target="_blank" style={{ color: "#1D9BD1" }}>{props.body}</a>)
         }
     }
 
