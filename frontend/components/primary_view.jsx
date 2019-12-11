@@ -65,39 +65,10 @@ class PrimaryView extends React.Component {
     }
 }
 
-const youtubeParser = url => {
-    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-    var match = url.match(regExp);
-    return (match && match[7].length == 11) ? match[7] : false;
-}
-
 const Message = props => {
-    const mediaExt = 'jpg png gif'.split(' ');
-    let msgBody = props.body;
+    let msgBody = createMsgBody(props.body);
     let className = "msg-list-item";
     if (props.lastMsg) className = className.concat(' last-msg');
-    if (validator.isURL(props.body)) {
-        let urlParts = props.body.split('.');
-        let ext = urlParts[urlParts.length - 1];
-        if (mediaExt.includes(ext)) {
-            msgBody = (
-                <img src={props.body} style={{maxHeight: "360px", maxWidth: "360px"}}></img>
-            );
-        } else if (youtubeParser(props.body)) {
-            msgBody = (
-                <YouTube
-                    videoId={youtubeParser(props.body)}
-                    opts={{
-                        playerVars: {
-                            autoplay: -1
-                        }
-                    }}
-                />
-            )
-        } else {
-            msgBody = (<a href={props.body} target="_blank" style={{ color: "#1D9BD1" }}>{props.body}</a>)
-        }
-    }
 
     return (
         <div className={className}>
@@ -116,6 +87,53 @@ const Message = props => {
             </div>
         </div>
     )
+}
+
+// helpers
+const youtubeParser = url => {
+    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+    var match = url.match(regExp);
+    return (match && match[7].length == 11) ? match[7] : false;
+}
+
+// const onload2promise = obj => (
+//     new Promise((resolve, reject) => {
+//         obj.onload = () => resolve(obj);
+//         obj.onerror = reject;
+//     })
+// )
+
+function createMsgBody(msgBody) {
+    let resPromise;
+    const mediaExt = 'jpg png gif'.split(' ');
+    let res = msgBody;
+    if (validator.isURL(msgBody)) {
+        let urlParts = msgBody.split('.');
+        let ext = urlParts[urlParts.length - 1];
+        if (mediaExt.includes(ext)) {
+            res = (
+                <img src={msgBody} style={{maxHeight: "360px", maxWidth: "360px"}}></img>
+            );
+            // resPromise = onload2promise(res);
+            // await resPromise;
+        } else if (youtubeParser(msgBody)) {
+            res = (
+                <YouTube
+                    videoId={youtubeParser(msgBody)}
+                    opts={{
+                        playerVars: {
+                            autoplay: -1
+                        }
+                    }}
+                />
+            )
+            // resPromise = onload2promise(res);
+            // await resPromise;
+        } else {
+            res = (<a href={msgBody} target="_blank" style={{ color: "#1D9BD1" }}>{msgBody}</a>)
+        }
+    }
+    return res;
 }
 
 export default PrimaryView;
