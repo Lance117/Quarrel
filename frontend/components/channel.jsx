@@ -1,14 +1,75 @@
 import React from 'react'
+import ReactModal from 'react-modal';
 import { Link } from 'react-router-dom';
 
-function Channel(props) {
-    return (
-        <div style={{height: '26px'}} className={`active-${props.active}`}>
-            <Link to={`/teamrocket/${props.channel.id}`} style={{textDecoration: 'none'}}>
-                <span className={`channel-name active-${props.active}`}>{`# ${props.channel.channel_name}`}</span>
-            </Link>
-        </div>
-    )
+class Channel extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            showModal: false,
+        };
+        this.contextStyles = {
+            content: {
+                top: 'null',
+                left: 'null',
+                right: 'null',
+                borderRadius: 'null',
+                bottom: 'null',
+                border: 'null',
+                background: 'null',
+                overflow: 'null',
+                position: 'absolute',
+                outline: 'none',
+                padding: 'null',
+                transitionDuration: '80ms',
+            }
+        }
+
+        this.handleOpenModal = this.handleOpenModal.bind(this);
+        this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.handleClick = this.handleClick.bind(this);
+    }
+
+    handleOpenModal(e) {
+        e.preventDefault();
+        this.setState({ showModal: true });
+    }
+
+    handleCloseModal() {
+        this.setState({ showModal: false });
+    }
+
+    handleClick() {
+        window.localStorage.setItem('lastVisited', this.props.channel.id);
+    }
+
+    render() {
+        return (
+            <div style={{height: '26px'}} className={`active-${this.props.active}`} onContextMenu={this.handleOpenModal}>
+                <Link to={`/teamrocket/${this.props.channel.id}`} style={{textDecoration: 'none'}} onClick={this.handleClick}>
+                    <span className={`channel-name active-${this.props.active}`}>{`# ${this.props.channel.channel_name}`}</span>
+                </Link>
+                <ReactModal
+                    isOpen={this.state.showModal}
+                    contentLabel="Context Menu"
+                    onRequestClose={this.handleCloseModal}
+                    shouldCloseOnOverlayClick={true}
+                    overlayClassName="popover"
+                    style={this.contextStyles}
+                >
+                    <div className="nav-modal-menu" style={{width: "300px"}}>
+                        <div style={{margin: "0", padding: "12px 0", background: "#2c2d30"}}>
+                            <div className="nav-modal-item">
+                                <button className="nav-modal-btn">
+                                    <div className="nav-item-label">{`Leave ${this.props.channel.channel_name}`}</div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </ReactModal>
+            </div>
+        )
+    }
 }
 
 export default Channel;

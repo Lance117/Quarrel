@@ -96,16 +96,8 @@ const youtubeParser = url => {
     return (match && match[7].length == 11) ? match[7] : false;
 }
 
-// const onload2promise = obj => (
-//     new Promise((resolve, reject) => {
-//         obj.onload = () => resolve(obj);
-//         obj.onerror = reject;
-//     })
-// )
-
 function createMsgBody(msgBody) {
-    let resPromise;
-    const mediaExt = 'jpg png gif'.split(' ');
+    const mediaExt = 'jpg jpeg png gif svg'.split(' ');
     let res = msgBody;
     if (validator.isURL(msgBody)) {
         let urlParts = msgBody.split('.');
@@ -114,8 +106,6 @@ function createMsgBody(msgBody) {
             res = (
                 <img src={msgBody} style={{maxHeight: "360px", maxWidth: "360px"}}></img>
             );
-            // resPromise = onload2promise(res);
-            // await resPromise;
         } else if (youtubeParser(msgBody)) {
             res = (
                 <YouTube
@@ -127,8 +117,6 @@ function createMsgBody(msgBody) {
                     }}
                 />
             )
-            // resPromise = onload2promise(res);
-            // await resPromise;
         } else {
             res = (<a href={msgBody} target="_blank" style={{ color: "#1D9BD1" }}>{msgBody}</a>)
         }

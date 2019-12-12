@@ -7,7 +7,7 @@ const Auth = ({ component: Component, path, loggedIn, exact }) => (
       !loggedIn ? (
          <Component {...props} />
       ) : (
-            <Redirect to="/teamrocket/1" />
+            <Redirect to={`/teamrocket/${window.localStorage.getItem('lastVisited') || 1}`} />
          )
    )} />
 );
