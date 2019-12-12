@@ -12,3 +12,11 @@ export const createMembership = membership => (
         data: { membership }
     })
 )
+
+export const removeMembership = membership => (
+    $.ajax({
+        method: "DELETE",
+        url: 'api/memberships',
+        data: { membership }
+    })
+)

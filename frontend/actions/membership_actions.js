@@ -1,4 +1,4 @@
-import {fetchMemberships, createMembership} from '../util/memberships_api_util'
+import {fetchMemberships, createMembership, removeMembership} from '../util/memberships_api_util'
 
 export const RECEIVE_MEMBERSHIP = 'RECEIVE_MEMBERSHIP';
 export const RECEIVE_MEMBERSHIPS = 'RECEIVE_MEMBERSHIPS';

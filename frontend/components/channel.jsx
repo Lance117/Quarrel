@@ -7,23 +7,9 @@ class Channel extends React.Component {
         super(props);
         this.state = {
             showModal: false,
+            offsetX: null,
+            offsetY: null
         };
-        this.contextStyles = {
-            content: {
-                top: 'null',
-                left: 'null',
-                right: 'null',
-                borderRadius: 'null',
-                bottom: 'null',
-                border: 'null',
-                background: 'null',
-                overflow: 'null',
-                position: 'absolute',
-                outline: 'none',
-                padding: 'null',
-                transitionDuration: '80ms',
-            }
-        }
 
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
@@ -32,7 +18,7 @@ class Channel extends React.Component {
 
     handleOpenModal(e) {
         e.preventDefault();
-        this.setState({ showModal: true });
+        this.setState({ showModal: true, offsetX: e.nativeEvent.offsetX, offsetY: e.nativeEvent.clientY });
     }
 
     handleCloseModal() {
@@ -55,13 +41,28 @@ class Channel extends React.Component {
                     onRequestClose={this.handleCloseModal}
                     shouldCloseOnOverlayClick={true}
                     overlayClassName="popover"
-                    style={this.contextStyles}
+                    style={{
+                        content: {
+                            top: this.state.offsetY,
+                            left: this.state.offsetX,
+                            right: 'null',
+                            borderRadius: 'null',
+                            bottom: 'null',
+                            border: 'null',
+                            background: 'null',
+                            overflow: 'null',
+                            position: 'absolute',
+                            outline: 'none',
+                            padding: 'null',
+                            transitionDuration: '80ms',
+                        }
+                    }}
                 >
                     <div className="nav-modal-menu" style={{width: "300px"}}>
                         <div style={{margin: "0", padding: "12px 0", background: "#2c2d30"}}>
                             <div className="nav-modal-item">
                                 <button className="nav-modal-btn">
-                                    <div className="nav-item-label">{`Leave ${this.props.channel.channel_name}`}</div>
+                                    <div className="nav-item-label">{`Leave #${this.props.channel.channel_name}`}</div>
                                 </button>
                             </div>
                         </div>
