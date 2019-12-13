@@ -26,11 +26,14 @@ class ChannelsList extends React.Component {
 
     myChannels() {
         let res = [];
+        let active = false;
         for (let membership of this.props.memberships) {
             if (membership.user_id === this.props.userId) {
+                if (membership.channel_id === this.props.activeChannel.id) active = true;
                 res.push(this.props.channels[membership.channel_id]);
             }
         }
+        if (!active) res.push(this.props.channels[this.props.activeChannel.id]);
         return res;
     }
 
