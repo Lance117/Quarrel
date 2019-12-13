@@ -65,10 +65,12 @@ class Workspace extends React.Component {
                         <PrimaryView
                             channels={this.props.channels}
                             users={this.props.users}
+                            userId={this.props.userId}
                             activeChannel={this.props.activeChannel}
                             createMessage={this.props.createMessage}
                             messages={this.props.messages}
                             currentUser={this.props.currentUser}
+                            memberships={this.props.memberships}
                         />
                     </div>
                 </div>

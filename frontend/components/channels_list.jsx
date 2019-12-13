@@ -6,7 +6,7 @@ class ChannelsList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showModal: false,
+            showModal: false
         };
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);

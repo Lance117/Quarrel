@@ -1,7 +1,7 @@
 import React from 'react'
 import NavTeamHeader from './team_header'
 
-class TopNav extends React.Component {
+export default class TopNav extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -23,5 +23,3 @@ class TopNav extends React.Component {
         )
     }
 }
-
-export default TopNav;

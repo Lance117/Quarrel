@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class PrimaryFooter extends React.Component {
+export class PrimaryFooter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {value: ''};
@@ -36,4 +36,16 @@ export default class PrimaryFooter extends React.Component {
             </footer>
         )
     }
+}
+
+export function PreviewFooter(props) {
+    return (
+        <footer className="preview-footer">
+            <div className="preview-subtitle">
+                You are viewing <strong>{`#${props.activeChannelName}`}</strong>
+            </div>
+            <div className="preview-msg">Click "join channel" to jump in on the conversation!</div>
+            <button className="preview-btn">Join Channel</button>
+        </footer>
+    )
 }

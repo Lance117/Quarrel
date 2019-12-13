@@ -1,5 +1,5 @@
 import React from "react";
-import PrimaryFooter from './primary_footer'
+import { PrimaryFooter, PreviewFooter } from './primary_footer'
 import Moment from 'react-moment'
 import validator from 'validator'
 import YouTube from 'react-youtube'
@@ -20,6 +20,31 @@ class PrimaryView extends React.Component {
 
     scrollToBottom() {
         this.msgEndRef.current.scrollTop = this.msgEndRef.current.scrollHeight;
+    }
+
+    isMember() {
+        for (const membership of this.props.memberships) {
+            if (membership.user_id === this.props.userId && this.props.activeChannel.id === membership.channel_id) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    chooseFooter() {
+        if (this.isMember()) {
+            return (
+                <PrimaryFooter
+                    currentUser={this.props.currentUser}
+                    channelId={this.props.activeChannel.id}
+                    activeChannelName={this.props.channels[this.props.activeChannel.id].channel_name} 
+                    createMessage={this.props.createMessage}
+                />
+            )
+        }
+        return (
+            <PreviewFooter activeChannelName={this.props.channels[this.props.activeChannel.id].channel_name}/>
+        )
     }
 
     render() {
@@ -51,14 +76,9 @@ class PrimaryView extends React.Component {
                                     />
                                 )
                             })}
-                    </div>
                         </div>
-                    <PrimaryFooter
-                        currentUser={this.props.currentUser}
-                        channelId={this.props.activeChannel.id}
-                        activeChannelName={this.props.channels[this.props.activeChannel.id].channel_name} 
-                        createMessage={this.props.createMessage}
-                    />
+                    </div>
+                    {this.chooseFooter()}
                 </div>
             </div>
         )
