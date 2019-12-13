@@ -16,7 +16,6 @@ export const createMembership = membership => (
 export const removeMembership = membership => (
     $.ajax({
         method: "DELETE",
-        url: 'api/memberships',
-        data: { membership }
+        url: `api/memberships/${membership.id}`
     })
 )

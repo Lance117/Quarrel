@@ -1,4 +1,4 @@
-import {RECEIVE_MEMBERSHIP, RECEIVE_MEMBERSHIPS} from '../actions/membership_actions'
+import {RECEIVE_MEMBERSHIP, RECEIVE_MEMBERSHIPS, DELETE_MEMBERSHIP} from '../actions/membership_actions'
 
 const membershipsReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -14,6 +14,10 @@ const membershipsReducer = (state = {}, action) => {
         case RECEIVE_MEMBERSHIP:
             const newMembership = { [action.membership.id]: action.membership };
             return Object.assign({}, state, newMembership);
+        case DELETE_MEMBERSHIP:
+            Object.assign(nextState, state);
+            delete nextState[action.membership.id];
+            return nextState;
         default:
             return state;
     }

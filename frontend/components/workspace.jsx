@@ -57,6 +57,7 @@ class Workspace extends React.Component {
                             userId={this.props.userId}
                             createMembership={this.props.createMembership}
                             memberships={this.props.memberships}
+                            deleteMembership={this.props.deleteMembership}
                             activeChannel={this.props.activeChannel}
                             createChannel={this.props.createChannel}
                             history={this.props.history}

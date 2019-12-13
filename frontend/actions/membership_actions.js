@@ -2,6 +2,7 @@ import {fetchMemberships, createMembership, removeMembership} from '../util/memb
 
 export const RECEIVE_MEMBERSHIP = 'RECEIVE_MEMBERSHIP';
 export const RECEIVE_MEMBERSHIPS = 'RECEIVE_MEMBERSHIPS';
+export const DELETE_MEMBERSHIP = 'DELETE_MEMBERSHIP';
 export const RECEIVE_MEMBERSHIP_ERRORS = 'RECEIVE_MEMBERSHIP_ERRORS';
 
 const receiveMemberships = memberships => ({
@@ -13,6 +14,11 @@ const receiveMembership = membership => ({
     type: RECEIVE_MEMBERSHIP,
     membership
 });
+
+const deleteMembershipSuccess = membership => ({
+    type: DELETE_MEMBERSHIP,
+    membership
+})
 
 const receiveErrors = (errors = []) => ({
     type: RECEIVE_MEMBERSHIP_ERRORS,
@@ -28,6 +34,14 @@ export const fetchAllMemberships = () => dispatch => (
 export const createNewMembership = newMembership => dispatch => (createMembership(newMembership)
     .then(membership => (
         dispatch(receiveMembership(membership))
+    ), err => (
+        dispatch(receiveErrors(err.responseJSON))
+    ))
+);
+
+export const deleteMembership = membership => dispatch => (removeMembership(membership)
+    .then(membership => (
+        dispatch(deleteMembershipSuccess(membership))
     ), err => (
         dispatch(receiveErrors(err.responseJSON))
     ))

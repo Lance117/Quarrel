@@ -14,6 +14,7 @@ class Channel extends React.Component {
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
         this.handleClick = this.handleClick.bind(this);
+        this.handleDelClick = this.handleDelClick.bind(this);
     }
 
     handleOpenModal(e) {
@@ -27,6 +28,26 @@ class Channel extends React.Component {
 
     handleClick() {
         window.localStorage.setItem('lastVisited', this.props.channel.id);
+    }
+
+    getMembership() {
+        for (const membership of this.props.memberships) {
+            if (membership.user_id === this.props.userId &&
+                membership.channel_id === this.props.channel.id) {
+                    return {id: membership.id};
+                }
+        }
+        return null;
+    }
+
+    handleDelClick(e) {
+        e.preventDefault();
+        $.when(this.props.deleteMembership(this.getMembership())).then(r => {
+            if (this.props.active) window.localStorage.setItem('lastVisited', 1);
+            this.props.history.push("1");
+        }), err => {
+            console.log(err)
+        };
     }
 
     render() {
@@ -61,7 +82,7 @@ class Channel extends React.Component {
                     <div className="nav-modal-menu" style={{width: "300px"}}>
                         <div style={{margin: "0", padding: "12px 0", background: "#2c2d30"}}>
                             <div className="nav-modal-item">
-                                <button className="nav-modal-btn">
+                                <button className="nav-modal-btn" onClick={this.handleDelClick}>
                                     <div className="nav-item-label">{`Leave #${this.props.channel.channel_name}`}</div>
                                 </button>
                             </div>

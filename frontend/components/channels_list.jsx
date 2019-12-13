@@ -50,6 +50,10 @@ class ChannelsList extends React.Component {
                             key={channel.id}
                             channel={channel}
                             active={channel.id === this.props.activeChannel.id}
+                            deleteMembership={this.props.deleteMembership}
+                            memberships={this.props.memberships}
+                            userId={this.props.userId}
+                            history={this.props.history}
                         />
                     )
                 })}

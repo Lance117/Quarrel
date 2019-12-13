@@ -26,6 +26,7 @@ class Sidebar extends React.Component {
                                         activeChannel={this.props.activeChannel}
                                         memberships={this.props.memberships}
                                         createMembership={this.props.createMembership}
+                                        deleteMembership={this.props.deleteMembership}
                                         createChannel={this.props.createChannel}
                                         history={this.props.history}
                                     />

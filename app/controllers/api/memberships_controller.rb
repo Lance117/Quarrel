@@ -12,6 +12,12 @@ class Api::MembershipsController < ApplicationController
         end
     end
 
+    def destroy
+        @membership = Membership.find(params[:id])
+        @membership.destroy
+        render json: @membership
+    end
+
     def membership_params
         params.require(:membership).permit(:user_id, :channel_id)
     end
