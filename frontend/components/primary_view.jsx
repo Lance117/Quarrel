@@ -43,7 +43,12 @@ class PrimaryView extends React.Component {
             )
         }
         return (
-            <PreviewFooter activeChannelName={this.props.channels[this.props.activeChannel.id].channel_name}/>
+            <PreviewFooter
+                activeChannelName={this.props.channels[this.props.activeChannel.id].channel_name}
+                createMembership={this.props.createMembership}
+                userId={this.props.userId}
+                channelId={this.props.activeChannel.id}
+            />
         )
     }
 

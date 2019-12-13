@@ -39,13 +39,18 @@ export class PrimaryFooter extends React.Component {
 }
 
 export function PreviewFooter(props) {
+    const handleClick = e => {
+        e.preventDefault();
+        props.createMembership({user_id: props.userId, channel_id: props.channelId});
+    }
+
     return (
         <footer className="preview-footer">
             <div className="preview-subtitle">
                 You are viewing <strong>{`#${props.activeChannelName}`}</strong>
             </div>
             <div className="preview-msg">Click "join channel" to jump in on the conversation!</div>
-            <button className="preview-btn">Join Channel</button>
+            <button className="preview-btn" onClick={handleClick}>Join Channel</button>
         </footer>
     )
 }

@@ -64,6 +64,7 @@ class Workspace extends React.Component {
                         />
                         <PrimaryView
                             channels={this.props.channels}
+                            createMembership={this.props.createMembership}
                             users={this.props.users}
                             userId={this.props.userId}
                             activeChannel={this.props.activeChannel}
