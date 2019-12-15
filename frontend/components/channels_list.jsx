@@ -6,10 +6,13 @@ class ChannelsList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showModal: false
+            showModal: false,
+            showChannels: false
         };
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
+        this.handleOpenChannels = this.handleOpenChannels.bind(this);
+        this.handleCloseChannels = this.handleCloseChannels.bind(this);
     }
 
     componentDidMount() {
@@ -22,6 +25,14 @@ class ChannelsList extends React.Component {
 
     handleCloseModal() {
         this.setState({ showModal: false });
+    }
+
+    handleOpenChannels() {
+        this.setState({ showChannels: true });
+    }
+
+    handleCloseChannels() {
+        this.setState({ showChannels: false });
     }
 
     myChannels() {
@@ -42,7 +53,7 @@ class ChannelsList extends React.Component {
             <div className="channels-list">
                 <div style={{height: '12px'}}></div>
                 <div className="sidebar-section-heading">
-                    <button className="channel-section-heading">Channels</button>
+                    <button className="channel-section-heading" onClick={this.handleOpenChannels}>Channels</button>
                     <div className="section-heading-right">
                         <button className="add-channel-btn" onClick={this.handleOpenModal}></button>
                     </div>
@@ -60,6 +71,7 @@ class ChannelsList extends React.Component {
                         />
                     )
                 })}
+                {/* Modal for adding channels */}
                 <ReactModal
                     isOpen={this.state.showModal}
                     contentLabel="Add Channel"
@@ -87,6 +99,39 @@ class ChannelsList extends React.Component {
                                 history={this.props.history}
                                 handleCloseModal={this.handleCloseModal}
                             /> 
+                        </div>
+                    </div>
+                </ReactModal>
+
+                {/* Modal for viewing all channels */}
+                <ReactModal
+                    isOpen={this.state.showChannels}
+                    contentLabel="Browse channels"
+                    onRequestClose={this.handleCloseChannel}
+                    shouldCloseOnOverlayClick={true}
+                    className="all-channels-content"
+                    overlayClassName="all-channels-overlay"
+                >
+                    <button className="all-channels-close-btn" onClick={this.handleCloseChannels}>
+                        <i className="close-modal-icon"></i>
+                        <span style={{marginTop: "-4px", fontSize: "13px", fontFamily: 'Lato-norm'}}>esc</span>
+                    </button>
+                    <div className="channel-browser-body">
+                        <div className="channel-browser-content">
+                            <div className="channel-browser-header"><h1>Browse Channels</h1></div>
+                            <div className="channel-browser-list-container">
+                                <div className="channels-list" style={{width: "640px", height: "255px"}}>
+                                    <div className="channel-scrollbar">
+                                        <div style={{width: "640px", position: "relative"}}>
+                                            <div style={{top: "0px", position: "absolute", width: "100%"}}>
+                                                <div className="channel-browser-section-header" style={{paddingTop: "0"}}>
+                                                    Channels you can join
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </ReactModal>

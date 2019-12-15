@@ -1,3 +1,9 @@
+h1 {
+  font-weight: 900 !important;
+  font-size: 28px !important;
+  line-height: 1.2143 !important;
+}
+
  .nav-modal {
     position: absolute;
     left: 8px;
@@ -254,4 +260,122 @@
   font-weight: 400;
   font-family: 'Lato-norm';
   padding: 0 28px;
+}
+
+.all-channels-overlay {
+  align-items: center;
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.all-channels-content {
+  background-color: rgba(var(--sk_primary_background,255,255,255),1);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  left: 0;
+  outline: none;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.all-channels-close-btn {
+  transition: opacity .2s ease-out;
+  align-items: center;
+  border-radius: 100%;
+  box-shadow: none;
+  color: rgba(var(--sk_foreground_max_solid,97,96,97),1);
+  display: flex;
+  flex-direction: column;
+  height: 64px;
+  justify-content: center;
+  position: absolute;
+  text-align: center;
+  top: 48px;
+  vertical-align: middle;
+  width: 64px;
+  -webkit-app-region: no-drag;
+  color: #ABABAD;
+  cursor: pointer;
+}
+
+.close-modal-icon {
+  margin: 0;
+  bottom: 2px;
+  position: relative;
+  font-size: 32px;
+  line-height: 1;
+}
+
+.close-modal-icon:before {
+  content: "\E278";
+  font-family: 'Slack-icons';
+  font-style: normal;
+  font-weight: 400;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.channel-browser-body {
+  padding-bottom: 0;
+  user-select: text;
+  align-items: flex-start;
+  display: flex;
+  flex-grow: 1;
+  flex-shrink: 1;
+  justify-content: center;
+  line-height: 1.46666667;
+  overflow-y: auto;
+  padding: 15vh 32px 32px 32px;
+  color: rgba(var(--sk_primary_foreground,29,28,29),1);
+}
+
+.channel-browser-content {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+  width: 640px;
+}
+
+.channel-browser-list-container {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  font-family: 'Lato-norm';
+}
+
+.channels-list {
+  overflow: hidden;
+  position: relative;
+}
+
+.channel-scrollbar {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  outline: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: -50px;
+  bottom: 0;
+  height: 100%;
+  transform: translateZ(0);
+}
+
+.channel-browser-section-header {
+  font-size: 13px;
+  line-height: 1.38463;
+  font-weight: 400;
+  color: rgba(var(--sk_foreground_max,29,28,29),.7);
+  padding: 12px 12px 4px;
+  position: relative;
+  z-index: 1;
 }
