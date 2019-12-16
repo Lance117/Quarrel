@@ -1,6 +1,8 @@
-import React from 'react'
+import React from 'react';
 import ReactModal from 'react-modal';
-import Channel from './channel'
+import Channel from './channel';
+import { FixedSizeList as List } from 'react-window';
+import AutoSizer from 'react-virtualized-auto-sizer';
 
 class ChannelsList extends React.Component {
     constructor(props) {
@@ -120,17 +122,20 @@ class ChannelsList extends React.Component {
                         <div className="channel-browser-content">
                             <div className="channel-browser-header"><h1>Browse Channels</h1></div>
                             <div className="channel-browser-list-container">
-                                <div className="channels-list" style={{width: "640px", height: "255px"}}>
-                                    <div className="channel-scrollbar">
-                                        <div style={{width: "640px", position: "relative"}}>
-                                            <div style={{top: "0px", position: "absolute", width: "100%"}}>
-                                                <div className="channel-browser-section-header" style={{paddingTop: "0"}}>
-                                                    Channels you can join
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <AutoSizer>
+                                    {({ height, width }) => (
+                                        <List
+                                            height={height}
+                                            width={width}
+                                            itemCount={Object.keys(this.props.channels).length}
+                                            itemSize={50}
+                                            itemData={{ channels: Object.values(this.props.channels),
+                                                history: this.props.history, handleClose: this.handleCloseChannels}}
+                                        >
+                                            {Row}
+                                        </List>
+                                    )}
+                                </AutoSizer>
                             </div>
                         </div>
                     </div>
@@ -139,6 +144,27 @@ class ChannelsList extends React.Component {
         )
     }
 }
+
+// helpers
+const Row = ({ index, style, data }) => {
+    function handleClick() {
+        data.handleClose();
+        data.history.push(`${data.channels[index].id}`);
+    }
+
+    return (
+        <div key={index} style={style} onClick={handleClick}>
+            <div className="channel-browser-list-item">
+                <div className="list-base-entity">
+                    <span className="entity-name">
+                        {`# ${data.channels[index].channel_name}`}
+                    </span>
+                </div>
+            </div>
+        </div>
+    )
+}
+//---------
 
 class AddChannelForm extends React.Component {
     constructor(props) {
