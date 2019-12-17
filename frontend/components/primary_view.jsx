@@ -1,8 +1,6 @@
 import React from "react";
 import { PrimaryFooter, PreviewFooter } from './primary_footer'
-import Moment from 'react-moment'
-import validator from 'validator'
-import YouTube from 'react-youtube'
+import Message from './message'
 
 class PrimaryView extends React.Component {
     constructor(props) {
@@ -73,11 +71,14 @@ class PrimaryView extends React.Component {
                             {channelMsgs.map((message, i) => {
                                 return (
                                     <Message
-                                        key={message.id} 
+                                        key={message.id}
+                                        msgId={message.id}
                                         body={message.body} 
                                         user={this.props.users[message.user_id]} 
+                                        isSender={this.props.users[message.user_id].id === this.props.userId}
                                         timestamp={message.created_at}
                                         lastMsg={i === channelMsgs.length - 1}
+                                        deleteMessage={this.props.deleteMessage}
                                     />
                                 )
                             })}
@@ -88,70 +89,6 @@ class PrimaryView extends React.Component {
             </div>
         )
     }
-}
-
-const Message = props => {
-    let msgBody = createMsgBody(props.body);
-    let className = "msg-list-item";
-    if (props.lastMsg) className = className.concat(' last-msg');
-
-    return (
-        <div className={className}>
-            <div className="msg-avatar">
-                <button className="msg-avatar-btn">
-                    <img className="avatar-img" src="https://ca.slack-edge.com/T03GU501J-UBVJX8CB1-g59c98ec02a0-48" />
-                </button>
-            </div>
-            <div className="msg-contents">
-                <div className="sender-header">
-                    <span className="msg-sender">{props.user.username}</span>
-                    <span> </span>
-                    <span className="timestamp"><Moment fromNow>{props.timestamp}</Moment></span>
-                </div>
-                <span className="msg-body">{msgBody}</span>
-            </div>
-            <div className="msg-actions">
-                <button className="msg-actions-btn all-icons">
-                    <i className="all-icons ellipsis"></i>
-                </button>
-            </div>
-        </div>
-    )
-}
-
-// helpers
-const youtubeParser = url => {
-    var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-    var match = url.match(regExp);
-    return (match && match[7].length == 11) ? match[7] : false;
-}
-
-function createMsgBody(msgBody) {
-    const mediaExt = 'jpg jpeg png gif svg'.split(' ');
-    let res = msgBody;
-    if (validator.isURL(msgBody)) {
-        let urlParts = msgBody.split('.');
-        let ext = urlParts[urlParts.length - 1];
-        if (mediaExt.includes(ext)) {
-            res = (
-                <img src={msgBody} style={{maxHeight: "360px", maxWidth: "360px"}}></img>
-            );
-        } else if (youtubeParser(msgBody)) {
-            res = (
-                <YouTube
-                    videoId={youtubeParser(msgBody)}
-                    opts={{
-                        playerVars: {
-                            autoplay: -1
-                        }
-                    }}
-                />
-            )
-        } else {
-            res = (<a href={msgBody} target="_blank" style={{ color: "#1D9BD1" }}>{msgBody}</a>)
-        }
-    }
-    return res;
 }
 
 export default PrimaryView;

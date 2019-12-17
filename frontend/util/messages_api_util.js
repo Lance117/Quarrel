@@ -19,3 +19,10 @@ export const createMessage = message => (
         data: { message }
     })
 )
+
+export const removeMessage = message => (
+    $.ajax({
+        method: "DELETE",
+        url: `api/messages/${message.id}`
+    })
+)

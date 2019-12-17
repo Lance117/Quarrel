@@ -28,6 +28,12 @@ class Api::MessagesController < ApplicationController
        end
     end
 
+    def destroy
+        @message = Message.find(params[:id])
+        @message.destroy
+        render json: @message
+    end
+
     private
 
     def message_params

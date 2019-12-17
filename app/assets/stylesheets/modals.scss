@@ -433,3 +433,22 @@ h1 {
   line-height: 1.46668;
   font-weight: 700;
 }
+
+.actions-menu {
+  font-family: 'Lato-norm';
+  --saf-0: rgba(var(--sk_foreground_low,29,28,29),0.13);
+  box-shadow: 0 0 0 1px var(--saf-0),0 4px 12px 0 rgba(0,0,0,.12);
+  background-color: #1f2021;
+  border: 1px solid #393c46;
+  border-radius: 6px;
+  user-select: none;
+  width: 300px;
+  max-width: 360px;
+  min-width: 200px;
+  z-index: 1012;
+  max-height: calc(100vh - 20px);
+  overflow-y: auto;
+  padding: .1px 0;
+  margin: 0;
+  padding: 12px 0;
+}
