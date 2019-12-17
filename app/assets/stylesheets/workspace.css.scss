@@ -118,7 +118,7 @@
 .presence-icon::before {
     content: "\E507";
     font-family: 'Slack-icons' !important;
-    color: #e8e8e8;
+    color: rgb(198,199,200);
 }
 
 .small-icons::before {
@@ -564,6 +564,46 @@
     display: inline-block;
     width: 100%;
     word-wrap: break-word;
+}
+
+.msg-actions {
+    border: 1px solid #393c46;
+    transition: unset;
+    transition-property: unset;
+    --saf-0: rgba(var(--sk_foreground_low,29,28,29),0.13);
+    box-shadow: 0 0 0 1px var(--saf-0),0 1px 3px 0 rgba(0,0,0,.08);
+    background-color: #1a1d21;
+    border-radius: 6px;
+    display: none;
+    overflow: hidden;
+    padding: 2px;
+    position: absolute;
+    right: 17px;
+    top: -16px;
+}
+
+.msg-list-item:hover .msg-actions {
+    display: block;
+}
+
+.msg-actions-btn {
+    border: unset;
+    border-radius: 4px;
+    color: rgb(198,199,200);
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+    background: none;
+}
+
+.ellipsis:before {
+    content: "\E148";
+    display: inline-block;
+    font-family: 'Slack-icons';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
 }
 
 .active-true {

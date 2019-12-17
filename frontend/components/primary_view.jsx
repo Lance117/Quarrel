@@ -110,6 +110,11 @@ const Message = props => {
                 </div>
                 <span className="msg-body">{msgBody}</span>
             </div>
+            <div className="msg-actions">
+                <button className="msg-actions-btn all-icons">
+                    <i className="all-icons ellipsis"></i>
+                </button>
+            </div>
         </div>
     )
 }
