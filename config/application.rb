@@ -1,5 +1,4 @@
 require_relative 'boot'
-gem "active_model_serializers", require: true
 
 require 'rails/all'
 
