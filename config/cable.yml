@@ -1,7 +1,5 @@
 production:
-  adapter: redis
-  url: <%= ENV['REDIS_URL'] %>
-  channel_prefix: test_message_app_production
+  adapter: postgresql
 
 development:
   adapter: postgresql
