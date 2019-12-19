@@ -61,6 +61,7 @@ class Workspace extends React.Component {
                             activeChannel={this.props.activeChannel}
                             createChannel={this.props.createChannel}
                             history={this.props.history}
+                            receiveMessage={this.props.receiveMessage}
                         />
                         <PrimaryView
                             channels={this.props.channels}

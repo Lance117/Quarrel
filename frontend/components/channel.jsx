@@ -51,6 +51,15 @@ class Channel extends React.Component {
     }
 
     render() {
+        const propState = this;
+        App.comments = App.cable.subscriptions.create({
+            channel: 'MessagesChannel',
+            channelId: `${this.props.channel.id}`
+        }, {
+            received: function(data) {
+                propState.props.receiveMessage(data)
+            }
+        });
         return (
             <div style={{height: '26px'}} className={`active-${this.props.active}`} onContextMenu={this.handleOpenModal}>
                 <Link to={`/teamrocket/${this.props.channel.id}`} style={{textDecoration: 'none'}} onClick={this.handleClick}>

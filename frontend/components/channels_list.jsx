@@ -70,6 +70,7 @@ class ChannelsList extends React.Component {
                             memberships={this.props.memberships}
                             userId={this.props.userId}
                             history={this.props.history}
+                            receiveMessage={this.props.receiveMessage}
                         />
                     )
                 })}

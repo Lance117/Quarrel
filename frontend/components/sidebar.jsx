@@ -29,6 +29,7 @@ class Sidebar extends React.Component {
                                         deleteMembership={this.props.deleteMembership}
                                         createChannel={this.props.createChannel}
                                         history={this.props.history}
+                                        receiveMessage={this.props.receiveMessage}
                                     />
                                 </div>
                             </div>
