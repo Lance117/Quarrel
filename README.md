@@ -17,5 +17,7 @@ Try it out: [demo](http://quarreling.herokuapp.com/)
 
 ## Current features
 - User authentication implemented with Rails
-- Channel and message creation
+- Create, join, and leave channels
+- Create and delete messages
+- Realtime messaging with Action Cable (framework that integrates WebSockets with Rails)
 - Messages support media links (jpg, png, gif, youtube links)
