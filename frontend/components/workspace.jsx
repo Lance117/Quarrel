@@ -50,6 +50,8 @@ class Workspace extends React.Component {
                             logoutUser={this.props.logoutUser}
                             activeChannel={this.props.activeChannel}
                             channels={this.props.channels}
+                            users={this.props.users}
+                            memberships={this.props.memberships}
                         />
                         <Sidebar
                             channels={this.props.channels}

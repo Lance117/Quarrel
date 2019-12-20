@@ -172,10 +172,13 @@
     position: relative;
 }
 
-.nav-title {
-    font-family: 'Lato';
+.channel-title-header {
     flex: 1;
     min-width: 0;
+}
+
+.nav-title {
+    font-family: 'Lato';
     font-size: 18px;
     line-height: 1.33334;
     font-weight: 900;
@@ -186,6 +189,58 @@
     overflow: hidden;
     white-space: nowrap;
     color: #d1d2d3;
+}
+
+.nav-title-info {
+    display: flex;
+    align-items: baseline;
+    font-size: 13px;
+    line-height: 1.38463;
+    font-weight: 400;
+    user-select: none;
+    color: rgba(var(--sk_foreground_max,29,28,29),.7);
+    margin-top: 1px;
+}
+
+.channel-members-info {
+    display: flex;
+    align-items: baseline;
+    background: none;
+    border: 0;
+    color: #c6c7c8;
+    font: inherit;
+    margin: 0;
+    line-height: inherit;
+    overflow: initial;
+    padding: 0;
+    text-align: initial;
+    vertical-align: initial;
+    cursor: pointer;
+}
+
+.user-icon {
+    width: 1em;
+    height: auto;
+}
+
+.user-icon:before {
+    content: "\E003";
+    display: inline-block;
+    font-family: 'Slack-icons';
+    font-weight: 400;
+    font-size: inherit;
+    position: absolute;
+    line-height: 1;
+    top: 50%;
+    left: 50%;
+    margin-top: -.5em;
+    margin-left: -.5em;
+    width: 1em;
+    height: 1em;
+}
+
+.user-icon:after {
+    content: "\200B";
 }
 
 .workspace-sidebar {
