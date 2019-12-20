@@ -57,7 +57,7 @@ class ChannelsList extends React.Component {
                 <div className="sidebar-section-heading">
                     <button className="channel-section-heading" onClick={this.handleOpenChannels}>Channels</button>
                     <div className="section-heading-right">
-                        <button className="add-channel-btn" onClick={this.handleOpenModal}></button>
+                        <button className="add-channel-btn all-icons" onClick={this.handleOpenModal}></button>
                     </div>
                 </div>
                 { this.myChannels().map((channel, i) => {

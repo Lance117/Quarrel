@@ -1,9 +1,30 @@
 import React from 'react'
+import ReactModal from 'react-modal';
 import NavTeamHeader from './team_header'
 
 export default class TopNav extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            showSettings: [false, null, null],
+            showMembers: [false, null, null]
+        };
+    }
+
+    handleOpenSettings() {
+        this.setState({ showSettings: [true, e.nativeEvent.offsetX, e.nativeEvent.clientY] });
+    }
+
+    handleCloseSettings() {
+        this.setState({ showSettings: [false, null, null] });
+    }
+
+    handleOpenMembers() {
+        this.setState({ showMembers: [true, e.nativeEvent.offsetX, e.nativeEvent.clientY] });
+    }
+
+    handleCloseMembers() {
+        this.setState({ showMembers: [false, null, null] });
     }
 
     getMembers() {
@@ -29,13 +50,16 @@ export default class TopNav extends React.Component {
                                 {`# ${this.props.channels[this.props.activeChannel.id].channel_name}`}
                             </div>
                             <div className="nav-title-info">
-                                <button className="channel-members-info">
+                                <button className="channel-members-info common-btn">
                                     <i className="user-icon all-icons"></i>&nbsp;{members.length}
                                 </button>
                             </div>
                         </div>
-                    </div>
-                    <div className="nav-bonus-header">
+                        <div className="nav-buttons">
+                            <button className="nav-btn common-btn">
+                                <i className="all-icons settings-icon"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>

@@ -33,6 +33,13 @@ export class PrimaryFooter extends React.Component {
                         />
                     </form>
                 </div>
+                <div className="msg-notification-bar">
+                    <div className="bar-section">
+                        {this.state.value && <span style={{marginRight: "16px", color: "#ababad"}}>
+                            <b style={{fontFamily: 'Lato'}}>Return</b> to send
+                        </span>}
+                    </div>
+                </div>
             </footer>
         )
     }
