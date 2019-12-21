@@ -51,7 +51,10 @@ class Workspace extends React.Component {
                             activeChannel={this.props.activeChannel}
                             channels={this.props.channels}
                             users={this.props.users}
+                            userId={this.props.userId}
                             memberships={this.props.memberships}
+                            deleteMembership={this.props.deleteMembership}
+                            history={this.props.history}
                         />
                         <Sidebar
                             channels={this.props.channels}

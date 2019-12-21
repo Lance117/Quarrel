@@ -6,25 +6,41 @@ export default class TopNav extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showSettings: [false, null, null],
-            showMembers: [false, null, null]
+            showSettings: false,
+            showMembers: false
         };
+        this.handleOpenSettings = this.handleOpenSettings.bind(this);
+        this.handleCloseSettings = this.handleCloseSettings.bind(this);
+        this.handleOpenMembers = this.handleOpenMembers.bind(this);
+        this.handleCloseMembers = this.handleCloseMembers.bind(this);
+        this.handleDelClick = this.handleDelClick.bind(this);
     }
 
-    handleOpenSettings() {
-        this.setState({ showSettings: [true, e.nativeEvent.offsetX, e.nativeEvent.clientY] });
+    handleOpenSettings(e) {
+        this.setState({ showSettings: true });
     }
 
     handleCloseSettings() {
-        this.setState({ showSettings: [false, null, null] });
+        this.setState({ showSettings: false });
     }
 
-    handleOpenMembers() {
-        this.setState({ showMembers: [true, e.nativeEvent.offsetX, e.nativeEvent.clientY] });
+    handleOpenMembers(e) {
+        this.setState({ showMembers: true });
     }
 
     handleCloseMembers() {
-        this.setState({ showMembers: [false, null, null] });
+        this.setState({ showMembers: false });
+    }
+
+    handleDelClick(e) {
+        e.preventDefault();
+        $.when(this.props.deleteMembership(this.getMembership())).then(r => {
+            this.handleCloseSettings();
+            if (this.props.active) window.localStorage.setItem('lastVisited', 1);
+            this.props.history.push("1");
+        }), err => {
+            console.log(err)
+        };
     }
 
     getMembers() {
@@ -35,6 +51,16 @@ export default class TopNav extends React.Component {
             }
         }
         return res;
+    }
+
+    getMembership() {
+        for (const membership of this.props.memberships) {
+            if (membership.user_id === this.props.userId &&
+                membership.channel_id === this.props.activeChannel.id) {
+                    return {id: membership.id};
+                }
+        }
+        return null;
     }
 
     render() {
@@ -56,12 +82,44 @@ export default class TopNav extends React.Component {
                             </div>
                         </div>
                         <div className="nav-buttons">
-                            <button className="nav-btn common-btn">
+                            <button className="nav-btn common-btn" onClick={this.handleOpenSettings}>
                                 <i className="all-icons settings-icon"></i>
                             </button>
                         </div>
                     </div>
                 </div>
+
+                <ReactModal
+                    isOpen={this.state.showSettings}
+                    contentLabel="Channel settings"
+                    onRequestClose={this.handleCloseSettings}
+                    shouldCloseOnOverlayClick={true}
+                    overlayClassName="popover"
+                    style={{
+                        content: {
+                            top: '46px',
+                            left: 'null',
+                            right: '15px',
+                            position: 'absolute',
+                            outline: 'none',
+                            transitionDuration: '80ms',
+                            borderRadius: 'null',
+                            bottom: 'null',
+                            border: 'null',
+                            background: 'null',
+                            overflow: 'null',
+                            padding: 'null',
+                        }
+                    }}
+                >
+                    <div className="actions-menu" style={{ width: "auto" }}>
+                        <div className="nav-modal-item">
+                            <button className="nav-modal-btn" onClick={this.handleDelClick}>
+                                <div className="nav-item-label">{`Leave #${this.props.channels[this.props.activeChannel.id].channel_name}`}</div>
+                            </button>
+                        </div>
+                    </div>
+                </ReactModal>
             </div>
         )
     }
