@@ -130,8 +130,12 @@ class ChannelsList extends React.Component {
                                             width={width}
                                             itemCount={Object.keys(this.props.channels).length}
                                             itemSize={50}
-                                            itemData={{ channels: Object.values(this.props.channels),
-                                                history: this.props.history, handleClose: this.handleCloseChannels}}
+                                            itemData={{ 
+                                                channels: Object.values(this.props.channels),
+                                                history: this.props.history,
+                                                handleClose: this.handleCloseChannels,
+                                                memberships: this.props.memberships
+                                            }}
                                         >
                                             {Row}
                                         </List>
@@ -153,13 +157,34 @@ const Row = ({ index, style, data }) => {
         data.history.push(`${data.channels[index].id}`);
     }
 
+    function countMembers(channelId) {
+        let res = 0;
+        for (let membership of data.memberships) {
+            if (membership.channel_id === channelId) {
+                res += 1;
+            }
+        }
+        return res;
+    }
+
     return (
         <div key={index} style={style} onClick={handleClick}>
             <div className="channel-browser-list-item">
                 <div className="list-base-entity">
-                    <span className="entity-name">
-                        {`# ${data.channels[index].channel_name}`}
-                    </span>
+                    <div className="list-primary-content">
+                        <span className="entity-name">
+                            {`# ${data.channels[index].channel_name}`}
+                        </span>
+                    </div>
+                    <div className="list-secondary">
+                        <button className="preview-channel common-btn">
+                            <i className="inline-icon all-icons"></i>
+                        </button>
+                        <div className="list-member-count">
+                            <i className="all-icons user-icon browse-user-icon"></i>
+                                <span style={{marginLeft: "4px"}}>{countMembers(data.channels[index].id)}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

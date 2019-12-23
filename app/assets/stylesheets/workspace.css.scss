@@ -71,6 +71,18 @@
     padding: 8px 16px;
 }
 
+.nav-team-header:hover {
+    background: black;
+}
+
+.nav-team-header:hover .nav-team-name .nav-user-header .nav-username {
+    opacity: 1;
+}
+
+.nav-team-header:hover .nav-team-name .team-header-section .team-header-icon .down-icon {
+    opacity: 1;
+}
+
 .header-content {
     cursor: pointer;
 }
@@ -121,13 +133,6 @@
     color: rgb(198,199,200);
 }
 
-.small-icons::before {
-    height: auto;
-    font-size: inherit;
-    font-family: inherit;
-    line-height: inherit;
-}
-
 .all-icons::before {
     display: inline-block;
     font-family: 'Slack-icons';
@@ -150,6 +155,35 @@
     justify-content: center;
 }
 
+.inline-icon {
+    width: 20px;
+    height: auto;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+}
+
+.inline-icon:before {
+    content: "\E302";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -.5em;
+    margin-left: -.5em;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    font-family: 'Slack-icons';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.inline-icon:after {
+    content: "\200B";
+}
+
 .nav-username {
     flex: 0 1 auto;
     min-width: 0;
@@ -158,10 +192,6 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.nav-username:hover {
-    opacity: 1;
 }
 
 .nav-channel-header {
@@ -263,6 +293,8 @@
     height: 32px;
     justify-content: center;
     border-radius: 4px;
+    --btn_color: 232,232,232;
+    color: rgba(var(--btn_color,29,28,29),.7);
 }
 
 .nav-btn:hover {
@@ -325,7 +357,7 @@
 .team-header-icon {
     display: inline-flex;
     margin-right: 8px;
-    background-color: #1a1d21;
+    background-color: inherit;
     border: none;
 }
 
@@ -606,6 +638,11 @@
     position: relative;
 }
 
+.msg-list-item:hover {
+    --hover_color: 34,37,41;
+    background-color: rgba(var(--hover_color,248,248,248),1);
+}
+
 .last-msg {
     margin-bottom: 16px;
 }
@@ -645,10 +682,6 @@
     margin-right: 20px;
 }
 
-.msg-list-item:hover {
-    background-color: #2c2d30;
-}
-
 .sender-header {
     margin: 9px 0 -5px;
     line-height: 1;
@@ -683,8 +716,6 @@
 
 .msg-actions:hover {
     border: 1px solid #393c46;
-    --saf-0: rgba(var(--sk_foreground_low,29,28,29),0.13);
-    box-shadow: 0 0 0 1px var(--saf-0),0 1px 3px 0 rgba(0,0,0,.08);
     background-color: #1a1d21;
     border-radius: 6px;
 }
@@ -725,7 +756,6 @@
     line-height: 1.46668;
     font-weight: 400;
     width: 100%;
-    --saf-0: rgba(var(--sk_foreground_low_solid,221,221,221),1);
 }
 
 .forward-channel-name {

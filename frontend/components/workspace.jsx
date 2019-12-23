@@ -53,6 +53,7 @@ class Workspace extends React.Component {
                             users={this.props.users}
                             userId={this.props.userId}
                             memberships={this.props.memberships}
+                            createMembership={this.props.createMembership}
                             deleteMembership={this.props.deleteMembership}
                             history={this.props.history}
                         />

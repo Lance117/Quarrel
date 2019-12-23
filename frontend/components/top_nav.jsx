@@ -13,7 +13,7 @@ export default class TopNav extends React.Component {
         this.handleCloseSettings = this.handleCloseSettings.bind(this);
         this.handleOpenMembers = this.handleOpenMembers.bind(this);
         this.handleCloseMembers = this.handleCloseMembers.bind(this);
-        this.handleDelClick = this.handleDelClick.bind(this);
+        this.handleJoinOrLeave = this.handleJoinOrLeave.bind(this);
     }
 
     handleOpenSettings(e) {
@@ -32,15 +32,24 @@ export default class TopNav extends React.Component {
         this.setState({ showMembers: false });
     }
 
-    handleDelClick(e) {
+    handleJoinOrLeave(e) {
         e.preventDefault();
-        $.when(this.props.deleteMembership(this.getMembership())).then(r => {
-            this.handleCloseSettings();
-            if (this.props.active) window.localStorage.setItem('lastVisited', 1);
-            this.props.history.push("1");
-        }), err => {
-            console.log(err)
-        };
+        let isMember = this.getMembership();
+        if (isMember) {
+            $.when(this.props.deleteMembership(isMember)).then(r => {
+                this.handleCloseSettings();
+                if (this.props.active) window.localStorage.setItem('lastVisited', 1);
+                this.props.history.push("1");
+            }), err => {
+                console.log(err)
+            };
+        } else {
+            this.props.createMembership({user_id: this.props.userId, channel_id: this.props.activeChannel.id}).then(r => {
+                this.handleCloseSettings();
+            }), err => {
+                console.log(err)
+            };
+        }
     }
 
     getMembers() {
@@ -114,8 +123,8 @@ export default class TopNav extends React.Component {
                 >
                     <div className="actions-menu" style={{ width: "auto" }}>
                         <div className="nav-modal-item">
-                            <button className="nav-modal-btn" onClick={this.handleDelClick}>
-                                <div className="nav-item-label">{`Leave #${this.props.channels[this.props.activeChannel.id].channel_name}`}</div>
+                            <button className="nav-modal-btn" onClick={this.handleJoinOrLeave}>
+                                <div className="nav-item-label">{`${this.getMembership() ? 'Leave': 'Join'} #${this.props.channels[this.props.activeChannel.id].channel_name}`}</div>
                             </button>
                         </div>
                     </div>
