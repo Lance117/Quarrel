@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
-import SessionForm from './session_form'
+import SessionForm from '../components/session_form'
 import { loginUser } from '../actions/session_actions'
-import Home from './home'
+import Home from '../components/home'
 
 const mapStateToProps = (state, ownProps) => {
     return {

@@ -510,3 +510,24 @@ h1 {
   margin: 0;
   padding: 12px 0;
 }
+
+.members-modal {
+  height: auto;
+  max-width: 520px;
+  width: 100%;
+}
+
+.members-title {
+  align-items: center;
+  display: flex;
+  min-height: 70px;
+  padding: 20px 28px;
+  width: 100%;
+  padding-right: 76px;
+}
+
+.members-title h1:only-child {
+  font-size: 22px !important;
+  line-height: 1.36365 !important;
+  font-weight: 900 !important;
+}

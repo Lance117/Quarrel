@@ -85,7 +85,7 @@ export default class TopNav extends React.Component {
                                 {`# ${this.props.channels[this.props.activeChannel.id].channel_name}`}
                             </div>
                             <div className="nav-title-info">
-                                <button className="channel-members-info common-btn">
+                                <button className="channel-members-info common-btn" onClick={this.handleOpenMembers}>
                                     <i className="user-icon all-icons"></i>&nbsp;{members.length}
                                 </button>
                             </div>
@@ -126,6 +126,31 @@ export default class TopNav extends React.Component {
                             <button className="nav-modal-btn" onClick={this.handleJoinOrLeave}>
                                 <div className="nav-item-label">{`${this.getMembership() ? 'Leave': 'Join'} #${this.props.channels[this.props.activeChannel.id].channel_name}`}</div>
                             </button>
+                        </div>
+                    </div>
+                </ReactModal>
+
+                <ReactModal
+                    isOpen={this.state.showMembers}
+                    contentLabel="Members list"
+                    onRequestClose={this.handleCloseMembers}
+                    shouldCloseOnOverlayClick={true}
+                    overlayClassName="add-channel-popover"
+                    className="add-channel-modal members-modal"
+                >
+                    <div className="add-channel-header" style={{color: "#d1d2d3"}}>
+                        <div className="members-title">
+                            <h1>
+                                {`${members.length} members in `}
+                                <span style={{overflow: 'hidden', textOverflow: 'ellipsis', wordBreak: 'break-all'}}>
+                                    #{this.props.channels[this.props.activeChannel.id].channel_name}
+                                </span>
+                            </h1>
+                        </div>
+                        <div style={{height: '450px', display: 'flex', flexDirection: 'column'}}>
+                            <div className='channel-browser-list-container' style={{position: 'relative'}}>
+                                
+                            </div>
                         </div>
                     </div>
                 </ReactModal>

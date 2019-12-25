@@ -2,23 +2,6 @@
     box-sizing: border-box;
 }
 
-@font-face {
-    font-family: 'Lato';
-    src:font-url('lato-bold-4b1dc11.woff2');
-    font-weight: bold;
-}
-
-@font-face {
-    font-family: 'Lato-norm';
-    src:font-url('lato-regular-d9ce515.woff2');
-}
-
-@font-face {
-    font-family: 'Lato-bolder';
-    src:font-url('lato-black-b64f5e4.woff2');
-    font-weight: bolder;
-}
-
 h1, h2, h3, h4, h5 {
     font-weight: 700;
     font-family: 'Lato', 'Lucida Grande', sans-serif;

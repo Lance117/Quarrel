@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import Workspace from './workspace'
+import Workspace from '../components/workspace'
 import { logoutUser } from '../actions/session_actions'
 import { fetchChannels, createNewChannel } from '../actions/channel_actions'
 import { fetchMessages, createNewMessage, deleteMessage, receiveMessage } from '../actions/message_actions'
