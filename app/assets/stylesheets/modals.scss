@@ -95,7 +95,7 @@ h1 {
     top: 0;
     width: 100%;
     z-index: 9001;
-    background: rgba(0,0,0,.6);
+    background: rgba(168, 78, 78, 0.6);
   }
 
   .add-channel-popover:before {
@@ -127,6 +127,9 @@ h1 {
     max-height: 100%;
     position: relative;
     transition: opacity 80ms linear,transform 80ms cubic-bezier(.36,.19,.29,1);
+    --sk_foreground_low: 232,232,232;
+    --saf-0: rgba(var(--sk_foreground_low,29,28,29),0.13);
+    box-shadow: 0 0 0 1px var(--saf-0),0 18px 48px 0 rgba(0,0,0,.35);
 }
 
 .add-channel-header {
