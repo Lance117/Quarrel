@@ -171,7 +171,7 @@ const Row = ({ index, style, data }) => {
         <div key={index} style={style} onClick={handleClick}>
             <div className="channel-browser-list-item">
                 <div className="list-base-entity">
-                    <div className="list-primary-content">
+                    <div className="list-primary-content" style={{justifyContent: 'center'}}>
                         <span className="entity-name">
                             {`# ${data.channels[index].channel_name}`}
                         </span>

@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactModal from 'react-modal';
+import stringHash from 'string-hash'
 
 class NavTeamHeader extends React.Component {
     constructor(props) {
@@ -51,6 +52,11 @@ class NavTeamHeader extends React.Component {
                 >
                     <div className="nav-modal-menu" style={{width: '300px'}}>
                         <div className="nav-modal-items">
+                            <div className="team-menu-blurb">
+                                <span className="team-blurb-icon all-avatar" style={{height: '36px', lineHeight: '36px', width: '36px'}}>
+                                    <img className='avatar-img' src={this.props.avatars[parseInt(stringHash(this.props.currentUser)) % this.props.avatars.length]} />
+                                </span>
+                            </div>
                             <div className="nav-modal-item">
                                 <button className="nav-modal-btn" onClick={this.props.logoutUser}>
                                     <div className="nav-item-label">

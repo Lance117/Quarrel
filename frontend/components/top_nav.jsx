@@ -1,6 +1,9 @@
 import React from 'react'
 import ReactModal from 'react-modal';
 import NavTeamHeader from './team_header'
+import { FixedSizeList as List } from 'react-window';
+import AutoSizer from 'react-virtualized-auto-sizer';
+import stringHash from 'string-hash'
 
 export default class TopNav extends React.Component {
     constructor(props) {
@@ -78,7 +81,7 @@ export default class TopNav extends React.Component {
         return (
             <div className="workspace-top-nav">
                 <div className="flex-top-nav">
-                    <NavTeamHeader currentUser={this.props.currentUser} logoutUser={this.props.logoutUser}/> 
+                    <NavTeamHeader currentUser={this.props.currentUser} logoutUser={this.props.logoutUser} avatars={avatars}/> 
                     <div className="nav-channel-header">
                         <div className="channel-title-header">
                             <div className="nav-title">
@@ -136,7 +139,7 @@ export default class TopNav extends React.Component {
                     onRequestClose={this.handleCloseMembers}
                     shouldCloseOnOverlayClick={true}
                     overlayClassName="add-channel-popover"
-                    className="add-channel-modal members-modal"
+                    className="add-channel-modal"
                 >
                     <div className="add-channel-header" style={{color: "#d1d2d3"}}>
                         <div className="members-title">
@@ -149,7 +152,22 @@ export default class TopNav extends React.Component {
                         </div>
                         <div style={{height: '450px', display: 'flex', flexDirection: 'column'}}>
                             <div className='channel-browser-list-container' style={{position: 'relative'}}>
-                                
+                                <AutoSizer>
+                                    {({ height, width }) => (
+                                        <List
+                                            height={height}
+                                            width={width}
+                                            itemCount={members.length}
+                                            itemSize={60}
+                                            itemData={{
+                                                members: members,
+                                                users: this.props.users
+                                            }}
+                                        >
+                                            {Row}
+                                        </List>
+                                    )}
+                                </AutoSizer> 
                             </div>
                         </div>
                     </div>
@@ -158,3 +176,54 @@ export default class TopNav extends React.Component {
         )
     }
 }
+
+// helpers
+const avatars = [
+    'https://ca.slack-edge.com/T03GU501J-UJZAX6WDU-g5e90ac62e9f-72',
+    'https://ca.slack-edge.com/T03GU501J-UL2N3LG2X-gf1556aa48ff-72',
+    'https://ca.slack-edge.com/T03GU501J-ULUDZ1QKS-g7b70ea0cbae-72',
+    'https://ca.slack-edge.com/T03GU501J-UKT0C8SS1-g665db23aba0-72',
+    'https://ca.slack-edge.com/T03GU501J-UMHG8Q2NA-g7eee62267eb-72',
+    'https://ca.slack-edge.com/T03GU501J-ULNGNK0LC-g5f57353e5f4-72',
+    'https://ca.slack-edge.com/T03GU501J-UBVJX8CB1-g59c98ec02a0-48',
+    'https://ca.slack-edge.com/T03GU501J-UL4FRHEER-gebe3e59ff06-72',
+    'https://ca.slack-edge.com/T03GU501J-ULXV025EG-g9d24e4c4d3d-72',
+    'https://ca.slack-edge.com/T03GU501J-UDEMKU2KD-g99e9e862d66-72',
+    'https://ca.slack-edge.com/T03GU501J-UPEMSDDF1-g642684ec089-72',
+    'https://ca.slack-edge.com/T03GU501J-ULG8PH0F8-g1ff632e59b1-72',
+    'https://ca.slack-edge.com/T03GU501J-UM3KRAGQ2-g2ab2756ba7a-72',
+    'https://ca.slack-edge.com/T03GU501J-U4PP3VBR8-gb7de446f194-72'
+];
+
+const Row = ({ index, style, data }) => {
+    return (
+        <div className="member-list-thing" key={index} style={style}>
+            <button className="common-btn" style={{width: "100%", height: '100%'}}>
+                <div className='member-list-item' style={{height: '100%'}}>
+                    <div style={{flex: '1', flexShrink: '2'}}>
+                        <div style={{minHeight: '36px', display: 'flex', justifyContent: 'flex-start', alignItems: 'center'}}>
+                            <span className='list-avatar all-avatar' style={{height: '36px', lineHeight: '36px', width: '36px'}}>
+                                <img className='avatar-img' src={avatars[parseInt(stringHash(data.users[data.members[index]].username)) % avatars.length]} />
+                            </span>
+                            <div className='member-list-contents'>
+                                <span style={{display: 'flex', alignItems: 'center'}}>
+                                    <span style={{marginRight: '4px'}}>
+                                        <span style={{
+                                            overflow: 'hidden',
+                                            textOverflow: 'ellipsis',
+                                            wordBreak: 'break-all'
+                                        }}
+                                        >
+                                            <strong>{data.users[data.members[index]].username}</strong>
+                                        </span>
+                                    </span>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </button>
+        </div>
+    )
+}
+//---------

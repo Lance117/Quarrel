@@ -36,13 +36,31 @@ h1 {
     max-height: calc(100vh - 20px);
     overflow-y: auto;
     padding: .1px 0;
+    --saf-0: rgba(var(--foreground,29,28,29),0.13);
+    box-shadow: 0 0 0 1px var(--saf-0),0 4px 12px 0 rgba(0,0,0,.12);
+    --foreground: 232,232,232;
+  }
+
+  .team-menu-blurb {
+    display: flex;
+    padding: 8px 24px 12px;
+    font-size: 15px;
+    line-height: 1.46668;
+    font-weight: 400;
+    line-height: 1.2;
+    user-select: text;
+  }
+
+  .team-blurb-icon {
+    margin-right: 12px;
+    flex-shrink: 0;
   }
 
   .nav-modal-items {
     margin: 0;
     padding: 12px 0;
-    background-color: rgba(var(--sk_foreground_min_solid,248,248,248),1);
-    --sk_foreground_min_solid: 34,37,41;
+    background-color: rgba(var(--foreground,248,248,248),1);
+    --foreground: 34,37,41;
   }
 
   .nav-modal-item {
@@ -73,6 +91,11 @@ h1 {
     width: 100%;
   }
 
+  .nav-modal-btn:hover {
+    background: #0576B9;
+    color: #FFFFFF;
+  }
+
   .nav-item-label {
     flex: 1 1 auto;
     text-overflow: ellipsis;
@@ -95,7 +118,7 @@ h1 {
     top: 0;
     width: 100%;
     z-index: 9001;
-    background: rgba(168, 78, 78, 0.6);
+    background: rgba(0,0,0,.6);
   }
 
   .add-channel-popover:before {
@@ -428,7 +451,6 @@ h1 {
 .list-primary-content {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   flex: 1;
   flex-shrink: 2;
 }
@@ -514,12 +536,6 @@ h1 {
   padding: 12px 0;
 }
 
-.members-modal {
-  height: auto;
-  max-width: 520px;
-  width: 100%;
-}
-
 .members-title {
   align-items: center;
   display: flex;
@@ -533,4 +549,42 @@ h1 {
   font-size: 22px !important;
   line-height: 1.36365 !important;
   font-weight: 900 !important;
+}
+
+.member-list-thing:hover {
+    --hover_color: 34,37,41;
+    background-color: rgba(var(--hover_color,248,248,248),1);
+}
+
+.member-list-item {
+  display: flex;
+  padding-left: 28px;
+  padding-right: 28px;
+  width: 100%;
+  padding: 12px;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.all-avatar {
+  position: relative;
+  display: inline-block;
+  cursor: default;
+  outline: none;
+}
+
+.list-avatar {
+  flex: none;
+  margin-right: 12px;
+}
+
+.member-list-contents {
+    display: flex;
+    flex-direction: column;
+    margin-top: -4px;
+    margin-bottom: -4px;
+    justify-content: space-between;
+    min-width: 0;
+    width: 100%;
+    overflow: hidden;
 }
