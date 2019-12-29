@@ -12,7 +12,7 @@ class Sidebar extends React.Component {
                 <nav className="channel-sidebar">
                     <div className="side-toolbar">
                         <button className="side-toolbar-btn">
-                            Jump to...
+                            (ง •̀_•́)ง ผ(•̀_•́ผ)
                         </button>
                     </div>
                     <div className="channel-sidebar-list">

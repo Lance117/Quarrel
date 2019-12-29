@@ -56,6 +56,26 @@ h1 {
     flex-shrink: 0;
   }
 
+  .blurb-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex: 1 1 auto;
+  }
+
+  .menu-divider {
+    line-height: 24px;
+    padding: 8px 0;
+    margin: 0;
+  }
+
+  .menu-sep {
+    margin: 0;
+    --foreground: 232,232,232;
+    border-top: 1px solid rgba(var(--foreground,29,28,29),.13);
+    border-bottom: 0;
+  }
+
   .nav-modal-items {
     margin: 0;
     padding: 12px 0;

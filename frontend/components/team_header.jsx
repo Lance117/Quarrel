@@ -56,7 +56,13 @@ class NavTeamHeader extends React.Component {
                                 <span className="team-blurb-icon all-avatar" style={{height: '36px', lineHeight: '36px', width: '36px'}}>
                                     <img className='avatar-img' src={this.props.avatars[parseInt(stringHash(this.props.currentUser)) % this.props.avatars.length]} />
                                 </span>
+                                <div className="blurb-right">
+                                    <div style={{fontWeight: '900', color: '#d1d2d3', fontFamily: 'lato'}}>
+                                        {this.props.currentUser}
+                                    </div>
+                                </div>
                             </div>
+                            <div className="menu-divider"><hr className="menu-sep"/></div>
                             <div className="nav-modal-item">
                                 <button className="nav-modal-btn" onClick={this.props.logoutUser}>
                                     <div className="nav-item-label">
