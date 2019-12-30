@@ -8,7 +8,9 @@ class SessionForm extends React.Component {
         this.state = {
             username: "",
             email: "",
-            password: ""
+            password: "",
+            emailClass: "session-input",
+            passwordClass: "session-input",
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,8 +18,15 @@ class SessionForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        const user = Object.assign({}, this.state);
-        this.props.processForm(user);
+        const formType = this.props.formType;
+        if (formType === 'login' && this.state.email === '') {
+            this.setState({emailClass: "session-input error"});
+        } else if (formType === 'login' && this.state.password === '') {
+            this.setState({passwordClass: "session-input error"});
+        } else {
+            const user = Object.assign({}, this.state);
+            this.props.processForm(user);
+        }
     }
 
     update(k) {
@@ -38,7 +47,10 @@ class SessionForm extends React.Component {
             return (
                 <div className="span-2-3 col margin-auto">
                     {this.props.errors.map((error, i) => (
-                        <p className="alert-error" key={`error-${i}`}>{error}</p>
+                        <p className="alert-error" key={`error-${i}`}>
+                            <i className="error_icon"></i>
+                            {error}
+                        </p>
                     ))}
                 </div>
             );
@@ -63,17 +75,16 @@ class SessionForm extends React.Component {
                                      and <strong>password</strong> to get started.</p>
                                 )}
 
-                                <p className="no_bottom_margin">
-                                    <input className="session-input" type="email" placeholder="you@example.com" size="40" onChange={this.update('email')}/>
+                                <p style={{marginBottom: '0'}}>
+                                    <input className={this.state.emailClass} type="email" placeholder="you@example.com" size="40" onChange={this.update('email')}/>
                                 </p>
-                                {this.props.formType === 'signup' ? (
-                                    <p>
+                                {this.props.formType === 'signup' &&
+                                    <p style={{marginBottom: '0'}}>
                                         <input className="session-input" type="text" placeholder='display name' size="40" onChange={this.update('username')}/>
                                     </p>
-                                ) : (null)
                                 }
                                 <p className="small_bottom_margin">
-                                    <input className="session-input" type="password" placeholder="password" size="40" onChange={this.update('password')}/>
+                                    <input className={this.state.passwordClass} type="password" placeholder="password" size="40" onChange={this.update('password')}/>
                                 </p>
                                 <p>
                                     <button className="form-btn" type="submit">
