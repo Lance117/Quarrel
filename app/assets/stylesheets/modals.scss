@@ -434,10 +434,12 @@ h1 {
 }
 
 .channel-browser-section-header {
+  padding-top: 0 !important;
   font-size: 13px;
   line-height: 1.38463;
   font-weight: 400;
-  color: rgba(var(--sk_foreground_max,29,28,29),.7);
+  --foreground: 232,232,232;
+  color: rgba(var(--foreground,29,28,29),.7);
   padding: 12px 12px 4px;
   position: relative;
   z-index: 1;

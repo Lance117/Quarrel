@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactModal from 'react-modal';
 import Channel from './channel';
-import { FixedSizeList as List } from 'react-window';
+import { VariableSizeList as List } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 
 class ChannelsList extends React.Component {
@@ -128,8 +128,8 @@ class ChannelsList extends React.Component {
                                         <List
                                             height={height}
                                             width={width}
-                                            itemCount={Object.keys(this.props.channels).length}
-                                            itemSize={50}
+                                            itemCount={Object.keys(this.props.channels).length+1}
+                                            itemSize={index => index > 0 ? 50 : 22}
                                             itemData={{ 
                                                 channels: Object.values(this.props.channels),
                                                 history: this.props.history,
@@ -154,7 +154,7 @@ class ChannelsList extends React.Component {
 const Row = ({ index, style, data }) => {
     function handleClick() {
         data.handleClose();
-        data.history.push(`${data.channels[index].id}`);
+        data.history.push(`${data.channels[index-1].id}`);
     }
 
     function countMembers(channelId) {
@@ -169,11 +169,15 @@ const Row = ({ index, style, data }) => {
 
     return (
         <div key={index} style={style} onClick={handleClick}>
+            {index === 0 &&
+                <div className="channel-browser-section-header">Channels you can join</div>
+            }
+            {index > 0 && 
             <div className="channel-browser-list-item">
                 <div className="list-base-entity">
                     <div className="list-primary-content" style={{justifyContent: 'center'}}>
                         <span className="entity-name">
-                            {`# ${data.channels[index].channel_name}`}
+                            {`# ${data.channels[index-1].channel_name}`}
                         </span>
                     </div>
                     <div className="list-secondary">
@@ -182,11 +186,11 @@ const Row = ({ index, style, data }) => {
                         </button>
                         <div className="list-member-count">
                             <i className="all-icons user-icon browse-user-icon"></i>
-                                <span style={{marginLeft: "4px"}}>{countMembers(data.channels[index].id)}</span>
+                                <span style={{marginLeft: "4px"}}>{countMembers(data.channels[index-1].id)}</span>
                         </div>
                     </div>
                 </div>
-            </div>
+            </div>}
         </div>
     )
 }

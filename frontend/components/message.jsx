@@ -130,7 +130,7 @@ function createMsgBody(msgBody) {
                 />
             )
         } else {
-            res = (<a href={msgBody} target="_blank" style={{ color: "#1D9BD1" }}>{msgBody}</a>)
+            res = (<a href={msgBody} target="_blank">{msgBody}</a>)
         }
     }
     return res;
