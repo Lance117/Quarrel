@@ -59,6 +59,10 @@
     padding: 0;
 }
 
+.ql-container:focus-within {
+  border: 1px solid #a0a0a2;
+}
+
 .ql-editor.ql-blank::before {
     content: attr(data-placeholder);
     font-family: 'Lato-norm';

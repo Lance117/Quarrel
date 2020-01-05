@@ -1,5 +1,5 @@
 import React from "react";
-import ReactQuill from 'react-quill';
+import ReactQuill, { Quill } from 'react-quill';
 
 export class PrimaryFooter extends React.Component {
     constructor(props) {
