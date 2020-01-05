@@ -615,7 +615,7 @@
     white-space: nowrap;
 }
 
-.msg-input:hover {
+.msg-input:focus-within {
     border: 1px solid #a0a0a2;
 }
 
