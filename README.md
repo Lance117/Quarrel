@@ -1,8 +1,16 @@
 # Quarrel
 
 Quarrel is a chat app modeled after Slack, but for casual discussions.
+Demo: http://quarreling.herokuapp.com/
 
-Try it out: [demo](http://quarreling.herokuapp.com/)
+<img src="https://media.giphy.com/media/j0MBIPfKwSMO9Duj1t/giphy.gif" width="80%">
+
+## Languages/Tech
+- Ruby on Rails
+- JavaScript
+- React/Redux
+- [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
+- [Action Cable](https://edgeguides.rubyonrails.org/action_cable_overview.html) (to setup WebSocket connection)
 
 ###
 | File | Description |
