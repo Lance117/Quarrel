@@ -26,14 +26,16 @@ export class PrimaryFooter extends React.Component {
     }
 
     handleSubmit() {
+        // debugger
         if (this.inputEmpty()) {
-            this.props.createMessage({body: this.state.value, channel_id: this.props.channelId});
+            this.props.createMessage({ body: this.textInput.current.getEditor().getText().trim(), channel_id: this.props.channelId});
         }
         this.setState({value: ''});
     }
 
     componentDidMount() {
         document.querySelector('.ql-editor').setAttribute("data-placeholder", `Message #${this.props.activeChannelName}`);
+        document.getElementById('quillEditor').appendChild(document.getElementById('fileInput'));
     }
 
     componentDidUpdate() {
@@ -44,15 +46,9 @@ export class PrimaryFooter extends React.Component {
         return (
             <footer className="primary-footer">
                 <div className="msg-input" onClick={this.focusTextInput}>
-                    {/* <form onSubmit={this.handleSubmit}>
-                        <input type="text" className="txt-editor"
-                            placeholder={`Message #${this.props.activeChannelName}`}
-                            onChange={this.handleChange} 
-                            value={this.state.value}
-                        />
-                    </form> */}
                     <div className="msg_input_inner">
                         <ReactQuill
+                            id={'quillEditor'}
                             ref={this.textInput}
                             theme={null}
                             value={this.state.value}
@@ -68,8 +64,10 @@ export class PrimaryFooter extends React.Component {
                                     }
                                 }
                             }}
-                            // placeholder={`Message #${this.props.activeChannelName}`}
                         />
+                        <button className="msg_input_file_btn common-btn" id="fileInput">
+                            <i className="msg_input_file_icon all-icons"></i>
+                        </button>
                     </div>
                 </div>
                 <div className="msg-notification-bar">

@@ -24,7 +24,7 @@
     padding-right: 0;
     flex: 1;
     z-index: 200;
-    padding-bottom: 48px!important;
+    /* padding-bottom: 48px!important; */
     font-family: 'Lato-norm';
 }
 
@@ -66,7 +66,7 @@
 .ql-editor.ql-blank::before {
     content: attr(data-placeholder);
     font-family: 'Lato-norm';
-    opacity: 0.6;
+    opacity: 0.5;
     pointer-events: none;
     position: absolute;
 }

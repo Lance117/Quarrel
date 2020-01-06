@@ -631,6 +631,32 @@ a {
 //     border: 1px solid #a0a0a2;
 // }
 
+.msg_input_file_btn {
+    transition: all .1s ease-out;
+    border-radius: 2px;
+    --foreground: 129,131,133;
+    color: rgba(var(--foreground,134,134,134),1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 5px;
+    bottom: 5px;
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    z-index: 200;
+}
+
+.msg_input_file_btn:hover {
+    color: #fff;
+    background: #007a5a;
+}
+
+.msg_input_file_icon::before {
+    font-size: 16px;
+    content: "\E089";
+}
+
 .msg-list-container {
     position: absolute;
     width: 100%;

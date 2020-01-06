@@ -1,7 +1,6 @@
 import React from "react";
 import { PrimaryFooter, PreviewFooter } from './primary_footer'
 import Message from './message'
-import { VariableSizeList as List } from 'react-window'
 
 class PrimaryView extends React.Component {
     constructor(props) {

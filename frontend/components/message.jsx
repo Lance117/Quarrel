@@ -21,14 +21,15 @@ function Message(props) {
         'https://ca.slack-edge.com/T03GU501J-UPEMSDDF1-g642684ec089-72',
         'https://ca.slack-edge.com/T03GU501J-ULG8PH0F8-g1ff632e59b1-72',
         'https://ca.slack-edge.com/T03GU501J-UM3KRAGQ2-g2ab2756ba7a-72',
-        'https://ca.slack-edge.com/T03GU501J-U4PP3VBR8-gb7de446f194-72'
+        'https://ca.slack-edge.com/T03GU501J-U4PP3VBR8-gb7de446f194-72',
+        'https://ca.slack-edge.com/T03GU501J-UPA56QKSS-gc81d3abfcf5-512',
+        'https://ca.slack-edge.com/T03GU501J-UH645JECU-gc4364aeb73c-512'
     ]
     let msgBody = createMsgBody(props.body);
     let className = "msg-list-item";
     if (props.lastMsg) className = className.concat(' last-msg');
 
     function handleOpenModal(e) {
-        e.preventDefault();
         setShowmodal([true, e.nativeEvent.offsetX, e.nativeEvent.clientY]);
     }
 
@@ -36,8 +37,7 @@ function Message(props) {
         setShowmodal([false, null, null]);
     }
 
-    function handleDelMsg(e) {
-        e.preventDefault();
+    function handleDelMsg() {
         props.deleteMessage({id: props.msgId}).then(r => {
             handleCloseModal();
         }), err => {

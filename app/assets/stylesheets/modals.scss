@@ -543,7 +543,8 @@ h1 {
 
 .actions-menu {
   font-family: 'Lato-norm';
-  background-color: #1f2021;
+  --foreground: 34,37,41;
+  background-color: rgba(var(--foreground,248,248,248),1);
   border: 1px solid #393c46;
   border-radius: 6px;
   user-select: none;
