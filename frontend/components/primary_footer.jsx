@@ -1,43 +1,85 @@
 import React from "react";
+import ReactQuill, { Quill } from 'react-quill';
 
 export class PrimaryFooter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {value: ''};
 
+        this.textInput = React.createRef();
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.focusTextInput = this.focusTextInput.bind(this);
     }
 
-    handleChange(e) {
-        this.setState({value: e.target.value});
+
+    focusTextInput() {
+        this.textInput.current.focus();
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
-        if (this.state.value) {
-            this.props.createMessage({body: this.state.value, channel_id: this.props.channelId});
+    handleChange(html) {
+        this.setState({value: html});
+    }
+
+    inputEmpty() {
+        return this.state.value && this.state.value != '<p><br></p>';
+    }
+
+    handleSubmit() {
+        // debugger
+        if (this.inputEmpty()) {
+            this.props.createMessage({ body: this.textInput.current.getEditor().getText().trim(), channel_id: this.props.channelId});
         }
         this.setState({value: ''});
+    }
+
+    componentDidMount() {
+        document.querySelector('.ql-editor').setAttribute("data-placeholder", `Message #${this.props.activeChannelName}`);
+        document.getElementById('quillEditor').appendChild(document.getElementById('fileInput'));
+    }
+
+    componentDidUpdate() {
+        document.querySelector('.ql-editor').setAttribute("data-placeholder", `Message #${this.props.activeChannelName}`);
     }
 
     render() {
         return (
             <footer className="primary-footer">
-                <div className="msg-input">
-                    <form onSubmit={this.handleSubmit}>
-                        <input type="text" className="txt-editor"
-                            placeholder={`Message #${this.props.activeChannelName}`}
-                            onChange={this.handleChange} 
+                <div className="msg-input" onClick={this.focusTextInput}>
+                    <div className="msg_input_inner">
+                        <ReactQuill
+                            id={'quillEditor'}
+                            ref={this.textInput}
+                            theme={null}
                             value={this.state.value}
+                            onChange={this.handleChange}
+                            handleEnter={this.handleSubmit}
+                            modules={{
+                                keyboard: {
+                                    bindings: {
+                                        enter: {
+                                            key: 13,
+                                            handler: this.handleSubmit
+                                        }
+                                    }
+                                }
+                            }}
                         />
-                    </form>
+                        <button className="msg_input_file_btn common-btn" id="fileInput">
+                            <i className="msg_input_file_icon all-icons"></i>
+                        </button>
+                    </div>
                 </div>
                 <div className="msg-notification-bar">
                     <div className="bar-section">
-                        {this.state.value && <span style={{marginRight: "16px", color: "#ababad"}}>
-                            <b style={{fontFamily: 'Lato'}}>Return</b> to send
-                        </span>}
+                        {this.inputEmpty() &&
+                            <span style={{color: '#ababad'}}>
+                                <span style={{marginRight: "16px"}}>
+                                    <b style={{fontFamily: 'Lato'}}>Return</b> to send
+                                </span>
+                                <b style={{marginRight: '0'}}>Shift + Return</b> to add a new line
+                            </span>
+                        }
                     </div>
                 </div>
             </footer>
