@@ -1,14 +1,22 @@
 import React from "react";
 import ReactQuill, { Quill } from 'react-quill';
+import ReactModal from 'react-modal';
+import { Picker } from 'emoji-mart'
 
 export class PrimaryFooter extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {value: ''};
+        this.state = {
+            value: '',
+            showEmojis: false
+        };
 
         this.textInput = React.createRef();
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleOpenEmojis = this.handleOpenEmojis.bind(this);
+        this.handleCloseEmojis = this.handleCloseEmojis.bind(this);
+        this.handleEmoji = this.handleEmoji.bind(this);
         this.focusTextInput = this.focusTextInput.bind(this);
     }
 
@@ -19,6 +27,19 @@ export class PrimaryFooter extends React.Component {
 
     handleChange(html) {
         this.setState({value: html});
+    }
+
+    handleOpenEmojis() {
+        this.setState({showEmojis: true});
+    }
+
+    handleEmoji(emoji) {
+        this.textInput.current.getEditor().insertText(this.textInput.current.getEditor().getSelection().index, emoji.native);
+        this.handleCloseEmojis();
+    }
+
+    handleCloseEmojis() {
+        this.setState({showEmojis: false});
     }
 
     inputEmpty() {
@@ -67,7 +88,7 @@ export class PrimaryFooter extends React.Component {
                             }}
                         />
                         <div id="ql-buttons">
-                            <button className="texty_input_button all-icons common-btn">
+                            <button className="texty_input_button all-icons common-btn" onClick={this.handleOpenEmojis}>
                                 <i className="all-icons smile_icon"></i>
                             </button>
                         </div>
@@ -88,6 +109,32 @@ export class PrimaryFooter extends React.Component {
                         }
                     </div>
                 </div>
+
+                <ReactModal
+                    isOpen={this.state.showEmojis}
+                    contentLabel="emojis"
+                    onRequestClose={this.handleCloseEmojis}
+                    shouldCloseOnOverlayClick={true}
+                    overlayClassName="popover"
+                    style={{
+                        content: {
+                            // top: '10%',
+                            // left: '62.5%',
+                            right: 'null',
+                            position: 'absolute',
+                            outline: 'none',
+                            transitionDuration: '80ms',
+                            borderRadius: 'null',
+                            bottom: 'null',
+                            border: 'null',
+                            background: 'null',
+                            overflow: 'null',
+                            padding: 'null',
+                        }
+                    }}
+                >
+                    <Picker darkMode='true' onSelect={this.handleEmoji} />
+                </ReactModal>
             </footer>
         )
     }
