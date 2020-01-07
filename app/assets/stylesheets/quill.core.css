@@ -78,6 +78,18 @@
     position: absolute;
     top: 50%;
 }
+
+#ql-buttons {
+  bottom: 4px;
+  height: 32px;
+  position: absolute;
+  right: 4px;
+}
+
+.smile_icon::before {
+  content: "\E094";
+  font-size: 16px !important;
+}
 /*!
  * Quill Editor v1.3.0
  * https://quilljs.com/

@@ -257,6 +257,24 @@ a {
     cursor: pointer;
 }
 
+.texty_input_button {
+    --foreground: 171,171,173;
+    color: rgba(var(--foreground,97,96,97),1);
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: opacity .2s,background-color .2s,color .2s;
+}
+
+.texty_input_button:hover {
+    box-shadow: none;
+    // --sk_foreground_min: 232,232,232;
+    background: rgba(232,232,232,.04);
+}
+
 .user-icon {
     width: 1em;
     height: auto;
@@ -634,8 +652,7 @@ a {
 .msg_input_file_btn {
     transition: all .1s ease-out;
     border-radius: 2px;
-    --foreground: 129,131,133;
-    color: rgba(var(--foreground,134,134,134),1);
+    color: #a0a0a2;
     display: flex;
     justify-content: center;
     align-items: center;

@@ -36,6 +36,7 @@ export class PrimaryFooter extends React.Component {
     componentDidMount() {
         document.querySelector('.ql-editor').setAttribute("data-placeholder", `Message #${this.props.activeChannelName}`);
         document.getElementById('quillEditor').appendChild(document.getElementById('fileInput'));
+        document.getElementsByClassName('ql-container')[0].appendChild(document.getElementById('ql-buttons'));
     }
 
     componentDidUpdate() {
@@ -65,6 +66,11 @@ export class PrimaryFooter extends React.Component {
                                 }
                             }}
                         />
+                        <div id="ql-buttons">
+                            <button className="texty_input_button all-icons common-btn">
+                                <i className="all-icons smile_icon"></i>
+                            </button>
+                        </div>
                         <button className="msg_input_file_btn common-btn" id="fileInput">
                             <i className="msg_input_file_icon all-icons"></i>
                         </button>
