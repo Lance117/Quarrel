@@ -118,14 +118,14 @@ export class PrimaryFooter extends React.Component {
                     overlayClassName="popover"
                     style={{
                         content: {
-                            // top: '10%',
-                            // left: '62.5%',
-                            right: 'null',
+                            top: 'null',
+                            left: 'null',
+                            right: '15px',
                             position: 'absolute',
                             outline: 'none',
                             transitionDuration: '80ms',
                             borderRadius: 'null',
-                            bottom: 'null',
+                            bottom: '65px',
                             border: 'null',
                             background: 'null',
                             overflow: 'null',
