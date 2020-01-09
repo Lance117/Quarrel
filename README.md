@@ -5,7 +5,7 @@ Demo: http://quarreling.herokuapp.com/
 
 <img src="demo.gif">
 
-### Languages/Tech
+## Languages/Tech
 - Ruby on Rails
 - JavaScript
 - [React/Redux](https://react-redux.js.org/)
@@ -14,19 +14,8 @@ Demo: http://quarreling.herokuapp.com/
 - [Quill](https://quilljs.com/) (rich text editor)
 - [Emoji Mart](https://github.com/missive/emoji-mart)
 
-###
-| File | Description |
-| --- | --- |
-| [components](https://github.com/LanceSanity/Quarrel/tree/master/frontend/components) | Container and presentational components |
-| [actions](https://github.com/LanceSanity/Quarrel/tree/master/frontend/actions) | These actions can be dispatched to trigger a Redux state change. They return POJOs that tell the reducer what the state should look like. Some of these actions also include async calls via middleware.|
-| [reducers](https://github.com/LanceSanity/Quarrel/tree/master/frontend/reducers) | Reducers specify how the state changes in response to dispatched actions. |
-| [util](https://github.com/LanceSanity/Quarrel/tree/master/frontend/util) | Defines functions that make API calls to Quarrel's backend. |
-| [controllers](https://github.com/LanceSanity/Quarrel/tree/master/app/controllers) |The API controllers define what happens given a requested route. The application controller defines helper methods for the backend.|
-| [models](https://github.com/LanceSanity/Quarrel/tree/master/app/models) | Maps database tables to Ruby objects, defines model level validations, specifies associations.
-| [routes](https://github.com/LanceSanity/Quarrel/blob/master/config/routes.rb) | Declares URIs for the backend. |
-
-### Selected features and code examples
-#### User authentication implemented with Rails
+## Selected features and code examples
+### User authentication implemented with Rails
 I use a random number generator to create a session token and BCrypt to encrypt users' passwords. Users are verified by their email and password (checked against the password digest).
 <details>
   <summary>Example Code</summary>
@@ -61,7 +50,7 @@ I use a random number generator to create a session token and BCrypt to encrypt 
     
 </details>
 
-#### Channels list and search
+### Channels list and search
 For my channels list component, I use a local state variable to keep track of what users type. These search queries are
 then used to filter channels with JavaScript's built-in substrings function.
 <details>
@@ -97,7 +86,7 @@ then used to filter channels with JavaScript's built-in substrings function.
   ```
 </details>
 
-#### Message component interprets media links (YouTube, jpg, png, gif)
+### Message component interprets media links (YouTube, jpg, png, gif)
 The message component wraps a message based on its contents. Currently, saved messages are the main contents. I plan to
 make this more flexible with the input from the Quill text editor so that messages also support formatting and code blocks.
 <details>
@@ -144,7 +133,7 @@ function createMsgBody(msgBody) {
 Instant messaging is handled by Action Cable. This works by opening channels of communication, allowing my app to use
 a WebSocket connection.
 <details>
-  <summary>Example Code></summary>
+  <summary>Example Code</summary>
   
   ```rb
   class Api::MessagesController < ApplicationController
@@ -182,3 +171,13 @@ end
   ```
 </details>
   
+###
+| File | Description |
+| --- | --- |
+| [components](https://github.com/LanceSanity/Quarrel/tree/master/frontend/components) | Container and presentational components |
+| [actions](https://github.com/LanceSanity/Quarrel/tree/master/frontend/actions) | These actions can be dispatched to trigger a Redux state change. They return POJOs that tell the reducer what the state should look like. Some of these actions also include async calls via middleware.|
+| [reducers](https://github.com/LanceSanity/Quarrel/tree/master/frontend/reducers) | Reducers specify how the state changes in response to dispatched actions. |
+| [util](https://github.com/LanceSanity/Quarrel/tree/master/frontend/util) | Defines functions that make API calls to Quarrel's backend. |
+| [controllers](https://github.com/LanceSanity/Quarrel/tree/master/app/controllers) |The API controllers define what happens given a requested route. The application controller defines helper methods for the backend.|
+| [models](https://github.com/LanceSanity/Quarrel/tree/master/app/models) | Maps database tables to Ruby objects, defines model level validations, specifies associations.
+| [routes](https://github.com/LanceSanity/Quarrel/blob/master/config/routes.rb) | Declares URIs for the backend. |
