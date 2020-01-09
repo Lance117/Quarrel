@@ -123,7 +123,15 @@ h1 {
     position: relative;
     top: -1px;
     font-family: 'Lato-norm';
-    color: #e8e8e8;
+    color: inherit;
+  }
+
+  .delete_msg {
+    color: #e01e5a;
+  }
+
+  .delete_msg:hover {
+    background: #e01e5a;
   }
 
   .add-channel-popover {
@@ -406,6 +414,65 @@ h1 {
   display: flex;
   align-items: center;
   margin-bottom: 16px;
+}
+
+.filter-input {
+  // color: #ababad;
+  padding: 12px;
+  height: 44px;
+  font-size: 18px;
+  line-height: 1.33333333;
+  align-items: center;
+  --foreground: 129,131,133;
+  --saf-0: rgba(var(--foreground,134,134,134),1);
+  border: 1px solid var(--saf-0);
+  border-radius: 4px;
+  display: flex;
+  font-weight: 400;
+}
+
+.filter-input:hover {
+  border: 1px solid #a0a0a2;
+}
+
+.reset-input-icon {
+  width: 20px;
+  display: flex;
+}
+
+.reset-btn {
+  padding-right: 4px;
+  cursor: pointer;
+  color: #ababad;
+  font-size: 15px;
+  line-height: 1.46668;
+  font-weight: 400;
+}
+
+.reset-btn::before {
+  content: "\E548";
+  font-size: inherit !important;
+}
+
+.search-icon::before {
+  content: "\E01B";
+}
+
+.channel-search-input[type="text"] {
+  text-overflow: ellipsis;
+  background-color: inherit;
+  color: inherit;
+  flex-grow: 1;
+  margin: 0;
+  padding: 0 8px;
+  border: 0 none!important;
+  font-size: inherit;
+  font-family: inherit;
+  outline: none;
+}
+
+.channel-search-input::placeholder {
+  color: #ababad;
 }
 
 .channel-browser-list-container {

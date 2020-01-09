@@ -9,12 +9,14 @@ class ChannelsList extends React.Component {
         super(props);
         this.state = {
             showModal: false,
-            showChannels: false
+            showChannels: false,
+            value: ''
         };
         this.handleOpenModal = this.handleOpenModal.bind(this);
         this.handleCloseModal = this.handleCloseModal.bind(this);
         this.handleOpenChannels = this.handleOpenChannels.bind(this);
         this.handleCloseChannels = this.handleCloseChannels.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     componentDidMount() {
@@ -37,6 +39,10 @@ class ChannelsList extends React.Component {
         this.setState({ showChannels: false });
     }
 
+    handleChange(e) {
+        this.setState({value: e.target.value});
+    }
+
     myChannels() {
         let res = [];
         let active = false;
@@ -50,7 +56,12 @@ class ChannelsList extends React.Component {
         return res;
     }
 
+    getChannels() {
+        return Object.values(this.props.channels).filter(x => x.channel_name.toLowerCase().search(this.state.value) != -1);
+    }
+
     render() {
+        const searchChannels = this.getChannels();
         return (
             <div className="channels-list">
                 <div style={{height: '12px'}}></div>
@@ -122,16 +133,25 @@ class ChannelsList extends React.Component {
                     <div className="channel-browser-body">
                         <div className="channel-browser-content">
                             <div className="channel-browser-header"><h1>Browse Channels</h1></div>
+                            <div style={{marginBottom: '8px'}}>
+                                <div className="filter-input" style={{marginBottom: '8px'}}>
+                                    <i className="all-icons search-icon" style={{top: '1px', position: 'relative'}}></i>
+                                    <input className="channel-search-input" type="text" placeholder="Search channels" onChange={this.handleChange} value={this.state.value}></input>
+                                    {this.state.value && <div className="reset-input-icon">
+                                        <i className="all-icons reset-btn" onClick={() => this.setState({value: ''})}></i>
+                                    </div>}
+                                </div>
+                            </div>
                             <div className="channel-browser-list-container">
                                 <AutoSizer>
                                     {({ height, width }) => (
                                         <List
                                             height={height}
                                             width={width}
-                                            itemCount={Object.keys(this.props.channels).length+1}
+                                            itemCount={searchChannels.length+1}
                                             itemSize={index => index > 0 ? 50 : 22}
                                             itemData={{ 
-                                                channels: Object.values(this.props.channels),
+                                                channels: searchChannels.sort((a,b) => (a.channel_name.toLowerCase() < b.channel_name.toLowerCase()) ? -1 : 1),
                                                 history: this.props.history,
                                                 handleClose: this.handleCloseChannels,
                                                 memberships: this.props.memberships
@@ -170,7 +190,7 @@ const Row = ({ index, style, data }) => {
     return (
         <div key={index} style={style} onClick={handleClick}>
             {index === 0 &&
-                <div className="channel-browser-section-header">Channels you can join</div>
+                <div className="channel-browser-section-header">List of all channels</div>
             }
             {index > 0 && 
             <div className="channel-browser-list-item">

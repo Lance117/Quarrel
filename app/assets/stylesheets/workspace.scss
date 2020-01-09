@@ -132,6 +132,12 @@ a {
     color: rgb(198,199,200);
 }
 
+.presence-active::before {
+    content: "\E506";
+    font-family: 'Slack-icons' !important;
+    color: #39E500;
+}
+
 .all-icons::before {
     display: inline-block;
     font-family: 'Slack-icons';

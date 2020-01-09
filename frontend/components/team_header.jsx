@@ -36,7 +36,7 @@ class NavTeamHeader extends React.Component {
                         </button>
                     </div>
                     <div className="nav-user-header">
-                        <i className="presence-icon small-icons all-icons"></i>
+                        <i className="presence-icon presence-active small-icons all-icons"></i>
                         <span className="nav-username" onClick={this.handleOpenModal}>
                             {this.props.currentUser}
                         </span>

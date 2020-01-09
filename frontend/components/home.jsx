@@ -23,6 +23,7 @@ class Home extends React.Component {
                 <header className="home-nav" role="banner">
                     <div className="slacklogo">
                         <NavLink to="/"><img src={window.whiteLogo} /></NavLink>
+                        <span className="app_name">quarrel</span>
                     </div>
                     <ul className="home-navlist">
                         <li className="home-nav-item home-hover">

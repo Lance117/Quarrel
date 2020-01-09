@@ -91,7 +91,7 @@ function Message(props) {
             >
                 <div className="actions-menu" style={{width: "300px"}}>
                     <div className="nav-modal-item">
-                        <button className="nav-modal-btn" onClick={handleDelMsg}>
+                        <button className="nav-modal-btn delete_msg" onClick={handleDelMsg}>
                             <div className="nav-item-label">Delete message</div>
                         </button>
                     </div>

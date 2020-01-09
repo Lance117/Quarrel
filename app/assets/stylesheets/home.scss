@@ -1,12 +1,17 @@
 .slacklogo {
     display: flex;
     align-items: center;
-    width: 75px;
+    width: 125px;
 }
 
 .slacklogo img {
-    max-width: 80%;
-    height: auto;
+    width: 50px;
+}
+
+.app_name {
+    color: #f9f9f9;
+    font-size: 23px;
+    font-family: 'Circularpro-bold';
 }
 
 .home-nav {
