@@ -51,6 +51,12 @@ I use a random number generator to create a session token and BCrypt to encrypt 
 </details>
 
 ### Channels list and search
+
+<details>
+  <summary>Demo</summary>
+  <img src="search.gif">
+</details>
+  
 For my channels list component, I use a local state variable to keep track of what users type. These search queries are
 then used to filter channels with JavaScript's built-in substrings function.
 <details>
@@ -87,8 +93,15 @@ then used to filter channels with JavaScript's built-in substrings function.
 </details>
 
 ### Message component interprets media links (YouTube, jpg, png, gif)
+
+<details>
+  <summary>Demo</summary>
+  <img src="media_demo.gif">
+</details>
+  
 The message component wraps a message based on its contents. Currently, saved messages are the main contents. I plan to
 make this more flexible with the input from the Quill text editor so that messages also support formatting and code blocks.
+
 <details>
   <summary>Example Code</summary>
   
