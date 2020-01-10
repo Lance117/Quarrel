@@ -8,11 +8,11 @@ Demo: http://quarreling.herokuapp.com/
 ## Languages/Tech
 - Ruby on Rails
 - JavaScript
-- [React/Redux](https://react-redux.js.org/)
-- [React Router](https://reacttraining.com/react-router/web/guides/quick-start)
-- [Action Cable](https://edgeguides.rubyonrails.org/action_cable_overview.html) (to setup WebSocket connection)
-- [Quill](https://quilljs.com/) (rich text editor)
-- [Emoji Mart](https://github.com/missive/emoji-mart)
+- React/Redux
+- React Router
+- Action Cable (to setup WebSocket connection)
+- Quill(rich text editor)
+- Emoji Mart
 
 ## Selected features and code examples
 ### User authentication implemented with Rails
