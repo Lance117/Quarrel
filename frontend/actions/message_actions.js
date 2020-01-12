@@ -1,4 +1,4 @@
-import {getMessages, createMessage, removeMessage} from '../util/messages_api_util'
+import {getMessages, createMessage, updateMsg, removeMessage} from '../util/messages_api_util'
 
 export const RECEIVE_MESSAGE = 'RECEIVE_MESSAGE';
 export const RECEIVE_MESSAGES = 'RECEIVE_MESSAGES';
@@ -32,6 +32,14 @@ export const fetchMessages = () => dispatch => (
 );
 
 export const createNewMessage = newMessage => dispatch => (createMessage(newMessage)
+    .then(message => (
+        dispatch(receiveMessage(message))
+    ), err => (
+        dispatch(receiveMessageErrors(err.responseJSON))
+    ))
+);
+
+export const updateMessage = message => dispatch => (updateMsg(message)
     .then(message => (
         dispatch(receiveMessage(message))
     ), err => (

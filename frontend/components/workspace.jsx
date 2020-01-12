@@ -83,6 +83,7 @@ class Workspace extends React.Component {
                             activeChannel={this.props.activeChannel}
                             createMessage={this.props.createMessage}
                             deleteMessage={this.props.deleteMessage}
+                            updateMessage={this.props.updateMessage}
                             messages={this.props.messages}
                             currentUser={this.props.currentUser}
                             memberships={this.props.memberships}

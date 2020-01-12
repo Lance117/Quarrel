@@ -79,6 +79,7 @@ class PrimaryView extends React.Component {
                                         timestamp={message.created_at}
                                         lastMsg={i === channelMsgs.length - 1}
                                         deleteMessage={this.props.deleteMessage}
+                                        updateMessage={this.props.updateMessage}
                                     />
                                 )
                             })}
