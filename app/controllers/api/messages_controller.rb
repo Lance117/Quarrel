@@ -26,7 +26,7 @@ class Api::MessagesController < ApplicationController
 
     def update 
         @message = Message.find(params[:id])
-        if @message.update(message_params)
+        if @message.update(body: params[:body])
             message_cable(@message)
             render json: @message
         else

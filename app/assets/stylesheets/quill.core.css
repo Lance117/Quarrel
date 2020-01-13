@@ -3,6 +3,10 @@
     position: relative;
 }
 
+.msg_editor_container {
+  position: relative;
+}
+
 .ql-container {
     box-sizing: border-box;
     font-size: 13px;
@@ -26,6 +30,19 @@
     z-index: 200;
     /* padding-bottom: 48px!important; */
     font-family: 'Lato-norm';
+}
+
+.msg_editor_container .ql-container {
+    padding-left: 10px;
+    padding-bottom: 4px;
+    background: #1a1d21;
+}
+
+.msg_editor_container .ql-container:focus-within {
+  --highlight: 29,155,209;
+  border-color: rgba(var(--highlight,18,100,163),1);
+  outline: none;
+  outline-offset: 0;
 }
 
 .ql-editor {
@@ -52,6 +69,12 @@
     text-align: left;
     white-space: pre-wrap;
     word-wrap: break-word;
+}
+
+.msg_editor_container .ql-editor {
+  width: calc(100% - 67px);
+  padding-right: 67px;
+  max-height: calc(60vh - 80px);
 }
 
 .ql-editor p {
@@ -90,6 +113,55 @@
   content: "\E094";
   font-size: 16px !important;
 }
+
+.msg_editor_footer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.msg_editor_footer>* {
+  margin-top: 8px;
+}
+
+.msg_editor_save {
+    display: flex;
+    font-family: 'Lato';
+    margin-left: 8px;
+    margin-right: 8px;
+    transition: all 80ms linear;
+    background: #007a5a;
+    color: #fff;
+    font-weight: 900;
+    box-shadow: none;
+}
+
+.msg_editor_save::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: 4px;
+}
+
+.edit_save_icon {
+  margin-right: 8px;
+}
+
+.edit_save_icon::before {
+  font-family: 'Slack-icons';
+  content: "\E302";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+
+
 /*!
  * Quill Editor v1.3.0
  * https://quilljs.com/

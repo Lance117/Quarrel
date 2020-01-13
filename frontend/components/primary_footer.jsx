@@ -152,7 +152,7 @@ export function PreviewFooter(props) {
                 You are viewing <strong>{`#${props.activeChannelName}`}</strong>
             </div>
             <div className="preview-msg">Click "join channel" to jump in on the conversation!</div>
-            <button className="preview-btn" onClick={handleClick}>Join Channel</button>
+            <button className="preview-btn c-button" onClick={handleClick}>Join Channel</button>
         </footer>
     )
 }

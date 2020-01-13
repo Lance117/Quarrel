@@ -1,12 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import ReactModal from 'react-modal';
 import Moment from 'react-moment'
 import validator from 'validator'
 import YouTube from 'react-youtube'
 import stringHash from 'string-hash'
+import ReactQuill, { Quill } from 'react-quill';
+import { Picker } from 'emoji-mart'
 
 function Message(props) {
     const [showmodal, setShowmodal] = useState([false, null, null]);
+    const [editMode, setEditMode] = useState(false);
+    const [value, setValue] = useState(props.body);
     const avatars = [
         'https://ca.slack-edge.com/T03GU501J-UJZAX6WDU-g5e90ac62e9f-72',
         'https://ca.slack-edge.com/T03GU501J-UL2N3LG2X-gf1556aa48ff-72',
@@ -28,6 +32,8 @@ function Message(props) {
     let msgBody = createMsgBody(props.body);
     let className = "msg-list-item";
     if (props.lastMsg) className = className.concat(' last-msg');
+    if (editMode) className = className.concat(' edit-list-item');
+    const textInput = useRef(null);
 
     function handleOpenModal(e) {
         setShowmodal([true, e.nativeEvent.offsetX, e.nativeEvent.clientY]);
@@ -37,9 +43,30 @@ function Message(props) {
         setShowmodal([false, null, null]);
     }
 
+    function handleOpenEditMode() {
+        setEditMode(true);
+        setShowmodal([false, null, null]);
+    }
+
+    function handleCloseEditMode() {
+        setEditMode(false);
+    }
+
     function handleDelMsg() {
         props.deleteMessage({id: props.msgId}).then(r => {
             handleCloseModal();
+        }), err => {
+            console.log(err)
+        };
+    }
+
+    function handleChange(value) {
+        setValue(value);
+    }
+
+    function handleUpdateMsg() {
+        props.updateMessage({ body: textInput.current.getEditor().getText().trim(), id: props.msgId}).then(r => {
+            handleCloseEditMode();
         }), err => {
             console.log(err)
         };
@@ -52,19 +79,46 @@ function Message(props) {
                     <img className="avatar-img" src={avatars[parseInt(stringHash(props.user.username))%avatars.length]} />
                 </button>
             </div>
-            <div className="msg-contents">
+            {!editMode && <div className="msg-contents">
                 <div className="sender-header">
                     <span className="msg-sender">{props.user.username}</span>
                     <span> </span>
                     <span className="timestamp"><Moment fromNow>{props.timestamp}</Moment></span>
                 </div>
                 <span className="msg-body">{msgBody}</span>
-            </div>
-            <div className="msg-actions">
+            </div>}
+            {!editMode && <div className="msg-actions">
                 <button className="msg-actions-btn all-icons" onClick={handleOpenModal}>
                     {props.isSender && <i className="all-icons ellipsis"></i>}
                 </button>
-            </div>
+            </div>}
+            {editMode && <div style={{paddingLeft: '70px'}}>
+                <ReactQuill
+                    className='msg_editor_container'
+                    ref={textInput}
+                    theme={null}
+                    value={value}
+                    onChange={handleChange}
+                    handleEnter={handleUpdateMsg}
+                    modules={{
+                        keyboard: {
+                            bindings: {
+                                enter: {
+                                    key: 13,
+                                    handler: handleUpdateMsg 
+                                }
+                            }
+                        }
+                    }}
+                />
+                <div className="msg_editor_footer">
+                    <button className="btn-small btn-outline c-button" onClick={handleCloseEditMode}>Cancel</button>
+                    <button className="c-button msg_editor_save btn-small" onClick={handleUpdateMsg}>
+                        <i className="edit_save_icon"></i>
+                        Save Changes
+                    </button>
+                </div>
+            </div>}
 
             <ReactModal
                 isOpen={showmodal[0]}
@@ -90,6 +144,11 @@ function Message(props) {
                 }}
             >
                 <div className="actions-menu" style={{width: "300px"}}>
+                    <div className="nav-modal-item">
+                        <button className="nav-modal-btn" onClick={handleOpenEditMode}>
+                            <div className="nav-item-label">Edit message</div>
+                        </button>
+                    </div>
                     <div className="nav-modal-item">
                         <button className="nav-modal-btn delete_msg" onClick={handleDelMsg}>
                             <div className="nav-item-label">Delete message</div>
