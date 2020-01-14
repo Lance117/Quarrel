@@ -22,6 +22,10 @@ class ApplicationController < ActionController::Base
         session[:session_token] = nil
     end
 
+    def valid_username(name)
+        (name =~ /\A[a-z 0-9_]{4,25}\z/) == 0
+    end
+
     # def require_signed_in
     #     redirect_to new_session_url unless signed_in?
     # end

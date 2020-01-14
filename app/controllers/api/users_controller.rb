@@ -9,11 +9,15 @@ class Api::UsersController < ApplicationController
 
     def create
         @user = User.new(user_params)
-        if @user.save
+        if valid_username(@user.username) && @user.save
             sign_in(@user)
             render json: @user
         else
-            render json: @user.errors.full_messages, status: 422
+            errors = @user.errors.full_messages
+            if !valid_username(@user.username)
+                errors.append("Username can't contain spaces, periods, or most punctuation.")
+            end
+            render json: errors, status: 422
         end
     end
 

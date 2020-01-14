@@ -76,15 +76,15 @@ class SessionForm extends React.Component {
                                 )}
 
                                 <p style={{marginBottom: '0'}}>
-                                    <input className={this.state.emailClass} type="email" placeholder="you@example.com" size="40" onChange={this.update('email')}/>
+                                    <input className={this.state.emailClass} type="email" placeholder="you@example.com" maxLength="40" size="40" onChange={this.update('email')}/>
                                 </p>
                                 {this.props.formType === 'signup' &&
                                     <p style={{marginBottom: '0'}}>
-                                        <input className="session-input" type="text" placeholder='display name' size="40" onChange={this.update('username')}/>
+                                        <input className="session-input" type="text" placeholder='display name' size="40" maxLength="25" onChange={this.update('username')}/>
                                     </p>
                                 }
                                 <p className="small_bottom_margin">
-                                    <input className={this.state.passwordClass} type="password" placeholder="password" size="40" onChange={this.update('password')}/>
+                                    <input className={this.state.passwordClass} type="password" placeholder="password" size="40" maxLength="128" onChange={this.update('password')}/>
                                 </p>
                                 <p>
                                     <button className="form-btn" type="submit">

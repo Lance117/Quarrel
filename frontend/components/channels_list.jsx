@@ -244,11 +244,23 @@ class AddChannelForm extends React.Component {
         };
     }
 
+    validChannelName(name) {
+        return !/[.,\/#!$%\^&\*;:{}=\`~() ]/.test(name);
+    }
+
     render() {
-        let btnClass = this.state.value.length === 0 ? "btn-disabled" : "btn-enabled";
+        let btnClass = this.state.value.length === 0 || !this.validChannelName(this.state.value) ? "btn-disabled" : "btn-enabled";
         return (
             <form>
-                <label><strong>Name</strong></label>
+                <label>
+                    <span style={{marginRight: '8px'}}><strong>Name</strong></span>
+                    {
+                        !this.validChannelName(this.state.value) &&
+                        <span style={{ fontWeight: '700', color: '#e8912d', display: 'inline-block'}}>
+                            Channel names can’t contain spaces, periods, or most punctuation. Try again?
+                        </span>
+                    }
+                </label>
                 <div className="channel-name-input">
                     <input type="text" className="add-channel-input" minLength="3" maxLength="42" placeholder="# e.g. Kpop" onChange={this.handleChange} />
                 </div>
