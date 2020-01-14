@@ -245,7 +245,7 @@ class AddChannelForm extends React.Component {
     }
 
     validChannelName(name) {
-        return !/[.,\/#!$%\^&\*;:{}=\`~() ]/.test(name);
+        return /^[0-9A-Za-z]+[0-9A-Za-z-_]*$/g.test(name);
     }
 
     render() {
@@ -255,7 +255,7 @@ class AddChannelForm extends React.Component {
                 <label>
                     <span style={{marginRight: '8px'}}><strong>Name</strong></span>
                     {
-                        !this.validChannelName(this.state.value) &&
+                        this.state.value && !this.validChannelName(this.state.value) &&
                         <span style={{ fontWeight: '700', color: '#e8912d', display: 'inline-block'}}>
                             Channel names can’t contain spaces, periods, or most punctuation. Try again?
                         </span>

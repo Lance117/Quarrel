@@ -15,7 +15,8 @@ class Api::UsersController < ApplicationController
         else
             errors = @user.errors.full_messages
             if !valid_username(@user.username)
-                errors.append("Username can't contain spaces, periods, or most punctuation.")
+                errors.append("Username can't contain periods, or most punctuation.")
+                errors.append("Username must be between 4 to 25 characters long.")
             end
             render json: errors, status: 422
         end
