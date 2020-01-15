@@ -10,7 +10,6 @@ import { Picker } from 'emoji-mart'
 function Message(props) {
     const [showmodal, setShowmodal] = useState([false, null, null]);
     const [editMode, setEditMode] = useState(false);
-    // const [value, setValue] = useState(props.body);
     const avatars = [
         'https://ca.slack-edge.com/T03GU501J-UJZAX6WDU-g5e90ac62e9f-72',
         'https://ca.slack-edge.com/T03GU501J-UL2N3LG2X-gf1556aa48ff-72',
@@ -50,7 +49,6 @@ function Message(props) {
 
     function handleCloseEditMode() {
         setEditMode(false);
-        // handleChange(props.body);
     }
 
     function handleDelMsg() {
@@ -60,10 +58,6 @@ function Message(props) {
             console.log(err)
         };
     }
-
-    // function handleChange(html) {
-    //     setValue(html);
-    // }
 
     function handleUpdateMsg() {
         props.updateMessage({ body: textInput.current.getEditor().getText().trim(), id: props.msgId}).then(r => {
@@ -98,8 +92,7 @@ function Message(props) {
                     className='msg_editor_container'
                     ref={textInput}
                     theme={null}
-                    // value={value}
-                    // onChange={handleChange}
+                    defaultValue={props.body}
                     handleEnter={handleUpdateMsg}
                     modules={{
                         keyboard: {
