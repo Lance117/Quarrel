@@ -33,3 +33,11 @@ export const createNewChannel = newChannel => dispatch => (ChannelAPIUtil.create
         dispatch(receiveChannelErrors(err.responseJSON))
     ))
 );
+
+export const updateChannel = channel => dispatch => (ChannelAPIUtil.updateCh(channel)
+    .then(channel => (
+        dispatch(receiveChannel(channel))
+    ), err => (
+        dispatch(receiveChannelErrors(err.responseJSON))
+    ))
+);

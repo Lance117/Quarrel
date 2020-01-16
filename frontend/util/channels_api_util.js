@@ -19,6 +19,14 @@ export const fetchChannelUsers = channelId => (
     })
 )
 
+export const updateCh = channel => (
+    $.ajax({
+        method: 'PATCH',
+        url: `/api/channels/${channel.id}`,
+        data: { channel }
+    })
+)
+
 export const createChannel = channel => (
     $.ajax({
         method: 'POST',

@@ -10,13 +10,24 @@ export default class TopNav extends React.Component {
         super(props);
         this.state = {
             showSettings: false,
-            showMembers: false
+            showMembers: false,
+            showEditTopic: false
         };
         this.handleOpenSettings = this.handleOpenSettings.bind(this);
         this.handleCloseSettings = this.handleCloseSettings.bind(this);
         this.handleOpenMembers = this.handleOpenMembers.bind(this);
         this.handleCloseMembers = this.handleCloseMembers.bind(this);
         this.handleJoinOrLeave = this.handleJoinOrLeave.bind(this);
+        this.handleOpenEdit = this.handleOpenEdit.bind(this);
+        this.handleCloseEdit = this.handleCloseEdit.bind(this);
+    }
+
+    handleOpenEdit() {
+        this.setState({ showEditTopic: true });
+    }
+
+    handleCloseEdit() {
+        this.setState({ showEditTopic: false });
     }
 
     handleOpenSettings(e) {
@@ -77,6 +88,7 @@ export default class TopNav extends React.Component {
 
     render() {
         const members = this.getMembers();
+        const topic = this.props.channels[this.props.activeChannel.id].topic;
 
         return (
             <div className="workspace-top-nav">
@@ -91,6 +103,17 @@ export default class TopNav extends React.Component {
                                 <button className="channel-members-info common-btn" onClick={this.handleOpenMembers}>
                                     <i className="user-icon all-icons"></i>&nbsp;{members.length}
                                 </button>
+                                <span style={{opacity: '.5', margin: '0 6px', color: '#c6c7c8'}}>|</span>
+                                <div className="nav_topic">
+                                    <div className="nav_topic_text">
+                                        {!topic && <div className="nav_topic_content">
+                                            <i className="all-icons inline-icon pencil_icon" style={{width: '1em'}}></i>
+                                            &nbsp;Add a topic
+                                        </div>}
+                                        {topic && <span className="nav_topic_content">{topic}</span>}
+                                    </div>
+                                    <button className="common-btn edit_topic">Edit</button>
+                                </div>
                             </div>
                         </div>
                         <div className="nav-buttons">

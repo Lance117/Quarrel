@@ -57,7 +57,7 @@ class ChannelsList extends React.Component {
     }
 
     getChannels() {
-        return Object.values(this.props.channels).filter(x => x.channel_name.toLowerCase().search(this.state.value) != -1);
+        return Object.values(this.props.channels).filter(x => x.channel_name.toLowerCase().search(this.state.value.toLowerCase()) != -1);
     }
 
     render() {
@@ -202,7 +202,7 @@ const Row = ({ index, style, data }) => {
                     </div>
                     <div className="list-secondary">
                         <button className="preview-channel common-btn">
-                            <i className="inline-icon all-icons"></i>
+                            <i className="inline-icon all-icons enter-icon"></i>
                         </button>
                         <div className="list-member-count">
                             <i className="all-icons user-icon browse-user-icon"></i>
