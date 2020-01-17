@@ -2,10 +2,10 @@ class Api::ChannelsController < ApplicationController
 
     def index
         @channels = Channel.all
-        if params[:user_id]
-            @channels = User.find(params[:user_id]).channels
-        end
-        @channels
+        # if params[:user_id]
+        #     @channels = User.find(params[:user_id]).channels
+        # end
+        # @channels
     end
 
     def show
@@ -14,7 +14,7 @@ class Api::ChannelsController < ApplicationController
 
     def update
         @channel = Channel.find(params[:id])
-        if Channel.update(channel_params)
+        if @channel.update(channel_params)
             render json: @channel
         else
             render json: @channel.errors.full_messages, status: 422

@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactModal from 'react-modal';
+import ReactQuill, { Quill } from 'react-quill';
 import NavTeamHeader from './team_header'
 import { FixedSizeList as List } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
@@ -13,6 +14,8 @@ export default class TopNav extends React.Component {
             showMembers: false,
             showEditTopic: false
         };
+
+        this.textInput = React.createRef();
         this.handleOpenSettings = this.handleOpenSettings.bind(this);
         this.handleCloseSettings = this.handleCloseSettings.bind(this);
         this.handleOpenMembers = this.handleOpenMembers.bind(this);
@@ -20,6 +23,7 @@ export default class TopNav extends React.Component {
         this.handleJoinOrLeave = this.handleJoinOrLeave.bind(this);
         this.handleOpenEdit = this.handleOpenEdit.bind(this);
         this.handleCloseEdit = this.handleCloseEdit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     handleOpenEdit() {
@@ -44,6 +48,15 @@ export default class TopNav extends React.Component {
 
     handleCloseMembers() {
         this.setState({ showMembers: false });
+    }
+
+    handleSubmit() {
+        this.props.updateChannel({id: this.props.activeChannel.id, topic: this.textInput.current.getEditor().getText().trim()}).then(r => {
+            this.handleCloseEdit();
+        }), err => {
+            console.log(err)
+        };
+        this.handleCloseEdit();
     }
 
     handleJoinOrLeave(e) {
@@ -105,14 +118,14 @@ export default class TopNav extends React.Component {
                                 </button>
                                 <span style={{opacity: '.5', margin: '0 6px', color: '#c6c7c8'}}>|</span>
                                 <div className="nav_topic">
-                                    <div className="nav_topic_text">
+                                    <div className="nav_topic_text" onClick={this.handleOpenEdit}>
                                         {!topic && <div className="nav_topic_content">
                                             <i className="all-icons inline-icon pencil_icon" style={{width: '1em'}}></i>
                                             &nbsp;Add a topic
                                         </div>}
                                         {topic && <span className="nav_topic_content">{topic}</span>}
                                     </div>
-                                    <button className="common-btn edit_topic">Edit</button>
+                                    <button className="common-btn edit_topic" onClick={this.handleOpenEdit}>Edit</button>
                                 </div>
                             </div>
                         </div>
@@ -192,6 +205,43 @@ export default class TopNav extends React.Component {
                                     )}
                                 </AutoSizer> 
                             </div>
+                        </div>
+                    </div>
+                </ReactModal>
+
+                <ReactModal
+                    isOpen={this.state.showEditTopic}
+                    contentLabel="Edit topic"
+                    onRequestClose={this.handleCloseEdit}
+                    shouldCloseOnOverlayClick={true}
+                    overlayClassName="add-channel-popover c_dialog"
+                    className="c_dialog_content"
+                >
+                    <div className="c_dialog_header">
+                        <h1 className="c_dialog_title">Edit channel topic</h1>
+                    </div>
+                    <ReactQuill
+                        className='c_dialog_body'
+                        ref={this.textInput}
+                        theme={null}
+                        handleEnter={this.handleSubmit}
+                        modules={{
+                            keyboard: {
+                                bindings: {
+                                    enter: {
+                                        key: 13,
+                                        handler: this.handleSubmit 
+                                    }
+                                }
+                            }
+                        }}
+                    />
+                    <div className="dialog_footer">
+                        <div className="dialog_footer_buttons">
+                            <button className="medium_btn c-button dialog_cancel" onClick={this.handleCloseEdit}>Cancel</button>
+                            <button className="preview-btn medium_btn c-button" style={{marginLeft: '12px', fontFamily: 'Lato'}} onSubmit={this.handleSubmit}>
+                                Set topic
+                            </button>
                         </div>
                     </div>
                 </ReactModal>

@@ -3,6 +3,16 @@
     position: relative;
 }
 
+.c_dialog_body {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-right: .25rem solid transparent;
+  flex-shrink: 1;
+  overflow-y: auto;
+  padding: 0 24px;
+  user-select: text;
+}
+
 .msg_editor_container {
   position: relative;
 }
@@ -38,11 +48,27 @@
     background: #1a1d21;
 }
 
+.c_dialog_body .ql-container {
+  --foreground: 129,131,133;
+  --saf-0: rgba(var(--foreground,134,134,134),1);
+    border: 1px solid var(--saf-0);
+  padding: 8px 2px 8px 8px;
+  border-radius: 4px;
+  position: relative;
+}
+
 .msg_editor_container .ql-container:focus-within {
   --highlight: 29,155,209;
   border-color: rgba(var(--highlight,18,100,163),1);
   outline: none;
   outline-offset: 0;
+}
+
+.c_dialog_body .ql-container:focus-within {
+  --highlight: 29,155,209;
+  --saf-0: rgba(var(--highlight,18,100,163),1);
+  border: 1px solid var(--saf-0);
+  box-shadow: 0 0 0 1px var(--saf-0),0 0 0 5px rgba(29,155,209,.3);
 }
 
 .ql-editor {
@@ -75,6 +101,10 @@
   width: calc(100% - 67px);
   padding-right: 67px;
   max-height: calc(60vh - 80px);
+}
+
+.c_dialog_body .ql-editor {
+  min-height: 66px;
 }
 
 .ql-editor p {

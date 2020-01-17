@@ -149,6 +149,70 @@ h1 {
     background: rgba(0,0,0,.6);
   }
 
+  .c_dialog {
+    line-height: 1.46666667;
+    font-size: 15px;
+    opacity: 1;
+    padding: 36px !important;
+  }
+
+  .c_dialog_content {
+    opacity: 1;
+    transform: scale(1) !important;
+    position: fixed !important;
+    --sk_primary_background: 26,29,33;
+    background: rgba(var(--sk_primary_background,255,255,255),1);
+    border-radius: .5rem;
+    display: flex;
+    flex-direction: column;
+    max-height: 640px;
+    max-width: calc(100% - 32px);
+    outline: none;
+    position: relative;
+    transform: scale(.95);
+    transition: opacity 80ms linear,transform 80ms cubic-bezier(.36,.19,.29,1);
+    width: 32.5rem;
+    --sk_foreground_low: 232,232,232;
+    --saf-0: rgba(var(--sk_foreground_low,29,28,29),0.13);
+    box-shadow: 0 0 0 1px var(--saf-0),0 18px 48px 0 rgba(0,0,0,.35);
+  }
+
+  .c_dialog_header {
+    align-items: center;
+    --sk_primary_background: 26,29,33;
+    background: rgba(var(--sk_primary_background,255,255,255),1);
+    display: flex;
+    flex-shrink: 0;
+    justify-content: space-between;
+    padding: 16px 24px;
+    padding-bottom: 11px;
+    position: relative;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-left-radius: 8px;
+    background-clip: padding-box;
+  }
+
+  .c_dialog_title {
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 22px !important;
+    line-height: 1.36363636 !important;
+    color: #d1d2d3;
+    margin: 0;
+    width: 100%;
+    min-width: 0;
+  }
+
+  @media only screen and (max-height: 656px) {
+    .c_dialog_content {
+      max-height: 96%;
+    }
+  }
+
   .add-channel-popover:before {
     background: rgba(0,0,0,.6);
     content: "";

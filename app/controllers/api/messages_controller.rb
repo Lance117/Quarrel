@@ -2,11 +2,7 @@ class Api::MessagesController < ApplicationController
     # before_action :require_signed_in
 
     def index
-        if params[:channel_id]
-            @messages = Channel.find(params[:channel_id]).messages
-        else
-            @messages = Message.all
-        end
+        @messages = Message.all
     end
 
     def show
