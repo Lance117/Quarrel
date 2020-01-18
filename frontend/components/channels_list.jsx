@@ -24,6 +24,7 @@ class ChannelsList extends React.Component {
     }
 
     handleOpenModal() {
+        this.setState({ showChannels: false });
         this.setState({ showModal: true });
     }
 
@@ -132,7 +133,12 @@ class ChannelsList extends React.Component {
                     </button>
                     <div className="channel-browser-body">
                         <div className="channel-browser-content">
-                            <div className="channel-browser-header"><h1>Browse Channels</h1></div>
+                            <div className="channel-browser-header">
+                                <h1>Browse Channels</h1>
+                                <button className="medium_btn preview-btn c-button" style={{marginLeft: 'auto', fontFamily: 'Lato'}} onClick={this.handleOpenModal}>
+                                    Create Channel
+                                </button>
+                            </div>
                             <div style={{marginBottom: '8px'}}>
                                 <div className="filter-input" style={{marginBottom: '8px'}}>
                                     <i className="all-icons search-icon" style={{top: '1px', position: 'relative'}}></i>
