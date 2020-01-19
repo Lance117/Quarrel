@@ -12,7 +12,8 @@ export default class TopNav extends React.Component {
         this.state = {
             showSettings: false,
             showMembers: false,
-            showEditTopic: false
+            showEditTopic: false,
+            value: ''
         };
 
         this.textInput = React.createRef();
@@ -82,10 +83,12 @@ export default class TopNav extends React.Component {
     getMembers() {
         let res = [];
         for (let membership of this.props.memberships) {
-            if (membership.channel_id === this.props.activeChannel.id) {
-                res.push(membership.user_id)
+            if (membership.channel_id === this.props.activeChannel.id &&
+                this.props.users[membership.user_id].username.toLowerCase().search(this.state.value.toLowerCase()) != -1) {
+                res.push(this.props.users[membership.user_id])
             }
         }
+        res.sort((a,b) => (a.username.toLowerCase() < b.username.toLowerCase() ? -1 : 1));
         return res;
     }
 
@@ -197,7 +200,6 @@ export default class TopNav extends React.Component {
                                             itemSize={60}
                                             itemData={{
                                                 members: members,
-                                                users: this.props.users
                                             }}
                                         >
                                             {Row}
@@ -278,7 +280,7 @@ const Row = ({ index, style, data }) => {
                     <div style={{flex: '1', flexShrink: '2'}}>
                         <div style={{minHeight: '36px', display: 'flex', justifyContent: 'flex-start', alignItems: 'center'}}>
                             <span className='list-avatar all-avatar' style={{height: '36px', lineHeight: '36px', width: '36px'}}>
-                                <img className='avatar-img' src={avatars[parseInt(stringHash(data.users[data.members[index]].username)) % avatars.length]} />
+                                <img className='avatar-img' src={avatars[parseInt(stringHash(data.members[index].username)) % avatars.length]} />
                             </span>
                             <div className='member-list-contents'>
                                 <span style={{display: 'flex', alignItems: 'center'}}>
@@ -289,7 +291,7 @@ const Row = ({ index, style, data }) => {
                                             wordBreak: 'break-all'
                                         }}
                                         >
-                                            <strong>{data.users[data.members[index]].username}</strong>
+                                            <strong>{data.members[index].username}</strong>
                                         </span>
                                     </span>
                                 </span>
