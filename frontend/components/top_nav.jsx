@@ -15,7 +15,6 @@ export default class TopNav extends React.Component {
             showEditTopic: false,
             value: ''
         };
-
         this.textInput = React.createRef();
         this.handleOpenSettings = this.handleOpenSettings.bind(this);
         this.handleCloseSettings = this.handleCloseSettings.bind(this);
@@ -25,6 +24,7 @@ export default class TopNav extends React.Component {
         this.handleOpenEdit = this.handleOpenEdit.bind(this);
         this.handleCloseEdit = this.handleCloseEdit.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleOpenEdit() {
@@ -60,6 +60,10 @@ export default class TopNav extends React.Component {
         this.handleCloseEdit();
     }
 
+    handleChange(e) {
+        this.setState({ value: e.target.value });
+    }
+
     handleJoinOrLeave(e) {
         e.preventDefault();
         let isMember = this.getMembership();
@@ -83,8 +87,7 @@ export default class TopNav extends React.Component {
     getMembers() {
         let res = [];
         for (let membership of this.props.memberships) {
-            if (membership.channel_id === this.props.activeChannel.id &&
-                this.props.users[membership.user_id].username.toLowerCase().search(this.state.value.toLowerCase()) != -1) {
+            if (membership.channel_id === this.props.activeChannel.id) {
                 res.push(this.props.users[membership.user_id])
             }
         }
@@ -104,6 +107,7 @@ export default class TopNav extends React.Component {
 
     render() {
         const members = this.getMembers();
+        const filteredMembers = members.filter(x => x.username.toLowerCase().search(this.state.value.toLowerCase()) != -1);
         const topic = this.props.channels[this.props.activeChannel.id].topic;
 
         return (
@@ -183,11 +187,20 @@ export default class TopNav extends React.Component {
                     <div className="add-channel-header" style={{color: "#d1d2d3"}}>
                         <div className="members-title">
                             <h1>
-                                {`${members.length} members in `}
+                                {`${members.length} ${members.length != 1 ? 'members' : 'member'} in `}
                                 <span style={{overflow: 'hidden', textOverflow: 'ellipsis', wordBreak: 'break-all'}}>
                                     #{this.props.channels[this.props.activeChannel.id].channel_name}
                                 </span>
                             </h1>
+                        </div>
+                        <div style={{padding: '0 28px', marginBottom: '20px'}}>
+                            <div className='filter-input' style={{height: '36px', fontSize: '15px'}}>
+                                <i className="all-icons search-icon" style={{top: '1px'}}></i>
+                                <input className="channel-search-input" type="text" placeholder="Search members" onChange={this.handleChange} value={this.state.value}></input>
+                                {this.state.value && <div className="reset-input-icon">
+                                    <i className="all-icons reset-btn" onClick={() => this.setState({ value: '' })}></i>
+                                </div>}
+                            </div>
                         </div>
                         <div style={{height: '450px', display: 'flex', flexDirection: 'column'}}>
                             <div className='channel-browser-list-container' style={{position: 'relative'}}>
@@ -196,10 +209,10 @@ export default class TopNav extends React.Component {
                                         <List
                                             height={height}
                                             width={width}
-                                            itemCount={members.length}
+                                            itemCount={filteredMembers.length}
                                             itemSize={60}
                                             itemData={{
-                                                members: members,
+                                                members: filteredMembers,
                                             }}
                                         >
                                             {Row}
