@@ -18,11 +18,16 @@ export class PrimaryFooter extends React.Component {
         this.handleCloseEmojis = this.handleCloseEmojis.bind(this);
         this.handleEmoji = this.handleEmoji.bind(this);
         this.focusTextInput = this.focusTextInput.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
 
 
     focusTextInput() {
         this.textInput.current.focus();
+    }
+
+    handleClick(e) {
+        this.refs.fileUploader.click();
     }
 
     handleChange(html) {
@@ -92,8 +97,9 @@ export class PrimaryFooter extends React.Component {
                                 <i className="all-icons smile_icon"></i>
                             </button>
                         </div>
-                        <button className="msg_input_file_btn common-btn" id="fileInput">
+                        <button className="msg_input_file_btn common-btn" id="fileInput" onClick={this.handleClick}>
                             <i className="msg_input_file_icon all-icons"></i>
+                            <input type="file" id="file" ref="fileUploader" style={{display: "none"}}/>
                         </button>
                     </div>
                 </div>
