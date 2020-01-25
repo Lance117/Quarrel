@@ -307,6 +307,7 @@ const Row = ({ index, style, data }) => {
                                             <strong>{data.members[index].username}</strong>
                                         </span>
                                     </span>
+                                    <i className="presence_offline inline-icon all-icons"></i>
                                 </span>
                             </div>
                         </div>

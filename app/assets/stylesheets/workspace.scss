@@ -119,11 +119,22 @@ a {
     margin-top: -2px;
 }
 
+.presence_offline {
+    --foreground: 171,171,173;
+    color: rgba(var(--foreground,97,96,97),1);
+}
+
 .small-icons {
     height: auto;
     font-size: inherit;
     font-family: inherit;
     line-height: inherit;
+}
+
+.presence_offline::before {
+    content: "\E507";
+    font-family: 'Slack-icons' !important;
+    color: rgb(198,199,200);
 }
 
 .presence-icon::before {
