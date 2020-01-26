@@ -36,15 +36,19 @@ class Workspace extends React.Component {
     }
 
     render() {
+        App.appearances = App.cable.subscriptions.create({
+            channel: 'AppearanceChannel'
+        });
         const { error, isLoaded } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
             return (
-                <PacmanLoader
-                    size={150}
-                    loading={isLoaded}
-                />
+                // <PacmanLoader
+                //     size={150}
+                //     loading={isLoaded}
+                // />
+                'Loading...'
             )
         } else {
             return (
