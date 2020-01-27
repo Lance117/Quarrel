@@ -6,9 +6,9 @@ class Api::SessionsController < ApplicationController
         )
         if @user
             sign_in(@user)
-            ActionCable.server.broadcast "appearance_channel", { user: current_user.id, online: :on }
             current_user.online = true
             current_user.save!
+            user_cable(@user)
             render json: @user
         else
             render json: ['Sorry, you entered an incorrect email address or password.'], status: 401
@@ -19,10 +19,22 @@ class Api::SessionsController < ApplicationController
         if !signed_in?
             render json: {}, status: 404
         else
-            ActionCable.server.broadcast "appearance_channel", { user: current_user.id, online: :off }
             current_user.online = false
             current_user.save!
+            user_cable(current_user)
             sign_out
         end
+    end
+
+    private
+
+    def user_cable(user)
+       ActionCable.server.broadcast(
+            "appearance_channel",
+            id: user.id,
+            online: user.online,
+            username: user.username,
+            email: user.email
+        ) 
     end
 end

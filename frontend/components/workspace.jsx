@@ -36,8 +36,13 @@ class Workspace extends React.Component {
     }
 
     render() {
+        const propState = this;
         App.appearances = App.cable.subscriptions.create({
             channel: 'AppearanceChannel'
+        }, {
+            received: function(data) {
+                propState.props.receiveUser(data)
+            }
         });
         const { error, isLoaded } = this.state;
         if (error) {
