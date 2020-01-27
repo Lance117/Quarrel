@@ -3,6 +3,7 @@ import ReactModal from 'react-modal';
 import Channel from './channel';
 import { VariableSizeList as List } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
+import Moment from 'react-moment';
 
 class ChannelsList extends React.Component {
     constructor(props) {
@@ -155,12 +156,13 @@ class ChannelsList extends React.Component {
                                             height={height}
                                             width={width}
                                             itemCount={searchChannels.length+1}
-                                            itemSize={index => index > 0 ? 50 : 22}
+                                            itemSize={index => index > 0 ? 68 : 22}
                                             itemData={{ 
                                                 channels: searchChannels.sort((a,b) => (a.channel_name.toLowerCase() < b.channel_name.toLowerCase()) ? -1 : 1),
                                                 history: this.props.history,
                                                 handleClose: this.handleCloseChannels,
-                                                memberships: this.props.memberships
+                                                memberships: this.props.memberships,
+                                                users: Object.values(this.props.users)
                                             }}
                                         >
                                             {Row}
@@ -178,6 +180,9 @@ class ChannelsList extends React.Component {
 
 // helpers
 const Row = ({ index, style, data }) => {
+    const channel = data.channels[index - 1];
+    const creator = channel && channel.user_id ? getUsername() : 'admin';
+
     function handleClick() {
         data.handleClose();
         data.history.push(`${data.channels[index-1].id}`);
@@ -193,6 +198,12 @@ const Row = ({ index, style, data }) => {
         return res;
     }
 
+    function getUsername() {
+        for (let user of data.users) {
+            if (channel.user_id === user.id) return user.username;
+        }
+    }
+
     return (
         <div key={index} style={style} onClick={handleClick}>
             {index === 0 &&
@@ -203,7 +214,14 @@ const Row = ({ index, style, data }) => {
                 <div className="list-base-entity">
                     <div className="list-primary-content" style={{justifyContent: 'center'}}>
                         <span className="entity-name">
-                            {`# ${data.channels[index-1].channel_name}`}
+                            {`# ${channel.channel_name}`}
+                        </span>
+                        <span className="channel_metadata">
+                            <div style={{display: 'flex', flexDirection: 'column'}}>
+                                <span className="list_item_info">
+                                    created by <strong>{creator}</strong> on <Moment format="MMMM Do, YYYY">{channel.created_at}</Moment>
+                                </span>
+                            </div>
                         </span>
                     </div>
                     <div className="list-secondary">
@@ -237,7 +255,7 @@ class AddChannelForm extends React.Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        $.when(this.props.createChannel({channel_name: this.state.value})).then(r => {
+        $.when(this.props.createChannel({channel_name: this.state.value, user_id: this.props.userId})).then(r => {
             this.props.createMembership({user_id: this.props.userId, channel_id: r.channel.id})
                 .then(res => {
                     this.props.handleCloseModal()

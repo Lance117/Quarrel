@@ -625,6 +625,26 @@ h1 {
   font-weight: 700;
 }
 
+.channel_metadata {
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.38463;
+  font-weight: 400;
+  display: block;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  --sk_foreground_max: 232,232,232;
+  color: rgba(var(--sk_foreground_max,29,28,29),.7);
+}
+
+.list_item_info {
+  color: #ababad;
+  font-size: 13px;
+  line-height: 1.38463;
+  font-weight: 400;
+}
+
 .list-secondary {
   display: flex;
   flex: 0 0 48px;

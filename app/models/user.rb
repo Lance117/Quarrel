@@ -1,6 +1,7 @@
 class User < ApplicationRecord
     has_many :messages
     has_many :memberships
+    has_many :channels
     has_many :channels, through: :memberships, dependent: :destroy
     validates :username, presence: true
     validates :email, presence: true, uniqueness: true
