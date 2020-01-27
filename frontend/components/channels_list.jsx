@@ -162,7 +162,7 @@ class ChannelsList extends React.Component {
                                                 history: this.props.history,
                                                 handleClose: this.handleCloseChannels,
                                                 memberships: this.props.memberships,
-                                                users: Object.values(this.props.users)
+                                                users: this.props.users
                                             }}
                                         >
                                             {Row}
@@ -181,7 +181,7 @@ class ChannelsList extends React.Component {
 // helpers
 const Row = ({ index, style, data }) => {
     const channel = data.channels[index - 1];
-    const creator = channel && channel.user_id ? getUsername() : 'admin';
+    const creator = channel && channel.user_id ? data.users[channel.user_id].username : 'admin';
 
     function handleClick() {
         data.handleClose();
@@ -196,12 +196,6 @@ const Row = ({ index, style, data }) => {
             }
         }
         return res;
-    }
-
-    function getUsername() {
-        for (let user of data.users) {
-            if (channel.user_id === user.id) return user.username;
-        }
     }
 
     return (
