@@ -109,6 +109,14 @@ export default class TopNav extends React.Component {
         const members = this.getMembers();
         const filteredMembers = members.filter(x => x.username.toLowerCase().search(this.state.value.toLowerCase()) != -1);
         const topic = this.props.channels[this.props.activeChannel.id].topic;
+        const propState = this;
+        App.appearances = App.cable.subscriptions.create({
+            channel: 'AppearanceChannel'
+        }, {
+            received: function(data) {
+                propState.props.receiveUser(data)
+            }
+        });
 
         return (
             <div className="workspace-top-nav">

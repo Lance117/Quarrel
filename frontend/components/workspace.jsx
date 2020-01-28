@@ -36,14 +36,6 @@ class Workspace extends React.Component {
     }
 
     render() {
-        const propState = this;
-        App.appearances = App.cable.subscriptions.create({
-            channel: 'AppearanceChannel'
-        }, {
-            received: function(data) {
-                propState.props.receiveUser(data)
-            }
-        });
         const { error, isLoaded } = this.state;
         if (error) {
             return <div>Error: {error.message}</div>;
@@ -61,6 +53,7 @@ class Workspace extends React.Component {
                     <div className="client-grids">
                         <div className="workspace-banner"></div>
                         <TopNav
+                            receiveUser={this.props.receiveUser}
                             currentUser={this.props.currentUser}
                             logoutUser={this.props.logoutUser}
                             activeChannel={this.props.activeChannel}
