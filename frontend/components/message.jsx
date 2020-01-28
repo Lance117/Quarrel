@@ -82,9 +82,9 @@ function Message(props) {
                 </div>
                 <span className="msg-body">{msgBody}</span>
             </div>}
-            {!editMode && <div className="msg-actions">
+            {!editMode && props.isSender && <div className="msg-actions">
                 <button className="msg-actions-btn all-icons" onClick={handleOpenModal}>
-                    {props.isSender && <i className="all-icons ellipsis"></i>}
+                    <i className="all-icons ellipsis"></i>
                 </button>
             </div>}
             {editMode && <div style={{paddingLeft: '70px'}}>

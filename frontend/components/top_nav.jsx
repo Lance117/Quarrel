@@ -25,6 +25,7 @@ export default class TopNav extends React.Component {
         this.handleCloseEdit = this.handleCloseEdit.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
+        this.handleDelChannel = this.handleDelChannel.bind(this);
     }
 
     handleOpenEdit() {
@@ -84,6 +85,16 @@ export default class TopNav extends React.Component {
         }
     }
 
+    handleDelChannel() {
+        this.props.deleteChannel({id: this.props.activeChannel.id}).then(r => {
+            this.handleCloseSettings();
+            window.localStorage.setItem('lastVisited', 1);
+            this.props.history.push("1");
+        }), err => {
+            console.log(err)
+        }
+    }
+
     getMembers() {
         let res = [];
         for (let membership of this.props.memberships) {
@@ -106,6 +117,7 @@ export default class TopNav extends React.Component {
     }
 
     render() {
+        if (!this.props.channels[this.props.activeChannel.id]) return null;
         const members = this.getMembers();
         const filteredMembers = members.filter(x => x.username.toLowerCase().search(this.state.value.toLowerCase()) != -1);
         const topic = this.props.channels[this.props.activeChannel.id].topic;
@@ -172,6 +184,12 @@ export default class TopNav extends React.Component {
                             <button className="nav-modal-btn" onClick={this.handleJoinOrLeave}>
                                 <div className="nav-item-label">{`${this.getMembership() ? 'Leave': 'Join'} #${this.props.channels[this.props.activeChannel.id].channel_name}`}</div>
                             </button>
+                            {
+                                this.props.channels[this.props.activeChannel.id].user_id === this.props.userId &&
+                                <button className="nav-modal-btn delete_msg" onClick={this.handleDelChannel}>
+                                    <div className="nav-item-label">Delete channel</div>
+                                </button>
+                            }
                         </div>
                     </div>
                 </ReactModal>

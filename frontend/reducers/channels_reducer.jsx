@@ -1,4 +1,4 @@
-import {RECEIVE_CHANNEL, RECEIVE_CHANNELS} from '../actions/channel_actions'
+import {RECEIVE_CHANNEL, RECEIVE_CHANNELS, DELETE_CHANNEL} from '../actions/channel_actions'
 
 const channelsReducer = (state = {}, action) => {
     Object.freeze(state);
@@ -14,6 +14,10 @@ const channelsReducer = (state = {}, action) => {
         case RECEIVE_CHANNEL:
             const newChannel = { [action.channel.id]: action.channel };
             return Object.assign({}, state, newChannel);
+        case DELETE_CHANNEL:
+            Object.assign(nextState, state);
+            delete nextState[action.channel.id];
+            return nextState;
         default:
             return state;
     }

@@ -13,7 +13,7 @@ class PrimaryView extends React.Component {
     }
 
     componentDidUpdate() {
-        this.scrollToBottom();
+        if (this.msgEndRef.current) this.scrollToBottom();
     }
 
     scrollToBottom() {
@@ -51,6 +51,7 @@ class PrimaryView extends React.Component {
     }
 
     render() {
+        if (!this.props.channels[this.props.activeChannel.id]) return null;
         let channelMsgs = Object.values(this.props.messages).filter(msg => {
             return msg.channel_id === this.props.activeChannel.id;
         })

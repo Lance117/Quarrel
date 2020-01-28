@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import Workspace from '../components/workspace'
 import { logoutUser } from '../actions/session_actions'
-import { fetchChannels, createNewChannel, updateChannel } from '../actions/channel_actions'
+import { fetchChannels, createNewChannel, updateChannel, deleteChannel } from '../actions/channel_actions'
 import { fetchMessages, createNewMessage, updateMessage, deleteMessage, receiveMessage } from '../actions/message_actions'
 import {fetchAllUsers, receiveUser} from '../actions/user_actions'
 import {fetchAllMemberships, createNewMembership, deleteMembership} from '../actions/membership_actions'
@@ -30,6 +30,7 @@ const mapDispatchToProps = dispatch => {
         createMembership: membership => dispatch(createNewMembership(membership)),
         createChannel: channel => dispatch(createNewChannel(channel)),
         updateChannel: channel => dispatch(updateChannel(channel)),
+        deleteChannel: channel => dispatch(deleteChannel(channel)),
         createMessage: message => dispatch(createNewMessage(message)),
         deleteMembership: membership => dispatch(deleteMembership(membership)),
         deleteMessage: message => dispatch(deleteMessage(message)),

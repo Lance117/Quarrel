@@ -30,6 +30,12 @@ class Api::ChannelsController < ApplicationController
         end
     end
 
+    def destroy
+        @channel = Channel.find(params[:id])
+        @channel.destroy
+        render json: @channel
+    end
+
     private
 
     def channel_params

@@ -63,6 +63,7 @@ class ChannelsList extends React.Component {
     }
 
     render() {
+        if (!this.props.channels[this.props.activeChannel.id]) return null;
         const searchChannels = this.getChannels();
         return (
             <div className="channels-list">
@@ -74,7 +75,7 @@ class ChannelsList extends React.Component {
                     </div>
                 </div>
                 { this.myChannels().map((channel, i) => {
-                    return (
+                    return ( channel &&
                         <Channel
                             key={channel.id}
                             channel={channel}

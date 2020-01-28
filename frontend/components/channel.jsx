@@ -63,7 +63,7 @@ class Channel extends React.Component {
         return (
             <div style={{height: '26px'}} className={`active-${this.props.active}`} onContextMenu={this.handleOpenModal}>
                 <Link to={`/teamrocket/${this.props.channel.id}`} style={{textDecoration: 'none'}} onClick={this.handleClick}>
-                    <span className={`channel-name active-${this.props.active}`}>{`# ${this.props.channel.channel_name}`}</span>
+                    <span className={`channel-name sidebar-name active-${this.props.active}`}>{`# ${this.props.channel.channel_name}`}</span>
                 </Link>
                 <ReactModal
                     isOpen={this.state.showModal}
