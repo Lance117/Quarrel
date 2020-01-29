@@ -115,6 +115,7 @@ class ChannelsList extends React.Component {
                                 userId={this.props.userId}
                                 history={this.props.history}
                                 handleCloseModal={this.handleCloseModal}
+                                channels={Object.values(this.props.channels).map(x => x.channel_name.toLowerCase())}
                             /> 
                         </div>
                     </div>
@@ -267,8 +268,13 @@ class AddChannelForm extends React.Component {
         return /^[0-9A-Za-z]+[0-9A-Za-z-_]*$/g.test(name);
     }
 
+    channelExists(name) {
+        return this.props.channels.includes(name.toLowerCase());
+    }
+
     render() {
-        let btnClass = this.state.value.length === 0 || !this.validChannelName(this.state.value) ? "btn-disabled" : "btn-enabled";
+        const channelExists = this.channelExists(this.state.value);
+        let btnClass = this.state.value.length === 0 || (!this.validChannelName(this.state.value) || channelExists) ? "btn-disabled" : "btn-enabled";
         return (
             <form>
                 <label>
@@ -277,6 +283,12 @@ class AddChannelForm extends React.Component {
                         this.state.value && !this.validChannelName(this.state.value) &&
                         <span style={{ fontWeight: '700', color: '#e8912d', display: 'inline-block'}}>
                             Channel names can’t contain spaces, periods, or most punctuation. Try again?
+                        </span>
+                    }
+                    {
+                        this.state.value && channelExists &&
+                        <span style={{ fontWeight: '700', color: '#e8912d', display: 'inline-block'}}>
+                            Channel #{this.state.value} already exists. Try again?
                         </span>
                     }
                 </label>
