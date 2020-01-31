@@ -762,3 +762,37 @@ h1 {
     width: 100%;
     overflow: hidden;
 }
+
+.dialog_footer {
+    padding-top: 15px;
+    justify-content: flex-end;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    box-shadow: none;
+    padding: 20px 24px;
+    position: relative;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 0;
+    background-clip: padding-box;
+}
+
+.dialog_footer_buttons {
+    align-self: flex-end;
+    display: flex;
+    flex-shrink: 0;
+}
+
+.dialog_cancel {
+    background: #1a1d21;
+    color: #d1d2d3;
+    transition: all 80ms linear;
+    --sk_primary_foreground: 209,210,211;
+    --saf-0: rgba(var(--sk_primary_foreground,29,28,29),0.3);
+    border: 1px solid var(--saf-0) !important;
+    background-clip: padding-box;
+    font-weight: 700;
+    font-family: 'Lato-norm';
+}

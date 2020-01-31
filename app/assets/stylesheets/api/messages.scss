@@ -1,3 +1,170 @@
 // Place all the styles related to the api/messages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.msg-pane {
+    height: auto;
+    top: 0px;
+    bottom: 0;
+    padding-left: 0;
+    width: 100%;
+    position: absolute;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.msg-forward {
+    margin: 48px 32px 16px 16px;
+    font-family: 'Lato-norm';
+    font-size: 15px;
+    line-height: 1.46668;
+    font-weight: 400;
+    width: 100%;
+}
+
+.forward-channel-name {
+    color: #d1d2d3;
+    margin-bottom: 8px;
+    font-size: 28px;
+    line-height: 1.2143;
+}
+
+.forward-description {
+    color: #d1d2d3;
+    font-size: 1.1rem;
+    line-height: 1.5;
+}
+
+.timestamp {
+    font-size: 12px;
+    color: #ABABAD;
+}
+
+.day-divider {
+    left: 0;
+    right: 0;
+    border-top: 1px solid rgba(var(--sk_foreground_low_solid,221,221,221),1);
+    border-bottom: 0;
+    margin: 0 0 -1px 0;
+    top: -1px;
+    position: relative;
+}
+
+.msg-list-container {
+    position: absolute;
+    width: 100%;
+}
+
+.msg-list-item {
+    font-family: 'Lato-norm';
+    color: #e8e8e8;
+    line-height: 16px;
+    padding: 6px 0;
+    font-size: 15px;
+    position: relative;
+}
+
+.msg-list-item:hover {
+    --hover_color: 34,37,41;
+    background-color: rgba(var(--hover_color,248,248,248),1);
+}
+
+.last-msg {
+    margin-bottom: 16px;
+}
+
+.edit-list-item {
+    padding-right: 20px;
+    background: rgba(242, 199, 68, 0.1);
+}
+
+.edit-list-item:hover {
+    background: rgba(242, 199, 68, 0.1);
+}
+
+.msg-avatar {
+    width: 64px;
+    padding-right: 8px;
+    float: left;
+    text-align: right;
+}
+
+.msg-avatar-btn {
+    height: 36px;
+    line-height: 36px;
+    width: 36px;
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    background: none;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.avatar-img {
+    border-radius: 3px;
+    display: block;
+    height: 100%!important;
+    width: 100%!important;
+}
+
+.msg-contents {
+    margin-top: -9px;
+    margin-left: 64px;
+    margin-right: 20px;
+}
+
+.sender-header {
+    margin: 9px 0 -5px;
+    line-height: 1;
+}
+
+.msg-sender {
+    font-family: 'Lato';
+    font-weight: 900;
+    word-break: break-word;
+}
+
+.msg-body {
+    color: #d1d2d3 !important;
+    line-height: 1.46668;
+    margin: 8px 0 -4px;
+    text-align: left;
+    display: inline-block;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+.msg-actions {
+    transition: unset;
+    transition-property: unset;
+    display: none;
+    overflow: hidden;
+    padding: 2px;
+    position: absolute;
+    right: 17px;
+    top: 0px;
+}
+
+.msg-actions:hover {
+    border: 1px solid #393c46;
+    background-color: #1a1d21;
+    border-radius: 6px;
+}
+
+.msg-list-item:hover .msg-actions {
+    display: block;
+}
+
+.msg-actions-btn {
+    border: unset;
+    border-radius: 4px;
+    color: rgb(198,199,200);
+    height: 32px;
+    width: 32px;
+    cursor: pointer;
+    background: none;
+}

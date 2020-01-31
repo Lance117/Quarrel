@@ -1,0 +1,38 @@
+.msg-input {
+    display: flex;
+    padding: 0 20px;
+}
+
+.msg_input_inner {
+    min-width: 0;
+    min-height: 0;
+    flex: 1 1 auto;
+}
+
+.preview-footer {
+    padding: 24px 30px;
+    background-color: #222529;
+    text-align: center;
+}
+
+.msg-notification-bar {
+    height: 24px;
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+    margin-left: 44px;
+}
+
+.bar-section {
+    width: auto;
+    opacity: 1;
+    flex: 0 0 auto;
+    text-align: right;
+    margin-left: 5px;
+    overflow: hidden;
+    color: rgba(var(--sk_foreground_max_solid,97,96,97),1);
+    font-size: .7em;
+    line-height: 1rem;
+    height: 1rem;
+    white-space: nowrap;
+}

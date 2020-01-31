@@ -1,0 +1,186 @@
+.flex-top-nav {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+.nav-team-header {
+    background: #19171D;
+    border-right: 1px solid #393c46;
+    color: #ffffff;
+    flex-shrink: 0;
+    width: 220px;
+    height: 60px;
+    padding: 8px 16px;
+}
+
+.nav-team-header:hover {
+    background: black;
+}
+
+.nav-team-header:hover .nav-team-name .nav-user-header .nav-username {
+    opacity: 1;
+}
+
+.nav-team-header:hover .nav-team-name .team-header-section .team-header-icon .down-icon {
+    opacity: 1;
+}
+
+.header-content {
+    cursor: pointer;
+}
+
+.nav-team-name {
+    display: flex;
+    flex-direction: column;
+}
+
+.team-header-section {
+    display: flex;
+    align-items: center;
+}
+
+.team-name {
+    font-family: 'Lato';
+    font-size: 18px;
+    line-height: 1.33334;
+    font-weight: 900;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.nav-user-header {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.nav-username {
+    flex: 0 1 auto;
+    min-width: 0;
+    display: flex;
+    opacity: .7;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.nav-channel-header {
+    border-bottom: 1px solid #393c46;
+    flex: 1;
+    height: 60px;
+    padding: 8px 8px 8px 20px;
+    display: flex;
+    min-width: 0;
+    position: relative;
+}
+
+.channel-title-header {
+    flex: 1;
+    min-width: 0;
+}
+
+.nav-title {
+    font-family: 'Lato';
+    font-size: 18px;
+    line-height: 1.33334;
+    font-weight: 900;
+    display: inline-flex;
+    max-width: 100%;
+    align-items: baseline;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #d1d2d3;
+}
+
+.nav-title-info {
+    display: flex;
+    align-items: baseline;
+    font-size: 13px;
+    line-height: 1.38463;
+    font-weight: 400;
+    user-select: none;
+    --foreground: 232,232,232;
+    color: rgba(var(--foreground,29,28,29),.7);
+    margin-top: 1px;
+}
+
+.nav_topic {
+    display: inline-flex;
+    align-items: flex-start;
+    position: relative;
+    height: 18.00019px;
+    overflow: hidden;
+}
+
+.nav_topic:hover {
+    overflow: visible;
+    z-index: 202;
+}
+
+.nav_topic:hover .nav_topic_text {
+    min-width: 96px;
+    text-overflow: clip;
+    white-space: normal;
+    overflow: visible;
+}
+
+.nav_topic_text {
+    position: relative;
+    display: block;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.nav_topic:hover .nav_topic_text:before {
+    content: "";
+    position: absolute;
+    top: -2px;
+    right: -4px;
+    bottom: -2px;
+    left: -4px;
+    --foreground: 232,232,232;
+    --background: 26,29,33;
+    background: rgba(var(--background,255,255,255),1);
+    --saf-0: rgba(var(--foreground,29,28,29),0.13);
+    box-shadow: inset 0 0 0 1px var(--saf-0),0 1px 1px 0 rgba(0,0,0,.05);
+    border-radius: 4px;
+}
+
+.nav_topic_content {
+    color: inherit !important;
+    position: relative;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.edit_topic {
+    display: none;
+    margin-left: 8px !important;
+    color: #1d9bd1 !important;
+}
+
+.edit_topic:hover {
+    text-decoration: underline;
+}
+
+.nav_topic:hover .edit_topic {
+    display: block;
+}
+
+.channel-members-info {
+    color: inherit !important;
+    display: flex;
+    align-items: baseline;
+}
+
+.channel-members-info:hover {
+    outline: none;
+    color: #ff9000;
+}

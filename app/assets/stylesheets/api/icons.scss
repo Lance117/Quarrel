@@ -1,0 +1,146 @@
+.presence-icon {
+    width: 8px;
+    margin-left: -5px;
+    margin-top: -2px;
+}
+
+.presence_offline {
+    --foreground: 171,171,173;
+    color: rgba(var(--foreground,97,96,97),1);
+}
+
+.presence_offline::before {
+    content: "\E507";
+    font-family: 'Slack-icons' !important;
+    color: rgb(198,199,200);
+}
+
+.presence-icon::before {
+    content: "\E507";
+    font-family: 'Slack-icons' !important;
+    color: rgb(198,199,200);
+}
+
+.presence-active::before {
+    content: "\E506";
+    font-family: 'Slack-icons' !important;
+    color: #39E500;
+}
+
+.small-icons {
+    height: auto;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+}
+
+.all-icons::before {
+    display: inline-block;
+    font-family: 'Slack-icons';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.small-icons::after {
+    content: "\200B";
+}
+
+.all-icons {
+    position: relative;
+    display: inline-flex;
+    width: 20px;
+    height: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.inline-icon {
+    width: 20px;
+    height: auto;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+}
+
+.msg_input_file_icon::before {
+    font-size: 16px;
+    content: "\E089";
+}
+
+.pencil_icon::before {
+    content: "\E024";
+    font-size: inherit !important;
+}
+
+.inline-icon:before {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -.5em;
+    margin-left: -.5em;
+    width: 1em;
+    height: 1em;
+    display: inline-block;
+    font-family: 'Slack-icons';
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+}
+
+.enter-icon::before {
+    content: "\E302";
+}
+
+.inline-icon:after {
+    content: "\200B";
+}
+
+.user-icon {
+    width: 1em;
+    height: auto;
+}
+
+.user-icon:before {
+    content: "\E003";
+    display: inline-block;
+    font-family: 'Slack-icons';
+    font-weight: 400;
+    font-size: inherit;
+    position: absolute;
+    line-height: 1;
+    top: 50%;
+    left: 50%;
+    margin-top: -.5em;
+    margin-left: -.5em;
+    width: 1em;
+    height: 1em;
+}
+
+.user-icon:after {
+    content: "\200B";
+}
+
+.settings-icon:before {
+    content: "\E020";
+}
+
+.team-header-icon {
+    display: inline-flex;
+    margin-right: 8px;
+    background-color: inherit;
+    border: none;
+}
+
+.down-icon {
+    opacity: .6;
+    color: #f9f9f9;
+    cursor: pointer;
+}
+
+.down-icon::before {
+    content: "\E252";
+    font-family: 'Slack-icons';
+}

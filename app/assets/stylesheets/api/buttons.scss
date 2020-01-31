@@ -1,0 +1,146 @@
+.common-btn {
+    background: none;
+    border: 0;
+    color: #c6c7c8;
+    font: inherit;
+    margin: 0;
+    line-height: inherit;
+    overflow: initial;
+    padding: 0;
+    text-align: initial;
+    vertical-align: initial;
+    cursor: pointer;
+}
+
+.texty_input_button {
+    --foreground: 171,171,173;
+    color: rgba(var(--foreground,97,96,97),1);
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 2px;
+    position: absolute !important;
+    right: 0;
+    top: 0;
+    transition: opacity .2s,background-color .2s,color .2s;
+}
+
+.texty_input_button:hover {
+    box-shadow: none;
+    background: rgba(232,232,232,.04);
+}
+
+.c-button {
+    user-select: none;
+    outline: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+    align-items: center;
+    position: relative;
+    justify-content: center;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.nav-buttons, .nav-btn {
+    display: flex;
+    align-items: center;
+}
+
+.nav-btn {
+    width: 32px;
+    height: 32px;
+    justify-content: center;
+    border-radius: 4px;
+    --btn_color: 232,232,232;
+    color: rgba(var(--btn_color,29,28,29),.7);
+}
+
+.nav-btn:hover {
+    outline: none;
+    color: #2d9ee0;
+}
+
+.side-toolbar-btn {
+    color: #a3a3a6;
+    width: 196px;
+    top: 0;
+    margin: 0;
+    padding: 2px 8px 3px 8px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 4px;
+    border: 0;
+    line-height: inherit;
+    font: inherit;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    opacity: 1;
+    transition: color .1s ease-out;
+    cursor: pointer;
+}
+
+.msg_input_file_btn {
+    transition: all .1s ease-out;
+    border-radius: 2px;
+    color: #a0a0a2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 5px;
+    bottom: 5px;
+    position: absolute;
+    height: 32px;
+    width: 32px;
+    z-index: 200;
+}
+
+.msg_input_file_btn:hover {
+    color: #fff;
+    background: #007a5a;
+}
+
+.medium_btn {
+    font-size: 15px;
+    height: 36px;
+    min-width: 80px;
+    padding: 0 12px 1px;
+}
+
+.preview-btn {
+    display: inline-flex;
+    font-family: inherit;
+    background: #007a5a;
+    color: #fff;
+    font-weight: 900;
+    box-shadow: none;
+    text-decoration: none;
+}
+
+.preview-btn:hover {
+    background: #148567;
+    box-shadow: 0 1px 4px rgba(0,0,0,.3);
+}
+
+.btn-small {
+    font-size: 13px;
+    height: 28px;
+    min-width: 56px;
+    padding: 0 12px 1px;
+}
+
+.btn-outline {
+    font-family: inherit;
+    color: #d1d2d3;
+    transition: all 80ms linear;
+    --background: 26,29,33;
+    --foreground: 209,210,211;
+    background: rgba(var(--background,255,255,255),1);
+    --saf-0: rgba(var(--foreground,29,28,29),0.3);
+    border: 1px solid var(--saf-0);
+    background-clip: padding-box;
+    font-weight: 700;
+}
