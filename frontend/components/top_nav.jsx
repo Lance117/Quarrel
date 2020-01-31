@@ -272,7 +272,7 @@ export default class TopNav extends React.Component {
                     <div className="dialog_footer">
                         <div className="dialog_footer_buttons">
                             <button className="medium_btn c-button dialog_cancel" onClick={this.handleCloseEdit}>Cancel</button>
-                            <button className="preview-btn medium_btn c-button" style={{marginLeft: '12px', fontFamily: 'Lato'}} onSubmit={this.handleSubmit}>
+                            <button className="preview-btn medium_btn c-button" style={{marginLeft: '12px', fontFamily: 'Lato'}} onClick={this.handleSubmit}>
                                 Set topic
                             </button>
                         </div>
