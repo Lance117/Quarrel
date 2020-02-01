@@ -49,11 +49,12 @@ class Workspace extends React.Component {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
             return (
-                // <PacmanLoader
-                //     size={150}
-                //     loading={isLoaded}
-                // />
-                'Loading...'
+                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '50px'}}>
+                    <PacmanLoader
+                        size={40}
+                        color={'#611f69'}
+                    />
+                </div>
             )
         } else {
             return (
