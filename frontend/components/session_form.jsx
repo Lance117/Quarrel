@@ -39,7 +39,7 @@ class SessionForm extends React.Component {
         if (this.props.formType === 'login') {
             return ['Sign in', 'New to Quarrel? ', 'Create an account.', 'signup', ' to'];
         }
-        return ['Sign up', 'Already have an account? ', 'Sign in here.', 'signin', ' for'];
+        return ['Create Account', 'Already have an account? ', 'Sign in here.', 'signin', ' for'];
     }
 
     renderErrors() {
