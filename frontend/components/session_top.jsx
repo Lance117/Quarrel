@@ -10,7 +10,7 @@ function SessionTop(props) {
     function handleSubmit(e) {
         e.preventDefault();
         const user = Object.assign({}, guest);
-        props.processForm(user);
+        props.login(user);
     }
 
     return (

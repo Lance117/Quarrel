@@ -60,7 +60,7 @@ class SessionForm extends React.Component {
     render() {
         return (
             <div className="formpage">
-                <SessionTop processForm={this.props.processForm}/>
+                <SessionTop login={this.props.login}/>
                 <div className="page-contents">
                     {this.renderErrors()}
                     <div className="content-card span-2-3 col">
