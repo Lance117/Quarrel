@@ -61,44 +61,9 @@ class Workspace extends React.Component {
                 <div className="workspace">
                     <div className="client-grids">
                         <div className="workspace-banner"></div>
-                        <TopNav
-                            currentUser={this.props.currentUser}
-                            logoutUser={this.props.logoutUser}
-                            activeChannel={this.props.activeChannel}
-                            updateChannel={this.props.updateChannel}
-                            deleteChannel={this.props.deleteChannel}
-                            channels={this.props.channels}
-                            users={this.props.users}
-                            userId={this.props.userId}
-                            memberships={this.props.memberships}
-                            createMembership={this.props.createMembership}
-                            deleteMembership={this.props.deleteMembership}
-                            history={this.props.history}
-                        />
-                        <Sidebar
-                            channels={this.props.channels}
-                            users={this.props.users}
-                            userId={this.props.userId}
-                            createMembership={this.props.createMembership}
-                            memberships={this.props.memberships}
-                            deleteMembership={this.props.deleteMembership}
-                            activeChannel={this.props.activeChannel}
-                            createChannel={this.props.createChannel}
-                            history={this.props.history}
-                            receiveMessage={this.props.receiveMessage}
-                        />
+                        <TopNav/>
+                        <Sidebar />
                         <PrimaryView
-                            channels={this.props.channels}
-                            createMembership={this.props.createMembership}
-                            users={this.props.users}
-                            userId={this.props.userId}
-                            activeChannel={this.props.activeChannel}
-                            createMessage={this.props.createMessage}
-                            deleteMessage={this.props.deleteMessage}
-                            updateMessage={this.props.updateMessage}
-                            messages={this.props.messages}
-                            currentUser={this.props.currentUser}
-                            memberships={this.props.memberships}
                         />
                     </div>
                 </div>

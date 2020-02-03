@@ -1,9 +1,13 @@
 import React from "react";
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
+import { createNewMessage } from '../actions/message_actions'
+import { createNewMembership } from '../actions/membership_actions'
 import ReactQuill, { Quill } from 'react-quill';
 import ReactModal from 'react-modal';
 import { Picker } from 'emoji-mart'
 
-export class PrimaryFooter extends React.Component {
+class ConnectedPrimaryFooter extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -52,7 +56,6 @@ export class PrimaryFooter extends React.Component {
     }
 
     handleSubmit() {
-        // debugger
         if (this.inputEmpty()) {
             this.props.createMessage({ body: this.textInput.current.getEditor().getText().trim(), channel_id: this.props.channelId});
         }
@@ -146,7 +149,7 @@ export class PrimaryFooter extends React.Component {
     }
 }
 
-export function PreviewFooter(props) {
+function ConnectedPreviewFooter(props) {
     const handleClick = e => {
         e.preventDefault();
         props.createMembership({user_id: props.userId, channel_id: props.channelId});
@@ -162,3 +165,22 @@ export function PreviewFooter(props) {
         </footer>
     )
 }
+
+// Connect components to Redux store
+const mapStateToProps = (state, ownProps) => {
+        const currentUser = state.session.username;
+        const channelId = parseInt(ownProps.match.params.channelId);
+        const channels = state.entities.channels;
+        const activeChannelName = channels[channelId].channel_name;
+        const userId = state.session.id;
+        return {currentUser, activeChannelName, channelId, userId};
+};
+
+const mapDispatchToProps = dispatch => ({
+    createMembership: membership => dispatch(createNewMembership(membership)),
+    createMessage: message => dispatch(createNewMessage(message)),
+});
+
+const containerCreator = connect(mapStateToProps, mapDispatchToProps);
+export const PreviewFooter = withRouter(containerCreator(ConnectedPreviewFooter));
+export const PrimaryFooter = withRouter(containerCreator(ConnectedPrimaryFooter));

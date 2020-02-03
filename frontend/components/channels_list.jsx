@@ -1,11 +1,16 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
+import { createNewChannel } from '../actions/channel_actions'
+import { receiveMessage } from '../actions/message_actions'
+import {createNewMembership, deleteMembership} from '../actions/membership_actions'
 import ReactModal from 'react-modal';
 import Channel from './channel';
 import { VariableSizeList as List } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import Moment from 'react-moment';
 
-class ChannelsList extends React.Component {
+class ConnectedChannelsList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -303,4 +308,21 @@ class AddChannelForm extends React.Component {
     }
 }
 
+// Connect component to Redux store
+const mapStateToProps = (state, ownProps) => ({
+        activeChannel: {id: parseInt(ownProps.match.params.channelId)},
+        channels: state.entities.channels,
+        users: state.entities.users,
+        userId: state.session.id,
+        memberships: Object.values(state.entities.memberships),
+});
+
+const mapDispatchToProps = dispatch => ({
+    createChannel: channel => dispatch(createNewChannel(channel)),
+    createMembership: membership => dispatch(createNewMembership(membership)),
+    deleteMembership: membership => dispatch(deleteMembership(membership)),
+    receiveMessage: message => dispatch(receiveMessage(message)),
+});
+
+const ChannelsList = withRouter(connect(mapStateToProps, mapDispatchToProps)(ConnectedChannelsList));
 export default ChannelsList;

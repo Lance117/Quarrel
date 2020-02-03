@@ -1,8 +1,11 @@
 import React from "react";
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
+import { updateMessage, deleteMessage } from '../actions/message_actions'
 import { PrimaryFooter, PreviewFooter } from './primary_footer'
 import Message from './message'
 
-class PrimaryView extends React.Component {
+class ConnectedPrimaryView extends React.Component {
     constructor(props) {
         super(props);
         this.msgEndRef = React.createRef();
@@ -31,27 +34,13 @@ class PrimaryView extends React.Component {
 
     chooseFooter() {
         if (this.isMember()) {
-            return (
-                <PrimaryFooter
-                    currentUser={this.props.currentUser}
-                    channelId={this.props.activeChannel.id}
-                    activeChannelName={this.props.channels[this.props.activeChannel.id].channel_name} 
-                    createMessage={this.props.createMessage}
-                />
-            )
+            return (<PrimaryFooter/>)
         }
-        return (
-            <PreviewFooter
-                activeChannelName={this.props.channels[this.props.activeChannel.id].channel_name}
-                createMembership={this.props.createMembership}
-                userId={this.props.userId}
-                channelId={this.props.activeChannel.id}
-            />
-        )
+        return (<PreviewFooter/>)
     }
 
     render() {
-        if (!this.props.channels[this.props.activeChannel.id]) return null;
+        if (!this.props.activeChannel) return null;
         let channelMsgs = Object.values(this.props.messages).filter(msg => {
             return msg.channel_id === this.props.activeChannel.id;
         })
@@ -62,10 +51,10 @@ class PrimaryView extends React.Component {
                         <div className="msg-pane" ref={this.msgEndRef}>
                             <div className="msg-forward" style={{top: "0px"}}>
                                 <h1 className="forward-channel-name">
-                                    <span>{`#${this.props.channels[this.props.activeChannel.id].channel_name}`}</span>
+                                    <span>{`#${this.props.activeChannel.channel_name}`}</span>
                                 </h1>
                                 <p className="forward-description">
-                                    This is the very beginning of the <strong>#{this.props.channels[this.props.activeChannel.id].channel_name}</strong> channel.
+                                    This is the very beginning of the <strong>#{this.props.activeChannel.channel_name}</strong> channel.
                                     Please stay on topic!
                                 </p>
                             </div>
@@ -93,4 +82,22 @@ class PrimaryView extends React.Component {
     }
 }
 
+// Connect component to Redux store
+const mapStateToProps = (state, ownProps) => {
+    const channelId = parseInt(ownProps.match.params.channelId);
+    const channels = state.entities.channels;
+    const activeChannel = channels[channelId];
+    const users = state.entities.users;
+    const userId = state.session.id;
+    const messages = state.entities.messages;
+    const memberships = Object.values(state.entities.memberships);
+    return {activeChannel, users, userId, messages, memberships};
+};
+
+const mapDispatchToProps = dispatch => ({
+    deleteMessage: message => dispatch(deleteMessage(message)),
+    updateMessage: message => dispatch(updateMessage(message))
+});
+
+const PrimaryView = withRouter(connect(mapStateToProps, mapDispatchToProps)(ConnectedPrimaryView));
 export default PrimaryView;

@@ -1,4 +1,6 @@
 import React from 'react'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router-dom';
 import ReactModal from 'react-modal';
 import ReactQuill, { Quill } from 'react-quill';
 import NavTeamHeader from './team_header'
@@ -6,8 +8,11 @@ import { FixedSizeList as List } from 'react-window';
 import AutoSizer from 'react-virtualized-auto-sizer';
 import stringHash from 'string-hash';
 import { avatars } from '../util/helpers';
+import { logoutUser } from '../actions/session_actions'
+import { updateChannel, deleteChannel } from '../actions/channel_actions'
+import { createNewMembership, deleteMembership} from '../actions/membership_actions'
 
-export default class TopNav extends React.Component {
+class ConnectedTopNav extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -285,7 +290,6 @@ export default class TopNav extends React.Component {
 }
 
 // helpers
-
 const Row = ({ index, style, data }) => {
     return (
         <div className="member-list-thing" key={index} style={style}>
@@ -320,3 +324,24 @@ const Row = ({ index, style, data }) => {
     )
 }
 //---------
+
+// Connect component
+const mapStateToProps = (state, ownProps) => ({
+        currentUser: state.session.username,
+        activeChannel: {id: parseInt(ownProps.match.params.channelId)},
+        channels: state.entities.channels,
+        users: state.entities.users,
+        userId: state.session.id,
+        memberships: Object.values(state.entities.memberships),
+});
+
+const mapDispatchToProps = dispatch => ({
+    logoutUser: () => dispatch(logoutUser()),
+    updateChannel: channel => dispatch(updateChannel(channel)),
+    deleteChannel: channel => dispatch(deleteChannel(channel)),
+    createMembership: membership => dispatch(createNewMembership(membership)),
+    deleteMembership: membership => dispatch(deleteMembership(membership)),
+});
+
+const TopNav = withRouter(connect(mapStateToProps, mapDispatchToProps)(ConnectedTopNav));
+export default TopNav;
