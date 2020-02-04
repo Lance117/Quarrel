@@ -192,6 +192,7 @@ class ConnectedTopNav extends React.Component {
                             </button>
                             {
                                 this.props.channels[this.props.activeChannel.id].user_id === this.props.userId &&
+                                this.props.activeChannel.id != 1 &&
                                 <button className="nav-modal-btn delete_msg" onClick={this.handleDelChannel}>
                                     <div className="nav-item-label">Delete channel</div>
                                 </button>
