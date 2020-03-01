@@ -298,7 +298,10 @@ class AddChannelForm extends React.Component {
                     }
                 </label>
                 <div className="channel-name-input">
-                    <input type="text" className="add-channel-input" minLength="3" maxLength="42" placeholder="# e.g. Kpop" onChange={this.handleChange} />
+                    <div className="add-channel">
+                        <input type="text" className="add-channel-input" minLength="3" maxLength="42" placeholder="# e.g. Kpop" onChange={this.handleChange} />
+                        <div className="count-chars-remaining">{42 - this.state.value.length}</div>
+                    </div>
                 </div>
                 <div className="create-channel-footer">
                     <button className={btnClass} onClick={this.handleSubmit}>Create</button>
