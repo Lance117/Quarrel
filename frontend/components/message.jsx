@@ -21,13 +21,7 @@ function Message(props) {
     const msgStyle = loading ? {display: 'none'} : {};
 
     useEffect(() => {
-        if (msgBody[1] === 'video') {
-            fetch("https://jsonplaceholder.typicode.com/posts")
-                .then(response => response.json())
-                .then(json => {
-                    setTimeout(() => setLoading(false), 700);
-                });
-        } else {
+        if (!['video', 'img'].includes(msgBody[1])) {
             setLoading(false);
         }
     })
@@ -65,6 +59,46 @@ function Message(props) {
         };
     }
 
+    // helpers
+    function youtubeParser(url) {
+        const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+        const match = url.match(regExp);
+        return (match && match[7].length == 11) ? match[7] : false;
+    }
+
+    function createMsgBody(msgBody) {
+        const mediaExt = 'jpg jpeg png gif svg'.split(' ');
+        let res = [msgBody, 'txt'];
+        if (validator.isURL(msgBody)) {
+            let urlParts = msgBody.split('.');
+            let ext = urlParts[urlParts.length - 1];
+            if (mediaExt.includes(ext)) {
+                res = [(
+                    <img src={msgBody}
+                        style={{maxHeight: "360px", maxWidth: "360px"}}
+                        onLoad={() => setLoading(false)}
+                    >
+                    </img>
+                ), 'img'];
+            } else if (youtubeParser(msgBody)) {
+                res = [(
+                    <YouTube
+                        videoId={youtubeParser(msgBody)}
+                        onReady={() => setLoading(false)}
+                        opts={{
+                            playerVars: {
+                                autoplay: -1
+                            }
+                        }}
+                    />
+                ), 'video']
+            } else {
+                res = [(<a href={msgBody} target="_blank">{msgBody}</a>), 'link']
+            }
+        }
+        return res;
+    }
+
     return (
         <div className={className}>
             {loading && msgBody[1] === 'video' &&
@@ -76,6 +110,18 @@ function Message(props) {
                         speed="2"
                     >
                         <rect x="0" y="0" rx="3" ry="3" width="640" height="360"/>
+                    </ContentLoader>
+                </div>
+            }
+            {loading && msgBody[1] === 'img' &&
+                <div style={{paddingLeft: '20px'}}>
+                    <ContentLoader viewBox="0 0 360 360"
+                        width="360" height="360"
+                        backgroundColor="#19171D"
+                        foregroundColor="#222529"
+                        speed="2"
+                    >
+                        <rect x="0" y="0" rx="3" ry="3" width="360" height="360"/>
                     </ContentLoader>
                 </div>
             }
@@ -164,39 +210,5 @@ function Message(props) {
     )
 }
 
-// helpers
-const youtubeParser = url => {
-    const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
-    const match = url.match(regExp);
-    return (match && match[7].length == 11) ? match[7] : false;
-}
-
-function createMsgBody(msgBody) {
-    const mediaExt = 'jpg jpeg png gif svg'.split(' ');
-    let res = [msgBody, 'txt'];
-    if (validator.isURL(msgBody)) {
-        let urlParts = msgBody.split('.');
-        let ext = urlParts[urlParts.length - 1];
-        if (mediaExt.includes(ext)) {
-            res = [(
-                <img src={msgBody} style={{maxHeight: "360px", maxWidth: "360px"}}></img>
-            ), 'img'];
-        } else if (youtubeParser(msgBody)) {
-            res = [(
-                <YouTube
-                    videoId={youtubeParser(msgBody)}
-                    opts={{
-                        playerVars: {
-                            autoplay: -1
-                        }
-                    }}
-                />
-            ), 'video']
-        } else {
-            res = [(<a href={msgBody} target="_blank">{msgBody}</a>), 'link']
-        }
-    }
-    return res;
-}
 
 export default Message;
