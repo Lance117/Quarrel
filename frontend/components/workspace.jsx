@@ -2,7 +2,6 @@ import React from 'react'
 import TopNav from './top_nav'
 import Sidebar from './sidebar'
 import PrimaryView from './primary_view'
-import PacmanLoader from 'react-spinners/PacmanLoader'
 
 class Workspace extends React.Component {
     constructor(props) {
@@ -48,14 +47,7 @@ class Workspace extends React.Component {
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
-            return (
-                <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '50px'}}>
-                    <PacmanLoader
-                        size={40}
-                        color={'#611f69'}
-                    />
-                </div>
-            )
+            return null;
         } else {
             return (
                 <div className="workspace">

@@ -102,28 +102,28 @@ function Message(props) {
     return (
         <div className={className}>
             {loading && msgBody[1] === 'video' &&
-                <div style={{paddingLeft: '20px'}}>
-                    <ContentLoader viewBox="0 0 640 392"
-                        width="640" height="392"
-                        backgroundColor="#19171D"
-                        foregroundColor="#222529"
-                        speed="2"
-                    >
-                        <rect x="0" y="0" rx="3" ry="3" width="640" height="360"/>
-                    </ContentLoader>
-                </div>
+                <ContentLoader viewBox="0 0 740 392"
+                    width="740" height="392"
+                    backgroundColor="#19171D"
+                    foregroundColor="#222529"
+                    speed="2"
+                >
+                    <rect x="64" y="24" rx="3" ry="3" width="640" height="360"/>
+                    <rect x="20" y="6" rx="3" ry="3" width="36" height="36"/>
+                    <rect x="64" y="6" rx="3" ry="3" width="168" height="15"/>
+                </ContentLoader>
             }
             {loading && msgBody[1] === 'img' &&
-                <div style={{paddingLeft: '20px'}}>
-                    <ContentLoader viewBox="0 0 360 360"
-                        width="360" height="360"
-                        backgroundColor="#19171D"
-                        foregroundColor="#222529"
-                        speed="2"
-                    >
-                        <rect x="0" y="0" rx="3" ry="3" width="360" height="360"/>
-                    </ContentLoader>
-                </div>
+                <ContentLoader viewBox="0 0 740 392"
+                    width="740" height="392"
+                    backgroundColor="#19171D"
+                    foregroundColor="#222529"
+                    speed="2"
+                >
+                    <rect x="64" y="24" rx="3" ry="3" width="360" height="360"/>
+                    <rect x="20" y="6" rx="3" ry="3" width="36" height="36"/>
+                    <rect x="64" y="6" rx="3" ry="3" width="168" height="15"/>
+                </ContentLoader>
             }
             <div className="msg-avatar" style={msgStyle}>
                 <button className="msg-avatar-btn">

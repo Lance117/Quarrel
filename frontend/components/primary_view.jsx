@@ -9,9 +9,6 @@ class ConnectedPrimaryView extends React.Component {
     constructor(props) {
         super(props);
         this.msgEndRef = React.createRef();
-        this.state = {
-            loaded: false,
-        }
     };
 
     componentDidMount() {
