@@ -260,7 +260,6 @@ h1 {
     font-size: 28px;
     line-height: 1.2143;
     margin: 0;
-    // padding-right: 76px;
     align-items: center;
     display: flex;
     min-height: 70px;
@@ -321,15 +320,7 @@ h1 {
 }
 
 .add-channel-input {
-  // width: 100%;
-  // padding: 0;
-  // height: 48px;
-  // line-height: 1.33334;
-  // font-size: 18px;
-  // font-family: inherit;
-  // color: #d1d2d3;
   height: 100%;
-  // border-radius: 4px;
   outline: none;
   width: 100%;
   border: none;
@@ -338,7 +329,6 @@ h1 {
   font-family: inherit;
   color: #d1d2d3;
   background: transparent;
-  // border: 1px solid #565856;
 }
 
 .add-channel-input::placeholder {
@@ -471,7 +461,6 @@ h1 {
   border: 0;
   border-radius: 100%;
   box-shadow: none;
-  // color: rgba(var(--sk_foreground_max_solid,97,96,97),1);
   display: flex;
   flex-direction: column;
   margin: 0;

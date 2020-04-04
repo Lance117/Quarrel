@@ -8,6 +8,9 @@ class Home extends React.Component {
             email: "karatekid@gmail.com",
             password: "karatekid"
         };
+        this.state = {
+            loading: true,
+        }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
@@ -18,6 +21,7 @@ class Home extends React.Component {
     }
 
     render() {
+        const msgStyle = this.state.loading ? {display: 'none'} : {};
         return (
             <div>
                 <header className="home-nav" role="banner">
@@ -49,7 +53,15 @@ class Home extends React.Component {
                                     and tell people what you think!
                                 </p>
                             </div>
-                            <img src="https://i.imgur.com/oZP2biZ.png"/>
+                            {this.state.loading &&
+                                <img src='https://i.imgur.com/iuRFfSP.png'
+                                style={{ filter: 'blur(1px)', transition: "opacity ease-in 1000ms"}}
+                                />
+                            }
+                            <img src='https://i.imgur.com/oZP2biZ.png'
+                                style={msgStyle}
+                                onLoad={() => this.setState({loading: false})}
+                            />
                         </div>
                     </section>
                 </main>

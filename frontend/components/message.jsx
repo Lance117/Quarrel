@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import ReactModal from 'react-modal';
 import Moment from 'react-moment'
 import validator from 'validator'
@@ -7,15 +7,30 @@ import stringHash from 'string-hash'
 import ReactQuill, { Quill } from 'react-quill';
 import { Picker } from 'emoji-mart';
 import { avatars } from '../util/helpers';
+import ContentLoader from 'react-content-loader';
 
 function Message(props) {
     const [showmodal, setShowmodal] = useState([false, null, null]);
     const [editMode, setEditMode] = useState(false);
+    const [loading, setLoading] = useState(true);
     let msgBody = createMsgBody(props.body);
     let className = "msg-list-item";
     if (props.lastMsg) className = className.concat(' last-msg');
     if (editMode) className = className.concat(' edit-list-item');
     const textInput = useRef(null);
+    const msgStyle = loading ? {display: 'none'} : {};
+
+    useEffect(() => {
+        if (msgBody[1] === 'video') {
+            fetch("https://jsonplaceholder.typicode.com/posts")
+                .then(response => response.json())
+                .then(json => {
+                    setTimeout(() => setLoading(false), 700);
+                });
+        } else {
+            setLoading(false);
+        }
+    })
 
     function handleOpenModal(e) {
         setShowmodal([true, e.nativeEvent.offsetX, e.nativeEvent.clientY]);
@@ -52,18 +67,30 @@ function Message(props) {
 
     return (
         <div className={className}>
-            <div className="msg-avatar">
+            {loading && msgBody[1] === 'video' &&
+                <div style={{paddingLeft: '20px'}}>
+                    <ContentLoader viewBox="0 0 640 392"
+                        width="640" height="392"
+                        backgroundColor="#19171D"
+                        foregroundColor="#222529"
+                        speed="2"
+                    >
+                        <rect x="0" y="0" rx="3" ry="3" width="640" height="360"/>
+                    </ContentLoader>
+                </div>
+            }
+            <div className="msg-avatar" style={msgStyle}>
                 <button className="msg-avatar-btn">
                     <img className="avatar-img" src={avatars[parseInt(stringHash(props.user.username))%avatars.length]} />
                 </button>
             </div>
-            {!editMode && <div className="msg-contents">
+            {!editMode && <div className="msg-contents" style={msgStyle}>
                 <div className="sender-header">
                     <span className="msg-sender">{props.user.username}</span>
                     <span> </span>
                     <span className="timestamp"><Moment fromNow>{props.timestamp}</Moment></span>
                 </div>
-                <span className="msg-body">{msgBody}</span>
+                <span className="msg-body">{msgBody[0]}</span>
             </div>}
             {!editMode && props.isSender && <div className="msg-actions">
                 <button className="msg-actions-btn all-icons" onClick={handleOpenModal}>
@@ -146,16 +173,16 @@ const youtubeParser = url => {
 
 function createMsgBody(msgBody) {
     const mediaExt = 'jpg jpeg png gif svg'.split(' ');
-    let res = msgBody;
+    let res = [msgBody, 'txt'];
     if (validator.isURL(msgBody)) {
         let urlParts = msgBody.split('.');
         let ext = urlParts[urlParts.length - 1];
         if (mediaExt.includes(ext)) {
-            res = (
+            res = [(
                 <img src={msgBody} style={{maxHeight: "360px", maxWidth: "360px"}}></img>
-            );
+            ), 'img'];
         } else if (youtubeParser(msgBody)) {
-            res = (
+            res = [(
                 <YouTube
                     videoId={youtubeParser(msgBody)}
                     opts={{
@@ -164,9 +191,9 @@ function createMsgBody(msgBody) {
                         }
                     }}
                 />
-            )
+            ), 'video']
         } else {
-            res = (<a href={msgBody} target="_blank">{msgBody}</a>)
+            res = [(<a href={msgBody} target="_blank">{msgBody}</a>), 'link']
         }
     }
     return res;
