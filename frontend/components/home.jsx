@@ -54,7 +54,7 @@ class Home extends React.Component {
                                 </p>
                             </div>
                             {this.state.loading &&
-                                <img src='https://i.imgur.com/iuRFfSP.png'
+                                <img src='https://i.imgur.com/VULg4CB.png'
                                 style={{ filter: 'blur(1px)', transition: "opacity ease-in 1000ms"}}
                                 />
                             }
