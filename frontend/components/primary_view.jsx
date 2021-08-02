@@ -63,10 +63,11 @@ class ConnectedPrimaryView extends React.Component {
                                     <Message
                                         key={message.id}
                                         msgId={message.id}
-                                        body={message.body} 
-                                        user={this.props.users[message.user_id]} 
+                                        body={message.body}
+                                        user={this.props.users[message.user_id]}
                                         isSender={this.props.users[message.user_id].id === this.props.userId}
                                         timestamp={message.created_at}
+                                        isUpdated ={message.updated_at !== message.created_at}
                                         lastMsg={i === channelMsgs.length - 1}
                                         deleteMessage={this.props.deleteMessage}
                                         updateMessage={this.props.updateMessage}

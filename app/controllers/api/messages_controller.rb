@@ -49,7 +49,8 @@ class Api::MessagesController < ApplicationController
             body: message.body,
             user_id: message.user_id,
             channel_id: message.channel_id,
-            created_at: message.created_at
+            created_at: message.created_at,
+            updated_at: message.updated_at
         )
     end
 end

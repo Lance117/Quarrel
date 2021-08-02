@@ -134,7 +134,7 @@ function Message(props) {
                 <div className="sender-header">
                     <span className="msg-sender">{props.user.username}</span>
                     <span> </span>
-                    <span className="timestamp"><Moment fromNow>{props.timestamp}</Moment></span>
+                    <span className="timestamp"><Moment fromNow>{props.timestamp}</Moment><i>{props.isUpdated && ' (edited)'}</i></span>
                 </div>
                 <span className="msg-body">{msgBody[0]}</span>
             </div>}
