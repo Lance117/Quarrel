@@ -1,7 +1,6 @@
 # Quarrel
 
 Quarrel is a chat app modeled after Slack, but for casual discussions.
-Demo: http://quarreling.herokuapp.com/
 
 <img src="demo.gif">
 
